@@ -97,6 +97,8 @@
                 echo "<pre>".print_r($erreur,true)."</pre>";
 
             }
+
+
         }
 
 
@@ -271,11 +273,13 @@
 
 
         /**
+         * Retrieve barrack's information from one specific fireman
          * 
+         * @param Fireman $fireman
          * 
-         * 
+         * @return Caserne $barrack
          */
-        public function findBarracksFromFireman(Fireman $fireman): ?Caserne{
+        public function retrieveBarracksFromFireman(Fireman $fireman): ?Caserne{
 
 
             try {
@@ -302,9 +306,9 @@
 
                 $preparedStatement->execute();
 
-                $data = $preparedStatement->fetchObject('app\models\\Caserne');
+                $barrack = $preparedStatement->fetchObject('app\models\\Caserne');
 
-                return $data;
+                return $barrack;
 
 
             } catch (\Exception $erreur) {
