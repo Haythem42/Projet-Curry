@@ -36,10 +36,7 @@
          */
         public function retrieveFireman($matricule) : ?Fireman{
 
-
-            try {
-
-
+            
                 $requestSQL = "SELECT * FROM pompiers WHERE Matricule =:matricule";
 
                 $preparedStatement = $this->connexion->prepare($requestSQL);
@@ -53,13 +50,6 @@
                 return $data;
 
 
-            } catch (\Exception $erreur) {
-
-                echo "<pre>".print_r($erreur,true)."</pre>";
-
-            }
-
-
         }
 
 
@@ -70,9 +60,6 @@
         * @return int
         */
         public function countFiremen() : int {
-
-
-            try {
 
 
                 $requestSQL = "SELECT * FROM pompiers";
@@ -92,13 +79,6 @@
                 return $countFiremen;
 
 
-            } catch (\Exception $erreur) {
-
-                echo "<pre>".print_r($erreur,true)."</pre>";
-
-            }
-
-
         }
 
 
@@ -112,9 +92,6 @@
         * @return array $firemen
         */
         public function findAllFiremen($limit, $offset) : Array {
-
-
-            try {
 
 
                 $requestSQL = "SELECT * FROM pompiers LIMIT ? OFFSET ?";
@@ -136,13 +113,6 @@
                 return $firemen;
 
 
-            } catch (\Exception $erreur) {
-
-                echo "<pre>".print_r($erreur,true)."</pre>";
-
-            }
-
-
         }
 
 
@@ -155,8 +125,6 @@
          * @return int $linesAdded
          */
         public function saveFireman(Fireman $fireman) : int {
-
-            try {
 
 
                 $requestSQL = "INSERT INTO pompiers VALUES (?,?,?,?,?,?,?,?)";
@@ -179,13 +147,6 @@
                 return $linesAdded;
 
 
-            } catch (\Exception $erreur) {
-
-                echo "<pre>".print_r($erreur,true)."</pre>";
-
-            }
-
-
         }
 
 
@@ -199,8 +160,6 @@
          */
         public function removeFireman(Fireman $fireman) : int {
 
-
-            try {
 
                 $matriculeToDelete = $fireman->getMatricule();
 
@@ -217,13 +176,6 @@
                 return $linesDeleted;
 
 
-            } catch (\Exception $erreur) {
-
-                echo "<pre>".print_r($erreur,true)."</pre>";
-
-            }
-
-
         }
 
 
@@ -236,9 +188,6 @@
          * @return int $linesModified
          */
         public function updateFireman(Fireman $fireman) : int {
-
-
-            try {
 
 
                 $requestSQL = "UPDATE pompiers SET Prenom = :prenom, Nom = :nom, ChefAgret = :chefAgret, DateNaissance = :dateNaissance, NumCaserne = :numCaserne, CodeGrade = :codeGrade, MatriculeResponsable = :matriculeResponsable WHERE Matricule = :matricule";
@@ -261,13 +210,6 @@
                 return $linesModified;
 
 
-            } catch (\Exception $erreur) {
-
-                echo "<pre>".print_r($erreur,true)."</pre>";
-
-            }
-
-
         }
 
 
@@ -280,9 +222,6 @@
          * @return Caserne $barrack
          */
         public function retrieveBarracksFromFireman(Fireman $fireman): ?Caserne{
-
-
-            try {
 
 
                 $matriculeFireman = $fireman->getMatricule();
@@ -309,13 +248,6 @@
                 $barrack = $preparedStatement->fetchObject('app\models\\Caserne');
 
                 return $barrack;
-
-
-            } catch (\Exception $erreur) {
-
-                echo "<pre>".print_r($erreur,true)."</pre>";
-
-            }
 
 
         }
