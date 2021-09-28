@@ -28,7 +28,7 @@ class DAOBarrack
     public function find($numBarrack): ?Barrack
     {
 
-        try{
+        
         $SQL = 'SELECT * FROM barrack WHERE NumBarrack = :numBarrack;';
         
         $prepareStatement = $this->connection->prepare($SQL);
@@ -38,22 +38,13 @@ class DAOBarrack
         $barrack = $prepareStatement->fetchObject("Barrack", $ctor_args);
         return $barrack;
 
-        } catch (Exception $e){ // Deux exceptions à mettre dans le controller
-            echo "<pre>".print_r($e, true)."</pre>";
-        }
     }
 
     public function save(Barrack $barrack): void
     {
-        try {
-            
         $SQL = 'INSERT INTO  barrack VALUES ()'; 
         
         $prepareStatement = $this->connection->prepare($SQL);
-        
-        } catch (Exception $e){ // Deux exceptions à mettre dans le controller
-            echo "<pre>".print_r($e, true)."</pre>";
-        }
     }
 
     /**
@@ -61,29 +52,17 @@ class DAOBarrack
     */
     public function update(Barrack $barrack): void
     {
-        try {
-            
         $SQL = 'UPDATE barrack SET '; 
         
         $prepareStatement = $this->connection->prepare($SQL);
         
-
-        } catch (Exception $e){ // Deux exceptions à mettre dans le controller
-            echo "<pre>".print_r($e, true)."</pre>";
-        }
     }
 
     public function remove(Barrack $barrack): void
     {
-        try {
-            
             $SQL = 'DELETE FROM barrack WHERE'; 
             
             $prepareStatement = $this->connection->prepare($SQL);
-            
-            } catch (Exception $e){ // Deux exceptions à mettre dans le controller
-                echo "<pre>".print_r($e, true)."</pre>";
-            }
     }
 
     /**
@@ -93,7 +72,6 @@ class DAOBarrack
      */
     public function findAll($offset = 0, $limit = 10): array
     {
-        try{
             $SQL = 'SELECT * FROM barrack LIMIT ' .$limit. ';';
 
             $prepareStatement = $this->connection->prepare($SQL);
@@ -110,9 +88,6 @@ class DAOBarrack
             //     $barracks[] = $data;
             // }
             // return $barracks;
-        } catch (Exception $e){ // Deux exceptions à mettre dans le controller
-            echo "<pre>".print_r($e, true)."</pre>";
-        }
     }
 
     /**
@@ -121,8 +96,6 @@ class DAOBarrack
      */
     public function count(): int
     {
-        try {
-            
             $SQL = 'SELECT * FROM barracks;'; 
             
             $prepareStatement = $this->connection->prepare($SQL);
@@ -133,10 +106,6 @@ class DAOBarrack
                 $countBarrack = $countBarrack + 1;
             }
             return $countBarrack;
-
-            } catch (Exception $e){ // Deux exceptions à mettre dans le controller
-                echo "<pre>".print_r($e, true)."</pre>";
-            }
     }
 
     public function findFireMenFromBarrack(Barrack $barrack): ?Barrack
