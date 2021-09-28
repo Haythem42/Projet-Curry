@@ -36,7 +36,7 @@
          */
         public function retrieveFireman($matricule) : ?Fireman{
 
-            
+
                 $requestSQL = "SELECT * FROM pompiers WHERE Matricule =:matricule";
 
                 $preparedStatement = $this->connexion->prepare($requestSQL);
@@ -45,9 +45,11 @@
 
                 $preparedStatement->execute();
 
-                $data = $preparedStatement->fetchObject('app\models\\Fireman');
+                $data = $preparedStatement->fetch(\PDO::FETCH_OBJ);
 
-                return $data;
+                $fireman = new Fireman($data->Matricule,$data->Prenom,$data->Nom,$data->ChefAgret,$data->DateNaissance,$data->NumCaserne,$data->CodeGrade,$data->MatriculeResponsable);
+
+                return $fireman;
 
 
         }
@@ -70,7 +72,7 @@
 
                 $countFiremen = 0;
 
-                while ($data = $preparedStatement->fetchObject('app\models\\Fireman')) {
+                while ($data = $preparedStatement->fetch(\PDO::FETCH_OBJ)) {
 
                     $countFiremen += 1;
 
@@ -104,9 +106,10 @@
 
                 $firemen = array();
 
-                while ($data = $preparedStatement->fetchObject('app\models\\Fireman')) {
+                while ($data = $preparedStatement->fetch(\PDO::FETCH_OBJ)) {
 
-                    array_push($firemen, $data);
+                    $fireman = new Fireman($data->Matricule,$data->Prenom,$data->Nom,$data->ChefAgret,$data->DateNaissance,$data->NumCaserne,$data->CodeGrade,$data->MatriculeResponsable);
+                    array_push($firemen, $fireman);
 
                 }
 
@@ -161,13 +164,11 @@
         public function removeFireman(Fireman $fireman) : int {
 
 
-                $matriculeToDelete = $fireman->getMatricule();
-
-                $requestSQL = "DELETE FROM pompiers WHERE Matricule = :matriculeToDelete";
+                $requestSQL = "DELETE FROM pompiers WHERE Matricule = ?";
 
                 $preparedStatement = $this->connexion->prepare($requestSQL);
 
-                $preparedStatement->bindParam(':matriculeToDelete', $matriculeToDelete);
+                $preparedStatement->bindValue(1, $fireman->getMatricule());
 
                 $preparedStatement->execute();
 
@@ -221,7 +222,7 @@
          * 
          * @return Caserne $barrack
          */
-        public function retrieveBarracksFromFireman(Fireman $fireman): ?Caserne{
+        public function retrieveBarracksFromFireman(Fireman $fireman): ?Barrack{
 
 
                 $matriculeFireman = $fireman->getMatricule();
@@ -245,7 +246,9 @@
 
                 $preparedStatement->execute();
 
-                $barrack = $preparedStatement->fetchObject('app\models\\Caserne');
+                $data = $preparedStatement->fetch(\PDO::FETCH_OBJ);
+
+                $barrack = new Barrack($data->numCaserne,$data->adresse,$data->cp,$data->ville,$data->typeCodeC);
 
                 return $barrack;
 

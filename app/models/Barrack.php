@@ -9,6 +9,7 @@
 namespace app\models;
 
 class Barrack {
+
     private $numCaserne;
     private $adresse;
     private $cp;
@@ -24,12 +25,15 @@ class Barrack {
      * @param string $ville
      * @param string $codeTypeC
     */
-    public function __contrusct($numCaserne, $adresse, $cp, $ville, $codeTypeC){
+
+    public function __construct($numCaserne, $adresse, $cp, $ville, $codeTypeC){
+
         $this->numCaserne = $numCaserne;
         $this->adresse = $adresse;
         $this->cp = $cp;
         $this->ville = $ville;
         $this->codeTypeC = $codeTypeC;
+
     }
 
     /* ---------- GET functions ---------- */

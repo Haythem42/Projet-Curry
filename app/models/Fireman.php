@@ -21,8 +21,30 @@
         private $MatriculeResponsable;
 
 
+        /**
+         * Construct of Fireman
+         * 
+         * @param string $matricule
+         * @param string $prenom
+         * @param string $nom
+         * @param string $chefAgret
+         * @param datetime $dateNaissance
+         * @param int $NumCaserne
+         * @param string $codeGrade
+         * @param string $matriculeResponsable
+        */
+        public function __construct($matricule,$prenom,$nom,$chefAgret,$dateNaissance,$numCaserne,$codeGrade,$matriculeResponsable) {
 
-        public function __construct() {}
+            $this->Matricule = $matricule;
+            $this->Prenom = $prenom;
+            $this->Nom = $nom;
+            $this->ChefAgret = $chefAgret;
+            $this->DateNaissance = $dateNaissance;
+            $this->NumCaserne = $numCaserne;
+            $this->CodeGrade = $codeGrade;
+            $this->MatriculeResponsable = $matriculeResponsable;
+
+        }
  
         
 
