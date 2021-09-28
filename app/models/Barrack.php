@@ -10,11 +10,11 @@ namespace app\models;
 
 class Barrack {
 
-    private $numCaserne;
-    private $adresse;
-    private $cp;
-    private $ville;
-    private $codeTypeC;
+    private $NumCaserne;
+    private $Adresse;
+    private $CP;
+    private $Ville;
+    private $CodeTypeC;
 
     /**
      * Construct of FireHouse
@@ -28,11 +28,11 @@ class Barrack {
 
     public function __construct($numCaserne, $adresse, $cp, $ville, $codeTypeC){
 
-        $this->numCaserne = $numCaserne;
-        $this->adresse = $adresse;
-        $this->cp = $cp;
-        $this->ville = $ville;
-        $this->codeTypeC = $codeTypeC;
+        $this->NumCaserne = $numCaserne;
+        $this->Adresse = $adresse;
+        $this->CP = $cp;
+        $this->Ville = $ville;
+        $this->CodeTypeC = $codeTypeC;
 
     }
 

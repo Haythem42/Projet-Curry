@@ -237,7 +237,7 @@
 
                 $data = $preparedStatement->fetch();
 
-                
+        
                 $requestSQL = "SELECT * FROM casernes WHERE NumCaserne = :numCaserne";
 
                 $preparedStatement = $this->connexion->prepare($requestSQL);
@@ -248,7 +248,7 @@
 
                 $data = $preparedStatement->fetch(\PDO::FETCH_OBJ);
 
-                $barrack = new Barrack($data->numCaserne,$data->adresse,$data->cp,$data->ville,$data->typeCodeC);
+                $barrack = new Barrack($data->NumCaserne,$data->Adresse,$data->CP,$data->Ville,$data->CodeTypeC);
 
                 return $barrack;
 
