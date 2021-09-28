@@ -32,4 +32,26 @@ class Barrack {
         $this->codeTypeC = $codeTypeC;
     }
 
+    /* ---------- GET functions ---------- */
+
+    public function getNumCaserne(){
+        return $this->numCaserne;
+    }
+
+    public function getAdresse(){
+        return $this->adresse;
+    }
+
+    public function getCP(){
+        return $this->cp;
+    }
+
+    public function getVille(){
+        return $this->ville;
+    }
+
+    public function getCodeTypeC(){
+        return $this->codeTypeC;
+    }
+
 }

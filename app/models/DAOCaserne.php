@@ -27,9 +27,8 @@ class DAOBarrack
     //? veut dire qu'il ne peut rien retourner (NULL)
     public function find($numBarrack): ?Barrack
     {
-
         
-        $SQL = 'SELECT * FROM barrack WHERE NumBarrack = :numBarrack;';
+        $SQL = 'SELECT * FROM casernes WHERE NumCaserne = :numBarrack;';
         
         $prepareStatement = $this->connection->prepare($SQL);
         $prepareStatement->bindParam("numBarrack", $numBarrack);
@@ -40,39 +39,108 @@ class DAOBarrack
 
     }
 
-    public function save(Barrack $barrack): void
-    {
-        $SQL = 'INSERT INTO  barrack VALUES ()'; 
-        
-        $prepareStatement = $this->connection->prepare($SQL);
-    }
-
     /**
-     * Update a data into barrack
+     * Save/insert a new barrack into Barrack DB
+     * 
+     * @param Barrack $barrack
+     * @return string $message
     */
-    public function update(Barrack $barrack): void
+    // Real function : public function save(Barrack $barrack): void
+    public function save(Barrack $barrack): string
     {
-        $SQL = 'UPDATE barrack SET '; 
+        $SQL = 'INSERT INTO casernes VALUES (?, :adresse, :cp, :ville, ?)';
         
         $prepareStatement = $this->connection->prepare($SQL);
-        
-    }
 
-    public function remove(Barrack $barrack): void
-    {
-            $SQL = 'DELETE FROM barrack WHERE'; 
-            
-            $prepareStatement = $this->connection->prepare($SQL);
+        $prepareStatement->bindValue(1, $barrack->getNumCaserne(), PDO::PARAM_INT);
+        $prepareStatement->bindValue(':adresse', $barrack->getAdresse(), PDO::PARAM_STR);
+        $prepareStatement->bindValue(':cp', $barrack->getCP(), PDO::PARAM_STR);
+        $prepareStatement->bindValue(':ville', $barrack->getVille(), PDO::PARAM_STR);
+        $prepareStatement->bindValue(5, $barrack->getCodeTypeC(), PDO::PARAM_STR);
+
+        // $prepareStatement->execute();
+
+        // Report if the insertion worked
+        $executeIsOk = $prepareStatement->execute();
+        if($executeIsOk) {
+            $message = 'La DB a été ajouté';
+        } else {
+            $message = 'Echec de l/ajout';
+        }
+
+        return $message;
     }
 
     /**
+     * Update data into barrack
+     * 
+     * @param Barrack $barrack
+     * @return string $message
+    */
+    // Real function : public function update(Barrack $barrack): void
+    public function update(Barrack $barrack): string
+    {
+        $SQL = 'UPDATE casernes SET NumCaserne = :numCaserne, Adresse = :adresse, CP = :cp, Ville = :ville, CodeTypeC = :codeTypeC'; 
+        
+        $prepareStatement = $this->connection->prepare($SQL);
+
+        $prepareStatement->bindValue(':numCaserne', $barrack->getNumCaserne(), PDO::PARAM_INT);
+        $prepareStatement->bindValue(':adresse', $barrack->getAdresse(), PDO::PARAM_STR);
+        $prepareStatement->bindValue(':cp', $barrack->getCP(), PDO::PARAM_STR);
+        $prepareStatement->bindValue(':ville', $barrack->getVille(), PDO::PARAM_STR);
+        $prepareStatement->bindValue(':codeTypeC', $barrack->getCodeTypeC(), PDO::PARAM_STR);
+
+        // $prepareStatement->execute();
+
+        // Report if the insertion worked
+        $executeIsOk = $prepareStatement->execute();
+        if($executeIsOk) {
+            $message = 'La DB a été mis à jour';
+        } else {
+            $message = 'Echec de la mise à jour';
+        }
+
+        return $message;
+    }
+
+    /**
+     * Remove a barrack from barrack
+     * 
+     * @param Barrack $barrack
+     * @return string $message
+    */
+    // Real function : public function remove(Barrack $barrack): void
+    public function remove(Barrack $barrack): string
+    {
+        $SQL = 'DELETE FROM casernes WHERE NumCaserne = :numCaserne'; 
+            
+        $prepareStatement = $this->connection->prepare($SQL);
+
+        $prepareStatement->bindValue(':numCaserne', $barrack->getNumCaserne(), PDO::PARAM_INT);
+
+        // $prepareStatement->execute();
+
+        // Report if the insertion worked
+        $executeIsOk = $prepareStatement->execute();
+        if($executeIsOk) {
+            $message = 'La caserne a été supprimée';
+        } else {
+            $message = 'Echec de la suppression';
+        }
+
+        return $message;
+    }
+
+    /**
+     * Find all barracks between $offset and $limit
+     * 
      * @param int $offset
      * @param int $limit
      * @return array<Barrack>
      */
     public function findAll($offset = 0, $limit = 10): array
     {
-            $SQL = 'SELECT * FROM barrack LIMIT ' .$limit. ';';
+            $SQL = 'SELECT * FROM casernes LIMIT ' . $limit . ' OFFSET ' . $offset . ';';
 
             $prepareStatement = $this->connection->prepare($SQL);
             $barracks = array();
@@ -82,7 +150,7 @@ class DAOBarrack
             }
             return $barracks;
 
-            //autre méthode:
+            // Other way:
             // $barracks = [];
             // while($data = $prepareStatement->fetch(PDO::FETCH_ASSOC)){
             //     $barracks[] = $data;
@@ -92,11 +160,12 @@ class DAOBarrack
 
     /**
      * Retrieve number of Barrack in DB
-     * @return int
+     * 
+     * @return int $countBarrack
      */
     public function count(): int
     {
-            $SQL = 'SELECT * FROM barracks;'; 
+            $SQL = 'SELECT COUNT(NumCaserne) FROM casernes;'; 
             
             $prepareStatement = $this->connection->prepare($SQL);
 
@@ -108,7 +177,21 @@ class DAOBarrack
             return $countBarrack;
     }
 
+    /**
+     * Retrieve a fireman by the id the barrack
+     * 
+     * @return string $matricule
+    */
     public function findFireMenFromBarrack(Barrack $barrack): ?Barrack
     {
+        $SQL = 'SELECT Matricule FROM casernes WHERE NumCaserne = :numCaserne';
+
+        $prepareStatement = $this->connection->prepare($SQL);
+        $prepareStatement->bindParam("numCaserne", $barrack->getNumCaserne());
+        $prepareStatement->execute();
+
+        $fireman = $prepareStatement->fetchObject("Fireman", $__construct);
+        return $fireman;
     }
+    
 }
