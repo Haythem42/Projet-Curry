@@ -4,8 +4,10 @@
     namespace app\models;
 
 
+
+
     /**
-     * DAOFireman which contains different kind of functions
+     * DAOFireman which contains CRUD functions
      *
      * @author TakeN
      */
@@ -27,8 +29,10 @@
 
 
 
+
+
         /**
-         * Retrieve one fireman with the matricule
+         * Function which retrieves one fireman from his 'matricule'.
          *
          * @param int $matricule
          *
@@ -56,8 +60,10 @@
 
 
 
+
+
         /**
-        * Retrieve number of firemen in database
+        * Function which retrieves the total number of firemen stored in the database.
         *
         * @return int
         */
@@ -85,13 +91,15 @@
 
 
 
+
+
         /**
-        * Retrieve the ten first firemen from the database
+        * Function which retrieves a 'limit' number of firemen.
         *
         * @param int $limit
         * @param int $offset
         *
-        * @return array $firemen
+        * @return Array $firemen
         */
         public function findAllFiremen($limit, $offset) : Array {
 
@@ -120,14 +128,16 @@
 
 
 
+
+
         /**
-         *Saving one fireman in the database
+         *Function which creates a new fireman in the database.
          *
          * @param Fireman $fireman
          * 
          * @return int $linesAdded
          */
-        public function saveFireman(Fireman $fireman) : int {
+        public function createFireman(Fireman $fireman) : int {
 
 
                 $requestSQL = "INSERT INTO pompiers VALUES (?,?,?,?,?,?,?,?)";
@@ -154,8 +164,10 @@
 
 
 
+
+
         /**
-         * Delete  the given fireman from the database
+         * Function which deletes a fireman from the database.
          * 
          * @param Fireman $fireman
          * 
@@ -181,8 +193,10 @@
 
 
 
+
+
         /**
-         * Updating information about one fireman
+         * Function which updates information about one fireman.
          * 
          * @param Fireman $fireman
          * 
@@ -216,7 +230,7 @@
 
 
         /**
-         * Retrieve barrack's information from one specific fireman
+         * Function which retrieves the barrack associated with one specific fireman.
          * 
          * @param Fireman $fireman
          * 
@@ -225,24 +239,11 @@
         public function retrieveBarracksFromFireman(Fireman $fireman): ?Barrack{
 
 
-                $matriculeFireman = $fireman->getMatricule();
-
-                $requestSQL = "SELECT NumCaserne FROM pompiers WHERE Matricule = :matricule";
-
-                $preparedStatement = $this->connexion->prepare($requestSQL);
-
-                $preparedStatement->bindParam(':matricule', $matriculeFireman);
-
-                $preparedStatement->execute();
-
-                $data = $preparedStatement->fetch();
-
-        
                 $requestSQL = "SELECT * FROM casernes WHERE NumCaserne = :numCaserne";
 
                 $preparedStatement = $this->connexion->prepare($requestSQL);
 
-                $preparedStatement->bindParam(':numCaserne', $data[0]);
+                $preparedStatement->bindValue(':numCaserne', $fireman->getNumCaserne());
 
                 $preparedStatement->execute();
 

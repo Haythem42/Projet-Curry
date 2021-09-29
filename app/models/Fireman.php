@@ -4,6 +4,8 @@
     namespace app\models;
 
 
+
+
     /**
      * Class Fireman
      *
@@ -19,6 +21,8 @@
         private $NumCaserne;
         private $CodeGrade;
         private $MatriculeResponsable;
+
+
 
 
         /**
@@ -48,41 +52,56 @@
  
         
 
-        // ==================== Get functions for private properties ====================
+
+        // ==================== Getter for private properties ====================
         public function getMatricule() {
 
             return $this->Matricule;
         }
+
+
 
         public function getPrenom() {
 
             return $this->Prenom;
         }
 
+
+
         public function getNom() {
 
             return $this->Nom;
         }
+
+
 
         public function getChefAgret() {
 
             return $this->ChefAgret;
         }
 
+
+
         public function getDateNaissance() {
 
             return $this->DateNaissance;
         }
+
+
 
         public function getNumCaserne() {
 
             return $this->NumCaserne;
         }
 
+
+
         public function getCodeGrade() {
 
             return $this->CodeGrade;
         }
+
+
 
         public function getMatriculeResponsable() {
 
@@ -91,13 +110,16 @@
 
 
 
-        // ==================== Set functions for private properties ====================
+
+        // ==================== Setter for private properties ====================
         public function setMatricule($matricule) {
 
             $this->Matricule = $matricule;
             return $this;
 
         }
+
+
 
         public function setPrenom($prenom) {
 
@@ -106,12 +128,16 @@
 
         }
 
+
+
         public function setNom($nom) {
 
             $this->Nom = $nom;
             return $this;
 
         }
+
+
 
         public function setChefAgret($chefAGret) {
 
@@ -120,12 +146,16 @@
 
         }
 
+
+
         public function setDateNaissance($dateNaissance) {
 
             $this->DateNaissance = $dateNaissance;
             return $this;
 
         }
+
+
 
         public function setNumCaserne($numCaserne) {
 
@@ -134,12 +164,16 @@
 
         }
 
+
+
         public function setCodeGrade($codeGrade) {
 
             $this->CodeGrade = $codeGrade;
             return $this;
 
         }
+
+
 
         public function setMatriculeResponsable($matriculeResponsable) {
 

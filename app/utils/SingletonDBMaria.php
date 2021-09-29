@@ -3,6 +3,7 @@
 
 namespace app\utils;
 
+
 class SingletonDBMaria {
 
     public $cnx;
@@ -14,12 +15,16 @@ class SingletonDBMaria {
     private string $username;
     private string $password;
 
+
+
     private function __construct() {
 
-        $this->cnx = new \PDO($this->dsn, $this->username, $this->password);
+        $this->cnx = new \PDO(SingletonConfigReader::getInstance()->getValue('dsn'), SingletonConfigReader::getInstance()->getValue('user'), SingletonConfigReader::getInstance()->getValue('password'));
         $this->cnx->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
 
     }
+
+
 
     public static function getInstance() : SingletonDBMaria {
 
@@ -34,6 +39,7 @@ class SingletonDBMaria {
     }
 
 
+    
     public function getConnection() {
 
         return $this->cnx;
