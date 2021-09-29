@@ -12,9 +12,9 @@
         private static $instance;
 
 
-        public function __construct () {
+        private function __construct () {
 
-            $this->settings = require dirname(__FILE__).'../../../config.php';
+            $this->settings = parse_ini_file($_SERVER['DOCUMENT_ROOT']."/../config.ini");
 
         }
 
