@@ -1,7 +1,7 @@
 <?php
 
 /**
-* Description of caserne
+* Description of casernes
 * 
 * @author Haythem
 */
@@ -17,7 +17,7 @@ class Barrack {
     private $CodeTypeC;
 
     /**
-     * Construct of FireHouse
+     * Construct of Barrack
      * 
      * @param int $numCaserne
      * @param string $adresse
@@ -39,23 +39,50 @@ class Barrack {
     /* ---------- GET functions ---------- */
 
     public function getNumCaserne(){
-        return $this->numCaserne;
+        return $this->NumCaserne;
     }
 
     public function getAdresse(){
-        return $this->adresse;
+        return $this->Adresse;
     }
 
     public function getCP(){
-        return $this->cp;
+        return $this->CP;
     }
 
     public function getVille(){
-        return $this->ville;
+        return $this->Ville;
     }
 
     public function getCodeTypeC(){
-        return $this->codeTypeC;
+        return $this->CodeTypeC;
+    }
+
+    /* ---------- SET functions ---------- */
+
+    public function setNumCaserne($NumCaserne){
+        $this->NumCaserne = $NumCaserne;
+        return $this;
+    }
+
+    public function setAdresse($Adresse){
+        $this->Adresse = $Adresse;
+        return $this;
+    }
+
+    public function setCP($CP){
+        $this->CP = $CP;
+        return $this;
+    }
+
+    public function setVille($Ville){
+        $this->Ville = $Ville;
+        return $this;
+    }
+
+    public function setCodeTypeC($CodeTypeC){
+        $this->CodeTypeC = $CodeTypeC;
+        return $this;
     }
 
 }
