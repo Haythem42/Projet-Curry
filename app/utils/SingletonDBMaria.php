@@ -26,6 +26,8 @@ class SingletonDBMaria {
 
 
 
+
+
     public static function getInstance() : SingletonDBMaria {
 
         if (is_null(self::$instance)) {
@@ -38,6 +40,8 @@ class SingletonDBMaria {
 
     }
 
+
+    
 
     
     public function getConnection() {

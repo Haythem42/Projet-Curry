@@ -15,8 +15,10 @@ class SingletonLogger
 {
     /** @var  SingletonLogger */
     private static $instance;
+
     private string $logFile;
     private bool $logOn; //Correct naming ??
+
     /** @var resource */
     private $handle;
 
@@ -36,23 +38,37 @@ class SingletonLogger
         $this->logOn = SingletonConfigReader::getInstance()->getValue("logger") ?? 1 ;
         //TODO : what happens if opening fail ?
         $this->handle = fopen($this->logFile, "a");
+
     }
 
-    public static function getInstance(): SingletonLogger
-    {
+
+
+
+
+    public static function getInstance(): SingletonLogger {
+
         if (is_null(self::$instance)) {
+
             self::$instance = new SingletonLogger();
+
         }
+
         return self::$instance;
+
     }
 
-    public function log(string $message): void
-    {
+
+
+
+
+    public function log(string $message): void {
+
         //let's log the message with timestamp...
         if ($this->logOn == true) {
             //FIXME : date returns value for summer time for GMT (local time - 2 h) !!
             //echo "[" . date('d-m-y h:i:s') . "] :\t" . $message ;
              fwrite($this->handle, "[" . date('d-m-y h:i:s') . "] :\t" . $message . "\n");
         }
+        
     }
 }
