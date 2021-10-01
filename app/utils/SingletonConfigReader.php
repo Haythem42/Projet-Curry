@@ -17,7 +17,6 @@
             $this->settings = parse_ini_file($_SERVER['DOCUMENT_ROOT']."/../config.ini");
 
         }
-
         
 
         public static function getInstance() {
@@ -31,7 +30,6 @@
             return self::$instance;
 
         }
-
 
 
         public function getValue($key) {

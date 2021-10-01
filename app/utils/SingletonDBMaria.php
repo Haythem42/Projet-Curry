@@ -16,15 +16,12 @@ class SingletonDBMaria {
     private string $password;
 
 
-
     private function __construct() {
 
         $this->cnx = new \PDO(SingletonConfigReader::getInstance()->getValue('dsn'), SingletonConfigReader::getInstance()->getValue('user'), SingletonConfigReader::getInstance()->getValue('password'));
         $this->cnx->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
 
     }
-
-
 
 
 
@@ -40,15 +37,12 @@ class SingletonDBMaria {
 
     }
 
-
     
-
     
     public function getConnection() {
 
         return $this->cnx;
     }
-
 
 
 }
