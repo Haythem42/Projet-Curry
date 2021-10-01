@@ -10,9 +10,13 @@ namespace app\utils;
 */
 class Renderer {
 
+    /**
+     * 
+     * 
+    */
     public static function render($file, array $data = null) : string {
-        $path = "../views/demo.php" ; //chemin vers le fichier   //je suis pas sûr
-        ob_stract();
+        $path = "app/views/demo.php" ; //chemin vers le fichier   //je suis pas sûr
+        ob_start();
         if ($data != null) {
             extract ($data); // récupère les données et les prapare pour les fusionner avec la page
         }
