@@ -1,0 +1,85 @@
+* {
+    margin : 0;
+    padding : 0;
+    font-family : sans-serif;
+}
+
+.enfant {
+    width : 950px;
+    height : 600px;
+}
+
+.bouttons {
+    width : 950px;
+    height : 70px;
+    font-size : 22px;
+    color : white;
+}
+
+
+.imgFireman {
+    background-image: url(../img/firemen2.jpg);
+    background-size: cover;
+    margin-right : 20px;
+}
+
+
+.imgFirehouse {
+    background-image: url(../img/fireStation.png);
+    background-size: cover;
+}
+
+
+.btn-secondary {
+    background-color : #8395a7 !important;
+    border : 1px solid #8395a7 !important;
+    font-size : 22px !important;
+}
+
+
+.btn-warning {
+    background-color : #ff9f43 !important;
+    border : 1px solid #ff9f43 !important;
+    font-size : 22px !important;
+    color : white !important;
+}
+
+
+.color1 {
+    background-color : #8395a7;
+}
+
+
+.color2 {
+    background-color : #ff9f43;
+}
+
+
+.title1 {
+    float: right;
+    border :  1px solid #8395a7;
+    background-color : #8395a7;
+    font-size : 22px;
+    color : white;
+    border-radius : 3px;
+    text-align : center;
+    margin-left : 250px;
+    margin-right : 420px;
+
+}
+
+
+.title2 {
+    border :  1px solid #ff9f43;
+    background-color : #ff9f43;
+    font-size : 22px;
+    color : white;
+    border-radius : 3px;
+    text-align : center;
+    margin-left : 35px;
+}
+
+
+.containerTitle {
+    display: flex;
+}
