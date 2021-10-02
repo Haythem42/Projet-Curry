@@ -14,7 +14,7 @@
 
         private function __construct () {
 
-            $this->settings = parse_ini_file($_SERVER['DOCUMENT_ROOT']."/../config.ini");
+            $this->settings = parse_ini_file($_SERVER['DOCUMENT_ROOT']."/config.ini");
 
         }
         
