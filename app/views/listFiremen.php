@@ -22,6 +22,14 @@
 
 
     <body>
+
+        <!-- Main title of the page -->
+        <div class="container text-center mt-3 color1 rounded">
+            <h1>LIST CONTAINING ALL THE FIREMEN</h1>
+        </div>
+
+
+        
         <?php
         if ($_POST) {
 
@@ -40,7 +48,7 @@
                     if ($success == 1) {?>
 
                         <div class="container mt-5">
-                            <div class="alert alert-success text-center" role="alert">
+                            <div class="alert alert-success text-center fadeAnimation" role="alert">
                                 The fireman has been correctly deleted from the database.
                             </div>
                         </div>
@@ -50,7 +58,7 @@
                 } catch (Exception $erreur) { ?>
 
                     <div class="container mt-5">
-                        <div class="alert alert-danger text-center" role="alert">
+                        <div class="alert alert-danger text-center fadeAnimation" role="alert">
                             Oupsi...It seems like there was an error. You should try again if you want to delete this fireman.
                         </div>
                     </div>
@@ -75,7 +83,7 @@
                     if ($success == 1) {?>
 
                         <div class="container mt-5">
-                            <div class="alert alert-success text-center" role="alert">
+                            <div class="alert alert-success text-center fadeAnimation" role="alert">
                                 The fireman has been correctly inserted into the database.
                             </div>
                         </div>
@@ -84,7 +92,7 @@
                 } catch (Exception $erreur) {?>
 
                     <div class="container mt-5">
-                        <div class="alert alert-danger text-center" role="alert">
+                        <div class="alert alert-danger text-center fadeAnimation" role="alert">
                             Oupsi...It seems like there was an error. You should try again to add this fireman.
                         </div>
                     </div>
@@ -109,7 +117,7 @@
                     if ($success == 1) {?>
 
                         <div class="container mt-5">
-                            <div class="alert alert-success text-center" role="alert">
+                            <div class="alert alert-success text-center fadeAnimation" role="alert">
                                 The fireman has been correctly modified into the database.
                             </div>
                         </div>
@@ -119,7 +127,7 @@
                 } catch (Exception $erreur) { ?>
 
                     <div class="container mt-5">
-                        <div class="alert alert-danger text-center" role="alert">
+                        <div class="alert alert-danger text-center fadeAnimation" role="alert">
                             Oupsi...It seems like there was an error. You should try again to modify this fireman.
                         </div>
                     </div>
@@ -132,7 +140,7 @@
 
 
 
-        <div class="d-flex align-items-center justify-content-center mt-2">
+        <div class="d-flex align-items-center justify-content-center mt-4">
             <table class="table table-striped" id="firemenTable">
                 <thead>
                     <tr>
