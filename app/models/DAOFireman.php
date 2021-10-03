@@ -96,20 +96,18 @@
         /**
         * Function which retrieves a 'limit' number of firemen.
         *
-        * @param int $limit
-        * @param int $offset
         *
         * @return Array $firemen
         */
-        public function findAllFiremen($limit, $offset) : Array {
+        public function findAllFiremen() : Array {
 
 
-                $requestSQL = "SELECT * FROM pompiers LIMIT ? OFFSET ?";
+                $requestSQL = "SELECT * FROM pompiers";
 
                 $preparedStatement = $this->connexion->prepare($requestSQL);
 
-                $preparedStatement->bindValue(1, $limit, \PDO::PARAM_INT);
-                $preparedStatement->bindValue(2, $offset, \PDO::PARAM_INT);
+                // $preparedStatement->bindValue(1, $limit, \PDO::PARAM_INT);
+                // $preparedStatement->bindValue(2, $offset, \PDO::PARAM_INT);
                 $preparedStatement->execute();
 
                 $firemen = array();
@@ -173,14 +171,14 @@
          * 
          * @return int $linesDeleted
          */
-        public function removeFireman(Fireman $fireman) : int {
+        public function removeFireman($matricule) : int {
 
 
                 $requestSQL = "DELETE FROM pompiers WHERE Matricule = ?";
 
                 $preparedStatement = $this->connexion->prepare($requestSQL);
 
-                $preparedStatement->bindValue(1, $fireman->getMatricule());
+                $preparedStatement->bindValue(1, $matricule);
 
                 $preparedStatement->execute();
 
