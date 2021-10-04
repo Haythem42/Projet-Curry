@@ -21,7 +21,7 @@
 
         public function show() {
 
-            $firemen = $this->daoPompier->findAllFiremen(100,0);
+            $firemen = $this->daoPompier->findAllFiremen(0,10);
             $pageListFiremen = Renderer::render('listFiremen.php', compact('firemen'));
             echo($pageListFiremen);
 
