@@ -11,9 +11,14 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
     <link href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css" rel="stylesheet">    
     <title>Barrack List</title>
+    
 </head>
 
 <body>
+    <div class='container'>
+    <div>
+        <h1>Barrack's List</h1>
+    </div>
     <table class="table table-striped" id="myTable">
         <thead>
             <tr>
@@ -28,15 +33,15 @@
         </thead>
         <tbody>
             <!-- <?php var_dump($listBarrack); ?> -->
-            <?php foreach($listBarrack as $listBar) : ?>
+            <?php foreach($listBarrack as $barrack) : ?>
                 
                 <tr>
                     <!-- <th scope="row"></th> -->
-                    <td><?php echo ($listBar)->getNumCaserne(); ?></td>
-                    <td><?= $listBar->getAdresse(); ?></td>
-                    <td><?= $listBar->getCP(); ?></td>
-                    <td><?= $listBar->getVille(); ?></td>
-                    <td><?= $listBar->getCodeTypeC(); ?></td>
+                    <td><?php echo ($barrack)->getNumCaserne(); ?></td>
+                    <td><?= $barrack->getAdresse(); ?></td>
+                    <td><?= $barrack->getCP(); ?></td>
+                    <td><?= $barrack->getVille(); ?></td>
+                    <td><?= $barrack->getCodeTypeC(); ?></td>
                     <td><button type="button" class="btn btn-outline-secondary">MODIFY</button></td>
                     <td><button type="button" class="btn btn-outline-danger">DELETE</button></td>
                 </tr>
@@ -59,7 +64,7 @@
             $('#myTable').DataTable();
         });
     </script>
-
+    </div>
 </body>
 
 </html>
