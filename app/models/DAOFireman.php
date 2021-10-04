@@ -99,10 +99,10 @@
         *
         * @return Array $firemen
         */
-        public function findAllFiremen() : Array {
+        public function findAllFiremen($limit, $offset) : Array {
 
 
-                $requestSQL = "SELECT * FROM pompiers";
+                $requestSQL = "SELECT * FROM pompiers OFFSET $offset LIMIT $limit";
 
                 $preparedStatement = $this->connexion->prepare($requestSQL);
 
