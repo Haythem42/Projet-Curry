@@ -14,6 +14,9 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
         <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
 
+        <script src="../../html/js/deleteFireman.js"></script>
+        <script src="../../html/js/modifyFireman.js"></script>
+
         <title>Firemen list</title>
     </head>
 
@@ -138,8 +141,8 @@
 
 
         <div class="d-flex align-items-center justify-content-center mt-4">
-            <table class="table table-hover" id="firemenTable">
-                <thead >
+            <table class="table table-striped" id="firemenTable">
+                <thead>
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Matricule</th>
@@ -182,7 +185,6 @@
 
         <div class="d-flex align-items-center justify-content-center">
             <button data-toggle="modal" data-target="#modalAddFireman" class="btn btn-outline-success">ADD NEW FIREMAN</button>
-            <!-- <button class="btn btn-outline-primary" onclick="refresh()">REFRESH DATA TABLE</button> -->
         </div>
 
 
@@ -214,7 +216,7 @@
 
 
         <!-- Modal for modifying a fireman -->
-        <div class="modal fade" id="modalModifyFireman" tabindex="-1" role="dialog">
+        <div class="modal" id="modalModifyFireman" tabindex="-1" role="dialog">
             <div class="modal-dialog modal-xl" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -278,7 +280,7 @@
 
 
         <!-- Modal for adding a new fireman -->
-        <div class="modal fade" id="modalAddFireman" tabindex="-1" role="dialog">
+        <div class="modal" id="modalAddFireman" tabindex="-1" role="dialog">
             <div class="modal-dialog modal-xl" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -341,13 +343,9 @@
 
 
         <script>
-            $(document).ready(function(){
-                $('#firemenTable').DataTable();
-            });
+        $(document).ready(function() {
+            $('#firemenTable').DataTable();
+        });
         </script>
-
-        <script src="../../html/js/deleteFireman.js"></script>
-        <script src="../../html/js/modifyFireman.js"></script>
-        
     </body>
 </html>

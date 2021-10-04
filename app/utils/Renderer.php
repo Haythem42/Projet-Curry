@@ -1,6 +1,6 @@
 <?php
 
-namespace app\utils;
+    namespace app\utils;
 
 
 /**
@@ -26,3 +26,5 @@ class Renderer {
         return $content;
     }
 }
+
+?>
