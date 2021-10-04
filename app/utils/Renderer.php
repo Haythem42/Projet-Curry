@@ -15,7 +15,7 @@ class Renderer {
      * 
     */
     public static function render($file, array $data = null) : string {
-        $path = $_SERVER['DOCUMENT_ROOT']."/app/views/".$file ; //chemin vers le fichier   //je suis pas sûr
+        $path = "../app/views/".$file ; //chemin vers le fichier   //je suis pas sûr
         ob_start();
         if ($data != null) {
             extract ($data); // récupère les données et les prapare pour les fusionner avec la page
