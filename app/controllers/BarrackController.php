@@ -23,10 +23,19 @@ class BarrackController extends BaseController {
 
     //Renvoie la page avec la liste de tous les pompiers
     //Avec la pagination
-    public function show($offset, $limit){ //READ du CRUD, Méthode GET du protocole HTTP
+    // public function show($offset, $limit){ //READ du CRUD, Méthode GET du protocole HTTP
+    //     //Il faut penser à la sécurité
+    //     //Gestion des erreurs PDO ou autres ...
+    //     $listBarrack = $this->daoBarrack->findAll($offset, $limit);
+    //     $page = Renderer::render('listBarrack.php', compact('listBarrack'));
+    //     echo $page;
+    // }
+
+
+    public function show($int){ //READ du CRUD, Méthode GET du protocole HTTP
         //Il faut penser à la sécurité
         //Gestion des erreurs PDO ou autres ...
-        $listBarrack = $this->daoBarrack->findAll($offset, $limit);
+        $listBarrack = $this->daoBarrack->findAll($int*10-13, 10);
         $page = Renderer::render('listBarrack.php', compact('listBarrack'));
         echo $page;
     }
