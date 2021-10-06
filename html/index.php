@@ -58,7 +58,7 @@ switch ($control) {
 
 function defaultRoutes_get($fragments)
 {
-    call_user_func_array(["DefaultController", "index"], $fragments);
+    call_user_func_array(["BaseController", "home"], $fragments);
 }
 
 
