@@ -80,43 +80,17 @@ function pompierRoutes_get($fragments)
 
 
         case "display" :
-        
-            //http://127.0.0.1:8080/pompier/show/5?p=25&a=12
-            echo "Calling firemanController->show <hr>";
+            
+            //Route /fireman/display
             call_user_func_array([new FiremanController(), "show"], $fragments);
             break;
         
-
-        case "edit" :
-            
-            //echo "Calling pompierController->del <hr>";
-            call_user_func_array([new FiremanController(), "insert"], $fragments);
-            break;
-            
-    
-        case "modify" :
-        
-            //http://127.0.0.1:8080/pompier/demo/1/45?p=2
-            echo "Calling firemanController->update <hr>";
-            //var_dump($fragments);
-            // appelle le contrôleur/la classe, la methode utilisee et les donnees/parametres a transferer
-            call_user_func_array([new FiremanController(), "update"], $fragments);
-            break;
-        
-
-        case "delete" :
-        
-            //echo "Calling pompierController->del <hr>";
-            //Access permission can be checked here too
-            call_user_func_array([new FiremanController(), "delete"], $fragments);
-            break;
-        
-        
+            //edit, modify,delete
 
         default :
-        
+            
+            //Case when the action doesn't exist.
             echo "Action '$action' non defini <hr>";
-            //Gestion du probleme
         
     }
 }
@@ -125,25 +99,10 @@ function pompierRoutes_post($fragments)
 {
 
     $action = array_shift($fragments);
+    
     switch ($action) {
 
-        case "add":
-            //Access permission can be checked here too
-            call_user_func_array([new FiremanController(), "insert"], $fragments);
-            break;
-
-
-        case "modify":
-            //Access permission can be checked here too
-            call_user_func_array([new FiremanController(), "update"], $fragments);
-            break;
-
-
-        case "erase" :
-            //echo "Action '$action' ready <hr>";
-            //Access permission can be checked here too
-            call_user_func_array([new FiremanController(), "delete"], $fragments);
-            break;
+        //add,modify,erase
 
 
         default:
@@ -158,6 +117,10 @@ function caserneRoutes_get($fragments)
 {
     $action = array_shift($fragments);
     switch ($action) {
+
+        case "display":
+            call_user_func_array([new BarrackController(),"show"], $fragments);
+            break;
 
 
         case "edit" :

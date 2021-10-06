@@ -133,7 +133,7 @@ class DAOBarrack
      * @param int $limit
      * @return array<Barrack>
      */
-    public function findAll($offset, $limit): array
+    public function findAllBarracks($offset, $limit): array
     {
 
         $SQL = 'SELECT * FROM casernes LIMIT ' . $limit . ' OFFSET ' . $offset . ';';
@@ -154,6 +154,26 @@ class DAOBarrack
         return $barracks;
 
     }
+
+    public function findAll() : Array {
+
+        $requestSQL = "SELECT * FROM casernes";
+
+        $preparedStatement = $this->connexion->prepare($requestSQL);
+
+        $preparedStatement->execute();
+
+        $barracks = array();
+
+        while ($data = $preparedStatement->fetch(\PDO::FETCH_OBJ)) {
+
+            $temp = new Barrack($data->NumCaserne, $data->Adresse, $data->CP, $data->Ville, $data->CodeTypeC);
+            array_push($barracks, $temp);
+
+        }
+
+        return $barracks;
+}
 
     /**
      * Retrieve number of Barrack in DB

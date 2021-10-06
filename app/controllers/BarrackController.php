@@ -32,12 +32,22 @@ class BarrackController extends BaseController {
     // }
 
 
-    public function show($int){ //READ du CRUD, Méthode GET du protocole HTTP
+    public function show($fragments = null){ //READ du CRUD, Méthode GET du protocole HTTP
         //Il faut penser à la sécurité
         //Gestion des erreurs PDO ou autres ...
-        $listBarrack = $this->daoBarrack->findAll(($int*10)-10, 10);
-        $page = Renderer::render('listBarrack.php', compact('listBarrack'));
-        echo $page;
+        if (isset($fragments)) {
+
+            $listBarrack = $this->daoBarrack->findAllBarracks((intval($fragments)*10)-10,10);
+            $pageBarrack = Renderer::render('listBarrack.php', compact('listBarrack'));
+            echo $pageBarrack;
+
+        } else {
+
+            $listBarrack = $this->daoBarrack->findAll();
+            $pageBarrack = Renderer::render('listBarrack.php', compact('listBarrack'));
+            echo $pageBarrack;
+
+        }
     }
 
 

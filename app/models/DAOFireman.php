@@ -126,6 +126,28 @@
 
         }
 
+        
+
+        public function findAll() : Array {
+
+                $requestSQL = "SELECT * FROM pompiers";
+
+                $preparedStatement = $this->connexion->prepare($requestSQL);
+
+                $preparedStatement->execute();
+
+                $firemen = array();
+
+                while ($data = $preparedStatement->fetch(\PDO::FETCH_OBJ)) {
+
+                    $fireman = new Fireman($data->Matricule,$data->Prenom,$data->Nom,$data->ChefAgret,$data->DateNaissance,$data->NumCaserne,$data->CodeGrade,$data->MatriculeResponsable);
+                    array_push($firemen, $fireman);
+
+                }
+
+                return $firemen;
+        }
+
 
 
 

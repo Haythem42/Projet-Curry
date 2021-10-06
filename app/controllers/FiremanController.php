@@ -31,13 +31,23 @@
          * 
          * @param int $pageNumber
          */
-        public function show( $fragments="" ) {
+        public function show($fragments = null) {
+            var_dump($fragments);
 
-            // var_dump($fragments);
-            // die();
-            $firemen = $this->daoPompier->findAllFiremen((intval($fragments)*10)-10,10);
-            $pageListFiremen = Renderer::render('listFiremen.php', compact('firemen'));
-            echo($pageListFiremen);
+            if (isset($fragments)) {
+
+                $firemen = $this->daoPompier->findAllFiremen((intval($fragments)*10)-10,10);
+                $pageFireman = Renderer::render('listFiremen.php', compact('firemen'));
+                echo($pageFireman);
+
+            } else {
+
+                $firemen = $this->daoPompier->findAll();
+                $pageFireman = Renderer::render('listFiremen.php', compact('firemen'));
+                echo $pageFireman;
+
+            }
+            
 
         }
 
