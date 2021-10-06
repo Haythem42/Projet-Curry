@@ -25,7 +25,7 @@ switch ($control) {
         defaultRoutes_get($fragments);
         break;
     }
-    case "pompier" :
+    case "fireman" :
     {
         //echo "Gestion des routes pour pompier <hr>";
         //calling function to prevend all hard code here
@@ -37,7 +37,7 @@ switch ($control) {
         }
         break;
     }
-    case "caserne" :
+    case "barrack" :
     {
         //echo "Gestion des routes pour caserne<hr>";
         if ($_SERVER["REQUEST_METHOD"] == "GET") {
@@ -71,20 +71,20 @@ function pompierRoutes_get($fragments)
     //var_dump($action);
 
     switch ($action) {
-        case "affiche" :
+        case "display" :
         {
             //http://127.0.0.1:8080/pompier/show/5?p=25&a=12
-            echo "Calling pompierController->show <hr>";
-            call_user_func_array(["PompierController", "show"], $fragments);
+            echo "Calling firemanController->show <hr>";
+            call_user_func_array(["FiremanController", "show"], $fragments);
             break;
         }
         case "demo" :
         {
             //http://127.0.0.1:8080/pompier/demo/1/45?p=2
-            echo "Calling pompierController->demo_test <hr>";
+            echo "Calling firemanController->demo_test <hr>";
             //var_dump($fragments);
             // appelle le contrôleur/la classe, la methode utilisee et les donnees/parametres a transferer
-            call_user_func_array(["PompierController", "demo_test"], $fragments);
+            call_user_func_array(["FiremanController", "demo_test"], $fragments);
             break;
         }
         case "delete" :
