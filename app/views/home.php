@@ -234,11 +234,10 @@
 
         <!-- PART : FOOTER -->
         <footer>
-            <div class="container content">
-                <p class="text-center">Quentin & Haythem properties | All rights reserved ©</p>
-            </div>
+           <div class="container">
+               <h2 class="l-height-80px f-size-25px text-center">Haythem & Quentin properties  |  All rights reserved ©</h2>
+           </div>
         </footer>
-
     </body>
 
 

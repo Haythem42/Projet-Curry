@@ -17,7 +17,7 @@
         private string $Prenom;
         private string $Nom;
         private string $ChefAgret;
-        private \datetime $DateNaissance;
+        private string $DateNaissance;
         private int $NumCaserne;
         private string $CodeGrade;
         private string $MatriculeResponsable;
@@ -32,7 +32,7 @@
          * @param string $prenom
          * @param string $nom
          * @param string $chefAgret
-         * @param datetime $dateNaissance
+         * @param string $dateNaissance
          * @param int $NumCaserne
          * @param string $codeGrade
          * @param string $matriculeResponsable

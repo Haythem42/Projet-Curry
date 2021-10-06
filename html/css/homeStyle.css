@@ -143,6 +143,10 @@
         line-height : 35px;
     }
 
+    .l-height-80px {
+        line-height : 80px;
+    }
+
     .l-spacing {
         letter-spacing : 8px;
     }
@@ -233,12 +237,5 @@
     footer {
         background-color : #6F58FF;
         width : 100%;
-        height : 300px;
-        bottom : fixed;
-    }
-
-    .content {
-        font-size : 25px;
-        color : white;
-        line-height : 300px;
+        height : 80px;
     }
