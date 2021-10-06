@@ -96,17 +96,19 @@
         /**
         * Function which retrieves a 'limit' number of firemen.
         *
+        *@param int $offset
+        *@param int $limit
         *
         * @return Array $firemen
         */
-        public function findAllFiremen($offset, $limite) : Array {
+        public function findAllFiremen($offset, $limit) : Array {
 
 
                 $requestSQL = "SELECT * FROM pompiers LIMIT ? OFFSET ?";
 
                 $preparedStatement = $this->connexion->prepare($requestSQL);
 
-                $preparedStatement->bindValue(1, $limite, \PDO::PARAM_INT);
+                $preparedStatement->bindValue(1, $limit, \PDO::PARAM_INT);
                 $preparedStatement->bindValue(2, $offset, \PDO::PARAM_INT);
                 $preparedStatement->execute();
 

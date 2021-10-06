@@ -13,14 +13,14 @@
      */
     class Fireman {
 
-        private $Matricule;
-        private $Prenom;
-        private $Nom;
-        private $ChefAgret;
-        private $DateNaissance;
-        private $NumCaserne;
-        private $CodeGrade;
-        private $MatriculeResponsable;
+        private string $Matricule;
+        private string $Prenom;
+        private string $Nom;
+        private string $ChefAgret;
+        private \datetime $DateNaissance;
+        private int $NumCaserne;
+        private string $CodeGrade;
+        private string $MatriculeResponsable;
 
 
 

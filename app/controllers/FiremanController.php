@@ -7,10 +7,17 @@
     use app\utils\SingletonDBMaria;
     use app\utils\Renderer;
 
+
+    
     class FiremanController extends BaseController {
 
         private DAOFireman $daoPompier;
 
+
+        /**
+         * Constructor of the class which initialiaze the DAO object.
+         * 
+         */
         public function __construct() {
 
             $this->daoPompier = new DAOFireman(SingletonDBMaria::getInstance()->getConnection());
@@ -19,13 +26,19 @@
 
 
 
-        public function show() {
+        /**
+         * Function which shows the firemen corresponding to a specific page.
+         * 
+         * @param int $pageNumber
+         */
+        public function show($pageNumber) {
 
-            $firemen = $this->daoPompier->findAllFiremen(0,10);
+            $firemen = $this->daoPompier->findAllFiremen(($pageNumber*10)-10,10);
             $pageListFiremen = Renderer::render('listFiremen.php', compact('firemen'));
             echo($pageListFiremen);
 
         }
+
 
 
         public function insert() : void {

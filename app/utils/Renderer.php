@@ -11,8 +11,12 @@ namespace app\utils;
 class Renderer {
 
     /**
+     * Function which returns a view.
      * 
+     * @param file $file
+     * @param array $data
      * 
+     * @return string $content
     */
     public static function render($file, array $data = null) : string {
         $path = __DIR__ . DIRECTORY_SEPARATOR . "../views" . DIRECTORY_SEPARATOR . $file ; //chemin vers le fichier   //je suis pas sûr

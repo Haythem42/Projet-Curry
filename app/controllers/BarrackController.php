@@ -35,7 +35,7 @@ class BarrackController extends BaseController {
     public function show($int){ //READ du CRUD, Méthode GET du protocole HTTP
         //Il faut penser à la sécurité
         //Gestion des erreurs PDO ou autres ...
-        $listBarrack = $this->daoBarrack->findAll($int*10-10, 10);
+        $listBarrack = $this->daoBarrack->findAll(($int*10)-10, 10);
         $page = Renderer::render('listBarrack.php', compact('listBarrack'));
         echo $page;
     }

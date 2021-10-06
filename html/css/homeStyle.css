@@ -1,85 +1,242 @@
-* {
-    margin : 0;
-    padding : 0;
-    font-family : sans-serif;
-}
+/* ========== HEADER SECTION ==========*/
 
-.enfant {
-    width : 950px;
-    height : 600px;
-}
+    /* NAVBAR PART */
 
-.bouttons {
-    width : 950px;
-    height : 70px;
-    font-size : 22px;
-    color : white;
-}
+    header {
+        height: 750px;
+    }
 
-
-.imgFireman {
-    background-image: url(../img/firemen2.jpg);
-    background-size: cover;
-    margin-right : 20px;
-}
-
-
-.imgFirehouse {
-    background-image: url(../img/fireStation.png);
-    background-size: cover;
-}
-
-
-.btn-secondary {
-    background-color : #8395a7 !important;
-    border : 1px solid #8395a7 !important;
-    font-size : 22px !important;
-}
+    .navbar {
+        height : 10%;
+        margin-bottom : -24px;
+    }
+    
+    .navbar-brand,
+    .navbar-brand:hover {
+        color : white;
+        font-family : 'Roboto', sans-serif !important;;
+        font-size : 25px;
+        margin : 0px 35px 0px 35px;
+    }
+    
+    .nav-link,
+    .nav-link:hover,
+    .nav-link:focus {
+        color : white;
+        font-family : 'Roboto', sans-serif !important;
+        font-size : 20px;
+        margin : 0px 35px 0px 35px;
+    }
 
 
-.btn-warning {
-    background-color : #ff9f43 !important;
-    border : 1px solid #ff9f43 !important;
-    font-size : 22px !important;
-    color : white !important;
-}
+    /* BACKGROUND IMAGE PART */
+    .headerImg {
+        width : 100%;
+        height : 90%;
+        float : left;
+        background : url(../img/5805717.jpg) no-repeat center fixed;
+        background-size : cover;
+    }
 
 
-.color1 {
-    background-color : #8395a7;
-}
+
+/* ========== BODY SECTION ========== */
+
+    body {
+        background-color : #D3D5FC;
+        font-family : 'Roboto', sans-serif;
+    }
+
+    /* COLOR PART */
+    .red {
+        background-color : #DB2D52;
+    }
+
+    .blue {
+        background-color : #706CCA;
+    }
+    
+    .yellow {
+        background-color : #ECB42B;
+    }
 
 
-.color2 {
-    background-color : #ff9f43;
-}
+    /* WIDTH PART */
+    
+    .w-circle {
+        width : 35px;
+    }
+    
+    .w-40 {
+        width : 40%;
+    }
 
 
-.title1 {
-    float: right;
-    border :  1px solid #8395a7;
-    background-color : #8395a7;
-    font-size : 22px;
-    color : white;
-    border-radius : 3px;
-    text-align : center;
-    margin-left : 250px;
-    margin-right : 420px;
+    /* HEIGHT PART */
 
-}
+    
+    .h-35px {
+        height : 35px;
+    }
 
+    .h-50px {
+        height : 50px;
+    }
 
-.title2 {
-    border :  1px solid #ff9f43;
-    background-color : #ff9f43;
-    font-size : 22px;
-    color : white;
-    border-radius : 3px;
-    text-align : center;
-    margin-left : 35px;
-}
+    .h-800px {
+        height : 800px;
+    }
 
 
-.containerTitle {
-    display: flex;
-}
+    /* BORDER RADIUS PART */
+
+    .b-radius {
+        border-radius : 35px 35px 35px 35px;
+    }
+
+
+    /* SPACING PART */
+
+    .margin-t-5px {
+        margin-top : 5px;
+    }
+    
+    .margin-t-15px {
+        margin-top : 15px;
+    }
+
+
+    /* DIV PART */
+
+    .separator-50px {
+        width : 100%;
+        height : 50px;
+    }
+
+    .separator-150px {
+        width : 100%;
+        height : 150px;
+        background-color : #D3D5FC;
+    }
+
+    .separator-250px {
+        width : 100%;
+        height : 250px;
+    }
+
+    .flex {
+        display : flex;
+    }
+
+    .margin-r-25px {
+        margin-right : 25px;
+    }
+
+
+    /* LINE HEIGHT  & LETTER SPACING PART */
+
+    .l-height-50px {
+        line-height : 50px;
+    }
+    
+    .l-height-35px {
+        line-height : 35px;
+    }
+
+    .l-spacing {
+        letter-spacing : 8px;
+    }
+
+
+    /* IMAGE FIREMAN AND BARRACK PART */
+
+    .barrackImg {
+        width : 90%;
+        height : 500px;
+        background-image : url(../img/fireStation.png);
+        background-size : cover;
+        background-repeat : no-repeat;
+        margin-left : 5%;
+    }
+    
+    .firemanImg {
+        width : 90%;
+        height : 500px;
+        background-image : url(../img/firemen3.jpg);
+        background-size : cover;
+        background-repeat : no-repeat;
+        margin-left : 5%;
+    }
+
+
+    /* TITLE CUSTOMIZATION PART */
+
+    h1,h2 {
+        font-family : 'Roboto', sans-serif;
+        color : white;
+    }
+
+    .f-size-30px {
+        font-size : 30px;
+    }
+
+    .f-size-25px {
+        font-size : 25px;
+    }
+
+
+    /* BUTTON CUSTOMIZATION PART */
+
+    .btn-primary {
+        background-color : #DB2D52 !important;
+        border : none;
+        font-size : 20px;
+        height : 50px;
+    }
+
+    .btn-primary:hover {
+        background-color : #FF7D99 !important;
+        border : none;
+
+    }
+
+
+    .btn-primary:focus {
+        outline : none !important;
+        box-shadow : none !important;
+        background-color : #FF7D99 !important;
+    }
+
+    .btn-secondary {
+        background-color : #ECB42B !important;
+        border : none;
+        font-size : 20px;
+        height : 50px;
+    }
+
+    .btn-secondary:hover {
+        background-color : #FFDE47 !important;
+        border : none;
+    }
+
+    .btn-secondary:focus {
+        outline : none !important;
+        box-shadow : none !important;
+        background-color : #FFDE47 !important;
+    }
+
+
+    /* FOOTER CUSTOMIZATION */
+
+    footer {
+        background-color : #6F58FF;
+        width : 100%;
+        height : 300px;
+        bottom : fixed;
+    }
+
+    .content {
+        font-size : 25px;
+        color : white;
+        line-height : 300px;
+    }
