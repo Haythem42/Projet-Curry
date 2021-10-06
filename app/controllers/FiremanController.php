@@ -32,7 +32,6 @@
          * @param int $pageNumber
          */
         public function show($fragments = null) {
-            var_dump($fragments);
 
             if (isset($fragments)) {
 
