@@ -1,9 +1,12 @@
 <?php
 
+namespace app\controllers;
 
-    namespace app\controllers;
+    
+    class BaseController {
 
-    class BaseController {}
+        
+    }
 
 
 ?>

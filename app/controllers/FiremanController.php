@@ -31,9 +31,11 @@
          * 
          * @param int $pageNumber
          */
-        public function show($pageNumber) {
+        public function show( $fragments="" ) {
 
-            $firemen = $this->daoPompier->findAllFiremen(($pageNumber*10)-10,10);
+            // var_dump($fragments);
+            // die();
+            $firemen = $this->daoPompier->findAllFiremen((intval($fragments)*10)-10,10);
             $pageListFiremen = Renderer::render('listFiremen.php', compact('firemen'));
             echo($pageListFiremen);
 
@@ -60,7 +62,7 @@
         
         }
 
-        public function delete () : void{
+        public function delete() : void{
             //Filtrer les données et vérifier la validité
             //Message flash en cas d'erreur
             //Gestion des erreurs PDO
@@ -71,6 +73,8 @@
             //Montrer des informations supplémentaires.
             
         }
+
+
     }
 
 
