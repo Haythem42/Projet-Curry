@@ -149,6 +149,29 @@
         }
 
 
+        
+        public function findByName($fragments) {
+
+                $requestSQL = "SELECT * FROM pompiers WHERE Nom = ?";
+
+                $preparedStatement = $this->connexion->prepare($requestSQL);
+
+                $preparedStatement->bindValue(1, $fragments);
+
+                $preparedStatement->execute();
+
+                while ($data = $preparedStatement->fetch(\PDO::FETCH_OBJ)) {
+
+                        $fireman = new Fireman($data->Matricule,$data->Prenom,$data->Nom,$data->ChefAgret,$data->DateNaissance,$data->NumCaserne,$data->CodeGrade,$data->MatriculeResponsable);
+                        array_push($firemen, $fireman);
+
+                }
+
+                return $firemen;
+
+        }
+
+
 
 
 
