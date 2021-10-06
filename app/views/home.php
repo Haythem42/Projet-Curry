@@ -181,7 +181,7 @@
 
                 <div class="separator-50px"></div>
 
-                <div class="firemanImg rounded"></div>
+                <div class="firemanImg"></div>
 
                 <div class="separator-50px"></div>
 
@@ -210,7 +210,7 @@
 
                 <div class="separator-50px"></div>
 
-                <div class="barrackImg rounded"></div>
+                <div class="barrackImg"></div>
 
                 <div class="separator-50px"></div>
 

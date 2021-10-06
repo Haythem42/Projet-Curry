@@ -34,7 +34,7 @@
         width : 100%;
         height : 90%;
         float : left;
-        background : url(../img/5805717.jpg) no-repeat center fixed;
+        background : url(../img/headerImage.jpg) no-repeat center fixed;
         background-size : cover;
     }
 
@@ -153,19 +153,21 @@
     .barrackImg {
         width : 90%;
         height : 500px;
-        background-image : url(../img/fireStation.png);
+        background-image : url(../img/barrack.png);
         background-size : cover;
         background-repeat : no-repeat;
         margin-left : 5%;
+        border-radius : 20px 20px 20px 20px;
     }
     
     .firemanImg {
         width : 90%;
         height : 500px;
-        background-image : url(../img/firemen3.jpg);
+        background-image : url(../img/fireman.jpg);
         background-size : cover;
         background-repeat : no-repeat;
         margin-left : 5%;
+        border-radius : 20px 20px 20px 20px;
     }
 
 
