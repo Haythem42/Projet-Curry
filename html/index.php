@@ -80,12 +80,23 @@ function pompierRoutes_get($fragments)
 
 
         case "display" :
-            
-            //Route /fireman/display
+            // html/fireman/display
             call_user_func_array([new FiremanController(), "show"], $fragments);
             break;
         
-            //edit, modify,delete
+        case "modify":
+            // html/fireman/modify
+            call_user_func_array([new FiremanController(), "update"], $fragments);
+            break;
+
+        case "create":
+            // html//fireman/create
+            call_user_func_array([new FiremanController(), "add"], $fragments);
+            break;
+
+        case "erase":
+            call_user_func_array([new FiremanController(), "delete"], $fragments);
+            break;
 
         default :
             
@@ -99,9 +110,17 @@ function pompierRoutes_post($fragments)
 {
 
     $action = array_shift($fragments);
-    
+
     switch ($action) {
 
+        case "create":
+            call_user_func_array([new FiremanController(), "insert"], $fragments);
+            break;
+
+        case "modify":
+            call_user_func_array([new FiremanController(), "alter"], $fragments);
+            break;
+        
         //add,modify,erase
 
 

@@ -1,21 +1,24 @@
 <?php
 
-namespace app\controllers;
+    namespace app\controllers;
 
-require_once '../autoloader.php';
+    require_once '../autoloader.php';
 
-use app\utils\Renderer;
-
-
-class DefaultController{
+    use app\utils\Renderer;
 
 
+    class DefaultController{
 
-    public function home() {
-        $home = Renderer::render('home.php');
-        echo $home;
+        /**
+         * Function which render the home page when called
+         */
+        public function home() {
+
+            $home = Renderer::render('home.php');
+            echo $home;
+            
+        }
+
     }
 
-
-    
-}
+?>

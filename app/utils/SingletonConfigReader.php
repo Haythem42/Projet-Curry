@@ -1,6 +1,5 @@
 <?php
 
-
     namespace app\utils;
 
 
@@ -12,6 +11,9 @@
         private static $instance;
 
 
+        /**
+         * COnstructor of the class which instanciate the settings propertie using the config.ini file
+         */
         private function __construct () {
 
             $this->settings = parse_ini_file("../config.ini");
@@ -19,6 +21,10 @@
         }
         
 
+
+        /**
+         * Function which instanciate the instance propertie
+         */
         public static function getInstance() {
 
             if (is_null(self::$instance)) {
@@ -32,6 +38,14 @@
         }
 
 
+
+        /**
+         * Function which get the value of the key
+         * 
+         * @param string $key
+         * 
+         * @return string $this->settings[$key]
+         */
         public function getValue($key) {
 
             return $this->settings[$key];
@@ -39,6 +53,5 @@
         }
 
     }
-
 
 ?>

@@ -1,13 +1,10 @@
 <?php
 
-
     namespace app\models;
 
 
-
-
     /**
-     * DAOFireman which contains CRUD functions
+     * DAOFireman which contains functions to manipulate data
      *
      * @author TakeN
      */
@@ -16,7 +13,7 @@
         private $connexion;
 
         /**
-         * Constructor of the class DAOPompier
+         * Constructor of the class DAOPompier which instanciate the $connexion propertie
          *
          * @param type $connexion
          *
@@ -32,14 +29,13 @@
 
 
         /**
-         * Function which retrieves one fireman from his 'matricule'.
+         * Function which retrieves a specific fireman from the database
          *
          * @param int $matricule
          *
          * @return Fireman
          */
         public function retrieveFireman($matricule) : ?Fireman{
-
 
                 $requestSQL = "SELECT * FROM pompiers WHERE Matricule =:matricule";
 
@@ -55,7 +51,6 @@
 
                 return $fireman;
 
-
         }
 
 
@@ -68,7 +63,6 @@
         * @return int
         */
         public function countFiremen() : int {
-
 
                 $requestSQL = "SELECT * FROM pompiers";
 
@@ -86,7 +80,6 @@
 
                 return $countFiremen;
 
-
         }
 
 
@@ -94,15 +87,14 @@
 
 
         /**
-        * Function which retrieves a 'limit' number of firemen.
+        * Function which retrieves a certain amount of firemen from the database
         *
         *@param int $offset
         *@param int $limit
         *
-        * @return Array $firemen
+        *@return Array $firemen
         */
         public function findAllFiremen($offset, $limit) : Array {
-
 
                 $requestSQL = "SELECT * FROM pompiers LIMIT ? OFFSET ?";
 
@@ -123,11 +115,15 @@
 
                 return $firemen;
 
-
         }
 
         
 
+
+
+        /**
+         * Function which retrieves all the firemen stored in the database
+         */
         public function findAll() : Array {
 
                 $requestSQL = "SELECT * FROM pompiers";
@@ -146,11 +142,21 @@
                 }
 
                 return $firemen;
+
         }
 
 
         
-        public function findByName($fragments) {
+
+
+        /**
+         * Function which retrieves all the firemen of which name is matching with the fragments
+         * 
+         * @param string $fragments
+         * 
+         * @return Array $firemen
+         */
+        public function findByName($fragments) : Array{
 
                 $requestSQL = "SELECT * FROM pompiers WHERE Nom = ?";
 
@@ -184,7 +190,6 @@
          */
         public function createFireman(Fireman $fireman) : int {
 
-
                 $requestSQL = "INSERT INTO pompiers VALUES (?,?,?,?,?,?,?,?)";
 
                 $preparedStatement = $this->connexion->prepare($requestSQL);
@@ -204,7 +209,6 @@
 
                 return $linesAdded;
 
-
         }
 
 
@@ -220,7 +224,6 @@
          */
         public function removeFireman($matricule) : int {
 
-
                 $requestSQL = "DELETE FROM pompiers WHERE Matricule = ?";
 
                 $preparedStatement = $this->connexion->prepare($requestSQL);
@@ -232,7 +235,6 @@
                 $linesDeleted = $preparedStatement->rowCount();
 
                 return $linesDeleted;
-
 
         }
 
@@ -248,7 +250,6 @@
          * @return int $linesModified
          */
         public function updateFireman(Fireman $fireman) : int {
-
 
                 $requestSQL = "UPDATE pompiers SET Prenom = :prenom, Nom = :nom, ChefAgret = :chefAgret, DateNaissance = :dateNaissance, NumCaserne = :numCaserne, CodeGrade = :codeGrade, MatriculeResponsable = :matriculeResponsable WHERE Matricule = :matricule";
 
@@ -269,8 +270,9 @@
 
                 return $linesModified;
 
-
         }
+
+
 
 
 
@@ -279,10 +281,9 @@
          * 
          * @param Fireman $fireman
          * 
-         * @return Caserne $barrack
+         * @return Barrack $barrack
          */
         public function retrieveBarracksFromFireman(Fireman $fireman): ?Barrack{
-
 
                 $requestSQL = "SELECT * FROM casernes WHERE NumCaserne = :numCaserne";
 
@@ -298,11 +299,8 @@
 
                 return $barrack;
 
-
         }
 
-
     }
-
 
 ?>

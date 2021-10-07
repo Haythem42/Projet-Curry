@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 
-
     <html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Landing Page</title>
+        <title>Landing page</title>
 
 
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
@@ -15,17 +14,16 @@
 
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
-
     </head>
 
 
     <body>
 
 
-
-
     <!-- PART : NAVIGATION BAR -->
         <header>
+
+
             <nav class="navbar navbar-expand yellow">
                 <a class="navbar-brand" href="#">CURRY PROJECT</a>
                 <div class="collapse navbar-collapse" id="navbarNav">
@@ -60,13 +58,15 @@
                 </div>
             </nav><br>
             <div class="headerImg"></div>
+
+
         </header>
 
 
 
 
 
-        <!-- PART : ABOUT CURRY PROJECT -->
+        <!-- PART : TITLE ABOUT CURRY PROJECT -->
         <div class="separator-150px"></div>
 
         <div class="container yellow w-circle h-35px b-radius"></div>
@@ -94,6 +94,7 @@
             <div class="red w-40 h-35px b-radius margin-r-25px"></div>
             <div class="red w-circle h-35px b-radius"></div>
         </div>
+
         <div class="flex margin-t-5px">
             <div class="yellow w-50 h-35px b-radius margin-r-25px"></div>
             <div class="yellow w-circle h-35px b-radius"></div>
@@ -115,6 +116,7 @@
             <div class="yellow w-50 h-35px b-radius margin-r-25px"></div>
             <div class="yellow w-circle h-35px b-radius"></div>
         </div>
+
         <div class="flex margin-t-5px">
             <div class="red w-40 h-35px b-radius margin-r-25px"></div>
             <div class="red w-circle h-35px b-radius"></div>
@@ -126,7 +128,7 @@
 
 
 
-        <!-- PART : MAKE YOUR CHOICE -->
+        <!-- PART : TITLE MAKE YOUR CHOICE -->
         
         <div class="container red w-circle h-35px b-radius"></div>
         <div class="container blue w-25 h-35px b-radius margin-t-5px"></div>
@@ -169,7 +171,7 @@
                 <div class="separator-50px"></div>
 
                 <div class="d-flex align-items-center justify-content-center">
-                    <a href="fireman/display/3" class="btn btn-primary w-25 b-radius">
+                    <a href="fireman/display" class="btn btn-primary w-25 b-radius">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
                             <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/>
                             <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/>
@@ -177,6 +179,7 @@
                         Display firemen
                     </a>
                 </div>
+
             </div>
 
 
@@ -198,7 +201,7 @@
                 <div class="separator-50px"></div>
 
                 <div class="d-flex align-items-center justify-content-center">
-                    <a href="/barrack/display/2" class="btn btn-secondary w-25 b-radius">
+                    <a href="/barrack/display" class="btn btn-secondary w-25 b-radius">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
                             <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/>
                             <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/>
@@ -206,7 +209,9 @@
                         Display barracks
                     </a>
                 </div>
+
             </div>
+
         </div>
 
         <div class="separator-150px"></div>
@@ -217,11 +222,15 @@
 
         <!-- PART : FOOTER -->
         <footer>
+
+
            <div class="container">
                <h2 class="l-height-80px f-size-25px text-center">Haythem & Quentin properties  |  All rights reserved ©</h2>
            </div>
-        </footer>
-    </body>
 
+
+        </footer>
+
+    </body>
 
 </html>

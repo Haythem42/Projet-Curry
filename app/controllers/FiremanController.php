@@ -1,21 +1,20 @@
 <?php
 
-
     namespace app\controllers;
 
     use app\models\DAOFireman;
     use app\utils\SingletonDBMaria;
     use app\utils\Renderer;
+    use app\models\Fireman;
 
 
-    
     class FiremanController extends BaseController {
 
         private DAOFireman $daoPompier;
 
 
         /**
-         * Constructor of the class which initialiaze the DAO object.
+         * Constructor of the class which initialize the DAO object of the controller
          * 
          */
         public function __construct() {
@@ -26,67 +25,184 @@
 
 
 
+
+
         /**
-         * Function which shows the firemen corresponding to a specific page.
+         * Function which display the page fireman.php according to the fragments variable
          * 
-         * @param int $pageNumber
+         * @param int $fragments
          */
         public function show($fragments = null) {
 
+            //First case : if the fragment has a particular value
             if (isset($fragments)) {
 
                 $firemen = $this->daoPompier->findAllFiremen((intval($fragments)*10)-10,10);
-                $pageFireman = Renderer::render('listFiremen.php', compact('firemen'));
+                $pageFireman = Renderer::render('fireman.php', compact('firemen'));
                 echo($pageFireman);
 
-            } else {
+            } 
+
+            //Second case : if the fragment has no value we display all the firemen stored in the database
+            else {
 
                 $firemen = $this->daoPompier->findAll();
-                $pageFireman = Renderer::render('listFiremen.php', compact('firemen'));
+                $pageFireman = Renderer::render('fireman.php', compact('firemen'));
                 echo $pageFireman;
 
             }
             
-
-        }
-
-
-
-        public function insert() : void {
-            //Filtrer les données et vérifier la validité
-            //Se protéger contre les failles CSRF
-            //Penser à la sécurité
-            //Gérer PDO et erreurs
         }
 
 
 
 
-        public function update() : void{
-            //Récupérer les données
-            //Filtrer les données et vérifier les données
-            //Se protéger des failles CSRF
-            //Penser à la sécurité
-            //Gestion des erreurs PDO ou autre
+
+        /**
+         * Function which display firemanCreate.php
+         */
+        public function add() : void {
+
+            $pageFiremanCreate = Renderer::render('firemanCreate.php');
+            echo $pageFiremanCreate;
+
+        }
+
+
+
+
+
+        /**
+         * Function which insert a new fireman to database
+         */
+        public function insert() {
+
+            $fireman = new Fireman(
+                $_POST['matriculeInput'],
+                $_POST['lastNameInput'],
+                $_POST['lastNameInput'],
+                $_POST['chefAgretInput'],
+                $_POST['birthDateInput'],
+                $_POST['numberBarrackInput'],
+                $_POST['gradeInput'],
+                $_POST['matriculeManagerInput'],
+            );
+
+            $success = $this->daoPompier->createFireman($fireman);
+            
+            //First case : if the request worked correctly ==> we redirect to fireman.php with a success flash message
+            if ($success != 0) {
+
+                header('Location: ../fireman/display');
+
+            }
+            
+            //Second case : if the request didn't work correctly ==> we redirect to fireman.php with an error flash message
+            else {
+
+                header('Location: ../fireman/display');
+
+            }
+
+        }
+
+
+
+
+
+        /**
+         * Function which modify an existing fireman already stored in the database
+         */
+        public function alter() {
+
+            $fireman = new Fireman(
+                $_POST['matriculeInput'],
+                $_POST['firstNameInput'],
+                $_POST['lastNameInput'],
+                $_POST['chefAgretInput'],
+                $_POST['birthDateInput'],
+                $_POST['numberBarrackInput'],
+                $_POST['gradeInput'],
+                $_POST['matriculeManagerInput'],
+            );
+
+            $success = $this->daoPompier->updateFireman($fireman);
+
+            //First case : if the request worked correctly ==> we redirect to fireman.php with a success flash message
+            if ($success != 0) {
+
+                header('Location: ../fireman/display');
+
+            } 
+            
+            //Second case : if the request didn't work correctly ==> we redirect to fireman.php with an error flash message
+            else {
+                header('Location: ../fireman/display');
+            }
+
+        }
+
+
+
+
+
+        /**
+         * Function which retrieves information about a specific fireman using the fragments
+         * 
+         * @param string $fragments
+         */
+        public function update($fragments) {
+
+            $fireman = $this->daoPompier->retrieveFireman($fragments);
+            $pageFiremanModify = Renderer::render('firemanModify.php', compact('fragments','fireman'));
+            echo $pageFiremanModify;
         
         }
 
-        public function delete() : void{
-            //Filtrer les données et vérifier la validité
-            //Message flash en cas d'erreur
-            //Gestion des erreurs PDO
+
+
+
+
+        /**
+         * Function which deletes a specific fireman from the database using the fragments
+         * 
+         * @param string $fragments
+         */
+        public function delete($fragments) : void{
+
+            $success = $this->daoPompier->removeFireman($fragments);
+
+            //First case : if the request worked correctly ==> we redirect to fireman.php with a success flash message
+            if ($success != 0) {
+
+                header('Location: ../display');
+                //SUCCESS MESSAGE AND REDIRECT
+
+            }
+            
+            //Second case : if the request didn't worked correctly ==> we redirect to fireman.php with an error flash message
+            else {
+                header('Location: ../display');
+                //ERROR MESSAGE AND REDIRECT
+
+            }
+
         }
 
 
+
+
+
+        /**
+         * Function which retrieves all the information about a specific firemanModify
+         * 
+         * @param string $id
+         */
         public function showDetail(string $id) {
             //Montrer des informations supplémentaires.
             
         }
 
-
     }
-
-
-
 
 ?>
