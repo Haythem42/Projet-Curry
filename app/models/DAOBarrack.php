@@ -111,13 +111,13 @@ class DAOBarrack
      * @return string $message
     */
     // Real function : public function remove(Barrack $barrack): void
-    public function remove(Barrack $barrack): int
+    public function remove($numCaserne): int
     {
         $SQL = 'DELETE FROM casernes WHERE NumCaserne = :numCaserne'; 
             
         $prepareStatement = $this->connexion->prepare($SQL);
 
-        $prepareStatement->bindValue(':numCaserne', $barrack->getNumCaserne(), \PDO::PARAM_INT);
+        $prepareStatement->bindValue(':numCaserne', $numCaserne, \PDO::PARAM_INT);
 
         $prepareStatement->execute();
 

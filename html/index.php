@@ -138,28 +138,36 @@ function caserneRoutes_get($fragments)
     switch ($action) {
 
         case "display":
+
             call_user_func_array([new BarrackController(),"show"], $fragments);
             break;
 
-
-        case "edit" :
+            
+        case "create" :
             
             //echo "Calling barrackController->del <hr>";
-            call_user_func_array([new BarrackController(), "insert"], $fragments);
+            call_user_func_array([new BarrackController(), "add"], $fragments);
             break;
+
+
+        // case "create" :
             
-    
+        //     //echo "Calling barrackController->del <hr>";
+        //     call_user_func_array([new BarrackController(), "insert"], $fragments);
+        //     break;
+
+        
         case "modify" :
         
             //http://127.0.0.1:8080/pompier/demo/1/45?p=2
-            echo "Calling barrackController->update <hr>";
+            // echo "Calling barrackController->update <hr>";
             //var_dump($fragments);
             // appelle le contrôleur/la classe, la methode utilisee et les donnees/parametres a transferer
             call_user_func_array([new BarrackController(), "update"], $fragments);
             break;
         
 
-        case "delete" :
+        case "erase" :
         
             //echo "Calling pompierController->del <hr>";
             //Access permission can be checked here too
@@ -173,8 +181,7 @@ function caserneRoutes_get($fragments)
             echo "Action '$action' non defini <hr>";
             //Gestion du probleme
         
-
-
+            
     }
 }
 
@@ -182,7 +189,8 @@ function caserneRoutes_post($fragments)
 {
     $action = array_shift($fragments);
     switch ($action) {
-        case "add":
+
+        case "create":
             //Access permission can be checked here too
             call_user_func_array([new BarrackController(), "insert"], $fragments);
             break;
@@ -190,14 +198,7 @@ function caserneRoutes_post($fragments)
 
         case "modify":
             //Access permission can be checked here too
-            call_user_func_array([new BarrackController(), "update"], $fragments);
-            break;
-
-
-        case "erase" :
-            //echo "Action '$action' ready <hr>";
-            //Access permission can be checked here too
-            call_user_func_array([new BarrackController(), "delete"], $fragments);
+            call_user_func_array([new BarrackController(), "alter"], $fragments);
             break;
 
             
