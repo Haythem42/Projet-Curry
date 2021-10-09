@@ -168,21 +168,21 @@
          * 
          * @param string $fragments
          */
-        public function delete($fragments) : void{
+        public function delete() : void{
 
-            $success = $this->daoPompier->removeFireman($fragments);
+            $success = $this->daoPompier->removeFireman($_POST["matriculeToDelete"]);
 
             //First case : if the request worked correctly ==> we redirect to fireman.php with a success flash message
             if ($success != 0) {
 
-                header('Location: ../display');
+                header('Location: ../fireman/display');
                 //SUCCESS MESSAGE AND REDIRECT
 
             }
             
             //Second case : if the request didn't worked correctly ==> we redirect to fireman.php with an error flash message
             else {
-                header('Location: ../display');
+                header('Location: ../fireman/display');
                 //ERROR MESSAGE AND REDIRECT
 
             }

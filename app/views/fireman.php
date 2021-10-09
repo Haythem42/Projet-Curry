@@ -12,6 +12,7 @@
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
 
+
         <title>Fireman list page</title>
         <link rel="icon" type="image/x-icon" href="/img/fireman.ico" />
     </head>
@@ -22,6 +23,7 @@
 
     <body>
         
+    
 
         <!-- PART : NAVIGATION BAR -->
         <header>
@@ -67,7 +69,7 @@
         </header>
 
 
-
+        
 
 
         <!-- PART : TITLE FIREMEN LIST -->
@@ -135,7 +137,7 @@
                         <td class="text-center"><?php echo($firemen[$i]->getCodeGrade());?></td>
                         <td class="text-center"><?php echo($firemen[$i]->getMatriculeResponsable());?></td>
                         <td class="text-center"><a href="modify/<?php echo($firemen[$i]->getMatricule());?>" class="btn btn-warning w-75 b-radius">MODIFY</a></td>
-                        <td class="text-center"><a href="erase/<?php echo($firemen[$i]->getMatricule());?>" class="btn btn-danger w-75 b-radius">DELETE</a></td>
+                        <td class="text-center"><button type="button" class="btn btn-danger w-75 b-radius" id="<?php echo($firemen[$i]->getMatricule());?> "data-bs-toggle="modal" data-bs-target="#deleteModal"  onclick="matchId(this)">DELETE</button></td>
                     </tr>
                 <?php
                 }
@@ -145,6 +147,37 @@
         </table>
 
         <div class="separator-150px"></div>
+
+
+
+
+        
+        <!-- PART : MODAL WHEN DELETING A FIREMAN -->
+        <div class="modal fade" id="deleteModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-center" id="staticBackdropLabel">Delete a fireman</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="separator-50px"></div>
+                    ⚠️     Are you sure you want to delete this fireman ?     ⚠️
+                    <div class="separator-50px"></div>
+                    <form action="erase" method="POST">
+                        <input type="hidden" id="matriculeToDelete" name="matriculeToDelete">
+                </div>
+                <div class="modal-footer">
+                    <div class="separator-50px"></div>
+                    <div class="flex justify-content-center w-100">
+                        <button type="button" class="btn btn-dark w-25 b-radius margin-r-25px" data-bs-dismiss="modal">Go back</button>
+                        <button type="submit" class="btn btn-danger w-25 b-radius" name="buttonDelete">Delete</button>
+                    </div>
+                    </form>
+                </div>
+                </div>
+            </div>
+        </div>
 
 
 
@@ -160,7 +193,17 @@
 
             
         </footer>
+        
 
+
+        <!-- Script used for the matricule when deleting a fireman -->
+        <script>
+            function matchId(e) {
+                var id = e.id;
+                console.log(id);
+                document.getElementById("matriculeToDelete").value = id;
+            }
+        </script>
     </body>
 
 </html>

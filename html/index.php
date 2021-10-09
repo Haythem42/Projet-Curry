@@ -94,10 +94,6 @@ function pompierRoutes_get($fragments)
             call_user_func_array([new FiremanController(), "add"], $fragments);
             break;
 
-        case "erase":
-            call_user_func_array([new FiremanController(), "delete"], $fragments);
-            break;
-
         default :
             
             //Case when the action doesn't exist.
@@ -119,6 +115,10 @@ function pompierRoutes_post($fragments)
 
         case "modify":
             call_user_func_array([new FiremanController(), "alter"], $fragments);
+            break;
+
+        case "erase":
+            call_user_func_array([new FiremanController(), "delete"], $fragments);
             break;
         
         //add,modify,erase
