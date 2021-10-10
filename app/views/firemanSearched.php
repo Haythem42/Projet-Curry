@@ -15,6 +15,8 @@
 
         <title>Research</title>
 
+        <link rel="icon" type="image/x-icon" href="/img/fireman.ico" />
+
     </head>
 
 
@@ -152,14 +154,14 @@
                                 </div>
                                 <div class="separator-50px"></div>
                                 <ul>
-                                    <li class="liste">Matricule --> <i><?php echo($firemen[$i]->getMatricule());?></i></li>
-                                    <li class="liste">First name --> <i><?php echo($firemen[$i]->getPrenom());?></i></li>
-                                    <li class="liste">Second name --> <i><?php echo($firemen[$i]->getNom());?></i></li>
-                                    <li class="liste">Chef agret --> <i><?php echo($firemen[$i]->getChefAgret());?></i></li>
-                                    <li class="liste">Birth date --> <i><?php echo($firemen[$i]->getDateNaissance());?></i></li>
-                                    <li class="liste">Barrack number --> <i><?php echo($firemen[$i]->getNumCaserne());?></i></li>
-                                    <li class="liste">Grade code --> <i><?php echo($firemen[$i]->getCodeGrade());?></i></li>
-                                    <li class="liste">Manager matricule --> <i><?php echo($firemen[$i]->getMatriculeResponsable());?></i></li>
+                                    <li class="liste">Matricule = <b><?php echo($firemen[$i]->getMatricule());?></b></li>
+                                    <li class="liste">First name = <b><?php echo($firemen[$i]->getPrenom());?></b></li>
+                                    <li class="liste">Second name = <b><?php echo($firemen[$i]->getNom());?></b></li>
+                                    <li class="liste">Chef agret = <b><?php echo($firemen[$i]->getChefAgret());?></b></li>
+                                    <li class="liste">Birth date = <b><?php echo($firemen[$i]->getDateNaissance());?></b></li>
+                                    <li class="liste">Barrack number = <b><?php echo($firemen[$i]->getNumCaserne());?></b></li>
+                                    <li class="liste">Grade code = <b><?php echo($firemen[$i]->getCodeGrade());?></b></li>
+                                    <li class="liste">Manager matricule = <b><?php echo($firemen[$i]->getMatriculeResponsable());?></b></li>
                                 </ul>
                             </p>
                             <div class="separator-50px"></div>
