@@ -37,11 +37,21 @@
             //First case : if the fragment has a particular value
             if (isset($fragments)) {
 
-                $firemen = $this->daoPompier->findAllFiremen((intval($fragments)*10)-10,10);
-                $pageFireman = Renderer::render('fireman.php', compact('firemen'));
-                echo($pageFireman);
+                if (is_numeric($fragments)) {
 
-            } 
+                    $firemen = $this->daoPompier->findAllFiremen((intval($fragments)*10)-10,10);
+                    $pageFireman = Renderer::render('fireman.php', compact('firemen'));
+                    echo($pageFireman);
+
+                } else {
+
+                    $firemen = $this->daoPompier->findByName($fragments);
+                    $pageFireman = Renderer::render('firemanSearched.php', compact('fragments','firemen'));
+                    echo($pageFireman);
+
+                }
+
+            }
 
             //Second case : if the fragment has no value we display all the firemen stored in the database
             else {
@@ -79,7 +89,7 @@
 
             $fireman = new Fireman(
                 $_POST['matriculeInput'],
-                $_POST['lastNameInput'],
+                $_POST['firstNameInput'],
                 $_POST['lastNameInput'],
                 $_POST['chefAgretInput'],
                 $_POST['birthDateInput'],

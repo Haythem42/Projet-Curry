@@ -158,13 +158,15 @@
          */
         public function findByName($fragments) : Array{
 
-                $requestSQL = "SELECT * FROM pompiers WHERE Nom = ?";
+                $requestSQL = "SELECT * FROM pompiers WHERE Prenom = ?";
 
                 $preparedStatement = $this->connexion->prepare($requestSQL);
 
                 $preparedStatement->bindValue(1, $fragments);
 
                 $preparedStatement->execute();
+
+                $firemen = array();
 
                 while ($data = $preparedStatement->fetch(\PDO::FETCH_OBJ)) {
 
