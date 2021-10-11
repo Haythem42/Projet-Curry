@@ -68,6 +68,18 @@
         background-color : #16a085;
     }
 
+    .grey {
+        background-color : #636e72;
+    }
+
+    .dark-red {
+        background-color : #820024;
+    }
+
+    .white {
+        background-color : #f5f6fa;
+    }
+
 
     /* WIDTH PART */
     
@@ -78,9 +90,17 @@
     .w-15 {
         width : 15%;
     }
+
+    .w-30 {
+        width : 30%;
+    }
     
     .w-40 {
         width : 40%;
+    }
+
+    .w-70 {
+        width : 70%;
     }
 
     .w-90 {
@@ -104,6 +124,10 @@
         height : 50px;
     }
 
+    .h-150px {
+        height : 150px;
+    }
+
     .h-800px {
         height : 800px;
     }
@@ -115,6 +139,22 @@
         border-radius : 35px 35px 35px 35px;
     }
 
+    .b-radius-left {
+        border-radius : 35px 0px 0px 35px;
+    }
+
+    .b-radius-right {
+        border-radius : 0px 35px 35px 0px;
+    }
+
+    .b-radius-card {
+        border-radius : 70px 0px 70px 0px;
+    }
+
+    .b-radius-info {
+        border-radius : 35px 0px 35px 0px;
+    }
+
 
     /* SPACING PART */
 
@@ -124,6 +164,10 @@
     
     .margin-t-15px {
         margin-top : 15px;
+    }
+
+    .margin-t-20px {
+        margin-top : 20px;
     }
 
     .margin-l-5p {
@@ -140,6 +184,10 @@
 
     .margin-r-80px {
         margin-right : 80px;
+    }
+
+    .margin-right-100px {
+        margin-right : 100px;
     }
 
 
@@ -308,6 +356,25 @@
         color : white;
     }
 
+    .btn-info {
+        background-color : #636e72 !important;
+        border : none;
+        color : white;
+    }
+
+    .btn-info:hover {
+        background-color : #b2bec3 !important;
+        border : none;
+        color : white;
+    }
+
+    .btn-info:focus {
+        outline : none !important;
+        box-shadow : none !important;
+        background-color : #b2bec3 !important;
+        color : white;
+    }
+
     .btn-success {
         background-color : #16a085 !important;
         border : none;
@@ -366,6 +433,44 @@
         border-top : none !important;
         height : 75px;
     }
+
+
+    /* CARD RESEARCH PART */
+    .card-image {
+        background-image : url(../img/firemanCard.jpg);
+        background-size : cover;
+        background-repeat : no-repeat;
+        margin-left : -15px;
+    }
+
+    .card-info {
+        margin-right : -15px;
+    }
+
+
+    .firemanInfo {
+        font-size : 25px;
+        text-align : justify ;
+        margin-left : 20px;
+    }
+
+    li {
+        font-size : 25px;
+    }
+
+    .liste{ 
+        list-style: none; 
+    }
+
+    .liste::before {
+        content: "\2022";   
+        color: #706CCA;
+        display: inline-block;  
+        width: 1em; 
+        margin-left: -1em;
+    }
+
+
 
     /* FOOTER CUSTOMIZATION */
 
