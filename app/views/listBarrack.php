@@ -76,6 +76,7 @@
                                         <th scope="col">CodeTypeC</th>
                                         <th scope="col">Edit</th>
                                         <th scope="col">Delete</th>
+                                        <th scope="col">More</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -91,6 +92,7 @@
                                         <td><?= $barrack->getCodeTypeC(); ?></td>
                                         <td><a class="btn btn-outline-secondary" href="modify/<?= $barrack->getNumCaserne() ?>">MODIFY</a></td>
                                         <td><a class="btn btn-outline-danger" href="erase/<?= $barrack->getNumCaserne() ?>">DELETE</a></td>
+                                        <td><a class="btn btn-outline-dark" href="expose/<?= $barrack->getNumCaserne() ?>"> > </a></td>
                                     </tr>
                                     
                                     <?php endforeach; ?>

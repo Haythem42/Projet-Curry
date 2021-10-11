@@ -6,6 +6,7 @@ use app\models\DAOBarrack;
 use app\utils\Renderer;
 use app\utils\SingletonDBMaria;
 use app\models\Barrack;
+use app\models\Fireman;
 
 
 /**
@@ -50,6 +51,22 @@ class BarrackController extends BaseController {
             echo $pageBarrack;
 
         }
+    }
+
+    public function visualize($fragments) {
+
+        $barrack = $this->daoBarrack->find($fragments);
+        $firemen = $this->daoBarrack->findFireMenFromBarrack($barrack);
+        $pageBarrack = Renderer::render('barrackDisplay.php', compact('barrack', 'firemen'));
+        echo $pageBarrack;
+
+    } 
+
+
+    public function poster() {
+
+        $displayBarrack = new Barrack($_POST['numCaserne'], $_POST['adresseCaserne'], $_POST['CP'], $_POST['ville'], $_POST['codeTypeC'],);
+
     }
 
 

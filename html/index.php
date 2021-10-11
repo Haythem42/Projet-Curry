@@ -142,7 +142,13 @@ function caserneRoutes_get($fragments)
             call_user_func_array([new BarrackController(),"show"], $fragments);
             break;
 
-            
+
+        case "expose":
+
+            call_user_func_array([new BarrackController(),"visualize"], $fragments);
+            break;
+
+
         case "create" :
             
             //echo "Calling barrackController->del <hr>";
@@ -193,6 +199,12 @@ function caserneRoutes_post($fragments)
         case "create":
             //Access permission can be checked here too
             call_user_func_array([new BarrackController(), "insert"], $fragments);
+            break;
+
+
+        case "expose":
+
+            call_user_func_array([new BarrackController(), "poster"], $fragments);
             break;
 
 
