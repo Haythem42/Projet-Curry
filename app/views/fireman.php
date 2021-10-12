@@ -11,6 +11,17 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script type="text/javascript">
+
+            $(document).ready(function () {
+                // Handler for .ready() called.
+                $('html, body').animate({
+                    scrollTop: $('#error').offset().top
+                }, 'slow');
+            });
+
+        </script>
 
 
         <title>Firemen</title>
@@ -89,7 +100,30 @@
         <div class="container blue w-25 h-35px b-radius margin-t-5px"></div>
         <div class="container red w-circle h-35px b-radius margin-t-5px"></div>
 
-        <div class="container separator-150px"></div>
+        <div class="container separator-150px">
+            <?php 
+            if (isset($_SESSION['result']) && $_SESSION['color'] == "green") {?>
+
+                <div class="container green h-50px margin-t-40px b-radius-error flash" id="error">
+                    <p class="l-height-50px text-center f-size-25px" style="color : white;"><?php echo($_SESSION['result']);?></p>
+                </div>
+
+            <?php  
+            }
+
+            if (isset($_SESSION['result']) && $_SESSION['color'] == "red") {?>
+
+                <div class="container red h-50px margin-t-40px b-radius-error flash" id="error">
+                    <p class="l-height-50px text-center f-size-25px" style="color : white;"><?php echo($_SESSION['result']);?></p>
+                </div>
+            <?php
+            }
+
+            unset($_SESSION['result']);
+            unset($_SESSION['color']);
+
+            ?>
+        </div>
 
 
 
