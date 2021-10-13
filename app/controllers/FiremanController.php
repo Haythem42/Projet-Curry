@@ -291,6 +291,17 @@
 
         }
 
+
+        /**
+         * Function which display error404 page
+         */
+        public function error() : void {
+
+            $errorPage = Renderer::render('error404.php');
+            echo $errorPage;
+    
+        }
+
     }
 
 ?>

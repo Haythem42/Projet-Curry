@@ -57,7 +57,8 @@ class BarrackController extends BaseController {
 
         $barrack = $this->daoBarrack->find($fragments);
         $firemen = $this->daoBarrack->findFireMenFromBarrack($barrack);
-        $pageBarrack = Renderer::render('barrackDisplay.php', compact('barrack', 'firemen'));
+        $countFireman = $this->daoBarrack->count($firemen);
+        $pageBarrack = Renderer::render('barrackDisplay.php', compact('barrack', 'countFireman'));
         echo $pageBarrack;
 
     } 
@@ -65,7 +66,8 @@ class BarrackController extends BaseController {
 
     public function poster() {
 
-        $displayBarrack = new Barrack($_POST['numCaserne'], $_POST['adresseCaserne'], $_POST['CP'], $_POST['ville'], $_POST['codeTypeC'],);
+        // $displayBarrack = new Barrack($_POST['numCaserne'], $_POST['adresseCaserne'], $_POST['CP'], $_POST['ville'], $_POST['codeTypeC'],);
+        // $displayFireman = new Fireman($_POST(''))
 
     }
 
@@ -89,14 +91,14 @@ class BarrackController extends BaseController {
         
         $newBarrack = $this->daoBarrack->save($barrack);
 
-        //First case : if the request worked correctly ==> we redirect to fireman.php with a success flash message
+        //First case : if the request worked correctly ==> we redirect to listBarrack.php with a success flash message
         if ($newBarrack != 0) {
 
             header('Location: ../barrack/display');
 
         }
         
-        //Second case : if the request didn't work correctly ==> we redirect to fireman.php with an error flash message
+        //Second case : if the request didn't work correctly ==> we redirect to listBarrack.php with an error flash message
         else {
 
             header('Location: ../barrack/display');
@@ -114,14 +116,14 @@ class BarrackController extends BaseController {
 
         $updateBarrack = $this->daoBarrack->update($modifyBarrack);
 
-        //First case : if the request worked correctly ==> we redirect to fireman.php with a success flash message
+        //First case : if the request worked correctly ==> we redirect to listBarrack.php with a success flash message
         if ($updateBarrack != 0) {
 
             header('Location: ../barrack/display');
 
         }
         
-        //Second case : if the request didn't work correctly ==> we redirect to fireman.php with an error flash message
+        //Second case : if the request didn't work correctly ==> we redirect to listBarrack.php with an error flash message
         else {
 
             header('Location: ../barrack/display');
@@ -147,6 +149,14 @@ class BarrackController extends BaseController {
         
     }
 
+    
+    public function error() : void {
+
+        $errorPage = Renderer::render('error404.php');
+        echo $errorPage;
+
+    }
+
 
     public function delete($fragments) : void { //DELETE du CRUD, Méthode PUT du protocole HTTP
         //CF PSR-7
@@ -158,14 +168,14 @@ class BarrackController extends BaseController {
 
         $deleteBarrack = $this->daoBarrack->remove($fragments);
 
-        //First case : if the request worked correctly ==> we redirect to fireman.php with a success flash message
+        //First case : if the request worked correctly ==> we redirect to listBarrack.php with a success flash message
         if ($deleteBarrack != 0) {
 
             header('Location: ../display');
 
         }
         
-        //Second case : if the request didn't work correctly ==> we redirect to fireman.php with an error flash message
+        //Second case : if the request didn't work correctly ==> we redirect to listBarrack.php with an error flash message
         else {
 
             header('Location: ../display');
