@@ -149,6 +149,14 @@ class BarrackController extends BaseController {
         
     }
 
+    
+    public function error() : void {
+
+        $errorPage = Renderer::render('error404.php');
+        echo $errorPage;
+
+    }
+
 
     public function delete($fragments) : void { //DELETE du CRUD, Méthode PUT du protocole HTTP
         //CF PSR-7

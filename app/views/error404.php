@@ -12,10 +12,10 @@
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:700,900" rel="stylesheet">
 
 	<!-- Font Awesome Icon -->
-	<link type="text/css" rel="stylesheet" href="css/font-awesome.min.css" />
+	<link type="text/css" rel="stylesheet" href="/css/font-awesome.min.css" />
 
 	<!-- Custom stlylesheet -->
-	<link type="text/css" rel="stylesheet" href="css/styleError.css" />
+	<link type="text/css" rel="stylesheet" href="/css/styleError.css" />
     </head>
     <body>
     <div id="notfound">

@@ -58,7 +58,8 @@ switch ($control) {
     {
         //Gestion du probleme
         // echo "Erreur URL";
-        require 'error404.php';
+        call_user_func_array([new BarrackController(), "error"], $fragments);
+        break;
     }
 }
 
@@ -98,7 +99,9 @@ function pompierRoutes_get($fragments)
         default :
             
             //Case when the action doesn't exist.
-            echo "Action '$action' non defini <hr>";
+            // echo "Action '$action' non defini <hr>";
+            call_user_func_array([new FiremanController(), "error"], $fragments);
+            break;
         
     }
 }
@@ -126,7 +129,8 @@ function pompierRoutes_post($fragments)
 
 
         default:
-            echo "Action '$action' non defini <hr>";
+            // echo "Action '$action' non defini <hr>";
+            call_user_func_array([new FiremanController(), "error"], $fragments);
             break;
 
 
@@ -185,7 +189,10 @@ function caserneRoutes_get($fragments)
 
         default :
         
-            echo "Action '$action' non defini <hr>";
+            // echo "Action '$action' non defini <hr>";
+            // require 'error404.php';
+            call_user_func_array([new BarrackController(), "error"], $fragments);
+            break;
             //Gestion du probleme
         
             
@@ -216,7 +223,8 @@ function caserneRoutes_post($fragments)
 
             
         default:
-            echo "Action '$action' non defini <hr>";
+            // echo "Action '$action' non defini <hr>";
+            call_user_func_array([new BarrackController(), "error"], $fragments);
             break;
 
 
