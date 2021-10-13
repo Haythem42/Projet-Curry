@@ -15,7 +15,7 @@
          */
         public function checkDataValidity(string $barrackNumber) : bool {
 
-            if($this->checkNumbers($barrackNumber) == true && $this->checkNegative($barrackNumber) == true && $this->checkFloat($barrackNumber) == true){return true;}
+            if($this->checkNumbers($barrackNumber) == true && $this->checkNegative($barrackNumber) == true){return true;}
             else {return false;}
              
         }
@@ -51,22 +51,6 @@
             else {return true;}
 
         }
-
-
-
-        /**
-         * Function which will check if barrack's number is not a float
-         * 
-         * @param string $barrackNumber
-         * 
-         * @return bool
-         */
-        public function checkFloat($barrackNumber) : bool {
-
-            if(is_float($barrackNumber)) {return false;}
-            else { return true;}
-
-        } 
 
     }
 

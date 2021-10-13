@@ -27,7 +27,7 @@
 
             foreach($this->formData as $key => $value) {
 
-                $this->results[$key] = $this->visitors[$key]->checkAll($value);
+                $this->results[$key] = $this->visitors[$key]->checkDataValidity($value);
 
             }
 
