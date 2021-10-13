@@ -49,7 +49,7 @@
                                 </h2>
                                 <p>You can find this barrack at this address : <?= $barrack->getAdresse(); ?>, <?= $barrack->getCP() ?> <?= $barrack->getVille(); ?>.</p>
                                 <p class="mb-0">
-                                    <!-- This barrack is made up of x <?= $firemen->getMatricule() ?> firefighters. -->
+                                    This barrack is made up of x <?= $countFireman ?> firefighters.
                                 </p>
                             </div>
                         </div>

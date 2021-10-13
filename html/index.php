@@ -57,7 +57,8 @@ switch ($control) {
     default :
     {
         //Gestion du probleme
-        echo "Erreur URL";
+        // echo "Erreur URL";
+        require 'error404.php';
     }
 }
 
@@ -202,10 +203,10 @@ function caserneRoutes_post($fragments)
             break;
 
 
-        case "expose":
+        // case "expose":
 
-            call_user_func_array([new BarrackController(), "poster"], $fragments);
-            break;
+        //     call_user_func_array([new BarrackController(), "poster"], $fragments);
+        //     break;
 
 
         case "modify":
