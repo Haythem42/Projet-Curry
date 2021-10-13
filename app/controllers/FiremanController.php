@@ -2,7 +2,10 @@
 
     namespace app\controllers;
 
-    use app\models\DAOFireman;
+use App\controllers\BarrackNumberVisitor;
+use App\controllers\BirthDateVisitor;
+use App\controllers\GradeCodeVisitor;
+use app\models\DAOFireman;
     use app\utils\SingletonDBMaria;
     use app\utils\Renderer;
     use app\models\Fireman;
@@ -89,22 +92,49 @@
          */
         public function insert() {
 
-            $fireman = new Fireman(
-                $_POST['matriculeInput'],
-                $_POST['firstNameInput'],
-                $_POST['lastNameInput'],
-                $_POST['chefAgretInput'],
-                $_POST['birthDateInput'],
-                $_POST['numberBarrackInput'],
-                $_POST['gradeInput'],
-                $_POST['matriculeManagerInput'],
-            );
+            $filter = new Filter($_POST);
 
-            try {
+            $filter->acceptVisitor(htmlspecialchars($_POST['matriculeInput']), new MatriculeVisitor());
+            $filter->acceptVisitor(htmlspecialchars($_POST['firstNameInput']), new FirstNameVisitor());
+            $filter->acceptVisitor(htmlspecialchars($_POST['lastNameInput']), new LastNameVisitor());
+            $filter->acceptVisitor(htmlspecialchars($_POST['chefAgretInput']), new ChefAgretVisitor());
+            $filter->acceptVisitor(htmlspecialchars($_POST['birthDateInput']), new BirthDateVisitor());
+            $filter->acceptVisitor(htmlspecialchars($_POST['numberBarrackInput']), new BarrackNumberVisitor());
+            $filter->acceptVisitor(htmlspecialchars($_POST['gradeInput']), new GradeCodeVisitor());
+            $filter->acceptVisitor(htmlspecialchars($_POST['matriculeManagerInput']), new MatriculeManagerVisitor());
 
-                $success = $this->daoPompier->createFireman($fireman);
+            $filter->visit();
 
-            } catch (\Exception $error) {}
+            $countValidity = 0;
+
+            for($i=0; $i<count($filter->results); $i++) {
+
+                if($filter->results[$i] == true) { $countValidity = $countValidity + 1; }
+
+            }
+
+            if($countValidity == count($filter->results)) {
+
+                $fireman = new Fireman(
+                    htmlspecialchars($_POST['matriculeInput']),
+                    htmlspecialchars($_POST['firstNameInput']),
+                    htmlspecialchars($_POST['lastNameInput']),
+                    htmlspecialchars($_POST['chefAgretInput']),
+                    htmlspecialchars($_POST['birthDateInput']),
+                    htmlspecialchars($_POST['numberBarrackInput']),
+                    htmlspecialchars($_POST['gradeInput']),
+                    htmlspecialchars($_POST['matriculeManagerInput'])
+                );
+
+                try {
+
+                    $success = $this->daoPompier->createFireman($fireman);
+    
+                } catch (\Exception $error) {}
+
+            }
+
+
             
             //First case : if the request worked correctly ==> we redirect to fireman.php with a success flash message
             if ($success != 0) {
