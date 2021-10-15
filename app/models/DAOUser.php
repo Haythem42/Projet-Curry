@@ -33,7 +33,22 @@
          */
         public function displayUser() {
 
-            
+            $sql = "SELECT * FROM user";
+
+            $preparedStatement = $this->connexion->prepare($sql);
+
+            $preparedStatement->execute();
+
+            $users = array();
+
+            while ($data = $preparedStatement->fetch(\PDO::FETCH_OBJ)) {
+
+                $user = new User($data->id, $data->login, $data->password, $data->role);
+                array_push($users, $user);
+
+            }
+
+            return $users;
 
         }
 
@@ -74,9 +89,9 @@
          */
         public function modifyUser(User $user) : int {  
 
-            $requestSQL = "UPDATE user SET login=:userLogin, password=:userPassword, role=:userRole WHERE id=:userId";
+            $sql = "UPDATE user SET login=:userLogin, password=:userPassword, role=:userRole WHERE id=:userId";
 
-            $preparedStatement = $this->connexion->prepare($requestSQL);
+            $preparedStatement = $this->connexion->prepare($sql);
 
             $preparedStatement->bindValue(':userLogin', $user->getLogin());
             $preparedStatement->bindValue(':userPassword', $user->getPassword());
@@ -99,6 +114,18 @@
          * Function which delete an existing user from the database
          */
         public function deleteUser($id) : int {
+
+            $sql = "DELETE FROM user WHERE id = ?";
+
+            $preparedStatement = $this->connexion->prepare($sql);
+
+            $preparedStatement->bindValue(1, $id);
+
+            $preparedStatement->execute();
+
+            $linesDeleted = $preparedStatement->rowCount();
+
+            return $linesDeleted;
 
         }
 
