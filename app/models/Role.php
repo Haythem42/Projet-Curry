@@ -21,9 +21,9 @@
          * 
          * @param string $id
          * @param string $libelle
-         * @param string $permissions
+         * @param int $permissions
         */
-        public function __construct(string $id, string $libelle, string $permissions) {
+        public function __construct(string $id, string $libelle, int $permissions) {
 
             $this->id = $id;
             $this->libelle = $libelle;
@@ -48,6 +48,7 @@
              * Function which get the permissions of the role
              */
             public function getPermissions() { return $this->permissions; }
+
 
 
 
@@ -81,7 +82,7 @@
             /**
              * Function which set the permissions of a role
              * 
-             * @param string $permissions
+             * @param int $permissions
              */
             public function setPermissions($permissions) {
 
