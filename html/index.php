@@ -10,6 +10,7 @@ require_once '../autoloader.php';
 
 use app\controllers\FiremanController;
 use app\controllers\BarrackController;
+use app\controllers\UserController;
 
 
 if (isset($_SERVER["PATH_INFO"])) {
@@ -21,20 +22,17 @@ if (isset($_SERVER["PATH_INFO"])) {
 
 $fragments = explode("/", $path);
 
-//var_dump($fragment);
+
 
 $control = array_shift($fragments);
-//echo "control : $control <hr>";
+
 switch ($control) {
+
     case '' :
-    { //l'url est /
         defaultRoutes_get($fragments);
         break;
-    }
+
     case "fireman" :
-    {
-        //echo "Gestion des routes pour pompier <hr>";
-        //calling function to prevend all hard code here
         if ($_SERVER["REQUEST_METHOD"] == "GET") {
             pompierRoutes_get($fragments);
         }
@@ -42,10 +40,9 @@ switch ($control) {
             pompierRoutes_post($fragments);
         }
         break;
-    }
+
     case "barrack" :
-    {
-        //echo "Gestion des routes pour caserne<hr>";
+
         if ($_SERVER["REQUEST_METHOD"] == "GET") {
             caserneRoutes_get($fragments);
         }
@@ -53,14 +50,23 @@ switch ($control) {
             caserneRoutes_post($fragments);
         }
         break;
-    }
+
+    case "users" :
+
+        if($_SERVER["REQUEST_METHOD"] == "GET") {
+
+            usersRoutes_get($fragments);
+        }
+        if($_SERVER["REQUEST_METHOD"] == "POST") {
+
+            usersRoutes_post($fragments);
+        }
+        break;
+
     default :
-    {
-        //Gestion du probleme
-        // echo "Erreur URL";
+
         call_user_func_array([new BarrackController(), "error"], $fragments);
         break;
-    }
 }
 
 
@@ -73,10 +79,8 @@ function defaultRoutes_get($fragments)
 function pompierRoutes_get($fragments)
 {
 
-    //var_dump($fragment);
 
     $action = array_shift($fragments);
-    //var_dump($action);
 
     switch ($action) {
 
@@ -97,9 +101,6 @@ function pompierRoutes_get($fragments)
             break;
 
         default :
-            
-            //Case when the action doesn't exist.
-            // echo "Action '$action' non defini <hr>";
             call_user_func_array([new FiremanController(), "error"], $fragments);
             break;
         
@@ -226,6 +227,27 @@ function caserneRoutes_post($fragments)
             // echo "Action '$action' non defini <hr>";
             call_user_func_array([new BarrackController(), "error"], $fragments);
             break;
+
+
+    }
+}
+
+function usersRoutes_get($fragments) {
+
+    $action = array_shift($fragments);
+
+    switch ($action) {
+
+
+    }
+
+}
+
+function usersRoutes_post($fragments) {
+
+    $action = array_shift($fragments);
+
+    switch ($action) {
 
 
     }

@@ -17,7 +17,6 @@
          * COnstructor of the class which instanciate the object with a connection
          *
          * @param type $connexion
-         *
          */
         public function __construct($connexion) {
 
@@ -30,8 +29,10 @@
 
         /**
          * Function which recover all the user from the database
+         * 
+         * @return array $users
          */
-        public function displayUser() {
+        public function displayUser() : array {
 
             $sql = "SELECT * FROM user";
 
@@ -59,6 +60,9 @@
         /**
          * Function which creates a new user in the database
          * 
+         * @param User $user
+         * 
+         * @return int $linesAdded
          */
         public function createUser(User $user) : int { 
 
@@ -86,6 +90,9 @@
         /**
          * Function which modify an existing user in the database
          * 
+         * @param User $user
+         * 
+         * @return int $linesModified
          */
         public function modifyUser(User $user) : int {  
 
@@ -112,6 +119,10 @@
 
         /**
          * Function which delete an existing user from the database
+         * 
+         * @param int $id
+         * 
+         * @return int $linesDeleted
          */
         public function deleteUser($id) : int {
 
@@ -128,7 +139,6 @@
             return $linesDeleted;
 
         }
-
 
     }
 
