@@ -51,7 +51,7 @@ switch ($control) {
         }
         break;
 
-    case "users" :
+    case "user" :
 
         if($_SERVER["REQUEST_METHOD"] == "GET") {
 
@@ -237,7 +237,6 @@ function usersRoutes_get($fragments) {
     $action = array_shift($fragments);
 
     switch ($action) {
-
 
     }
 

@@ -19,11 +19,21 @@
          */
         public function __construct() {
 
-            $this->daoPompier = new DAOUser(SingletonDBMaria::getInstance()->getConnection());
+            $this->daoUser = new DAOUser(SingletonDBMaria::getInstance()->getConnection());
 
         }
 
         
+        /**
+         * Function which retrieves all the user stored in the database.
+         */
+        public function show($fragments = null) {
+
+            $users = $this->daoUser->displayUser();
+            $pageUser = Renderer::render('user.php', compact('users'));
+            echo($pageUser);
+
+        }
 
     }
 

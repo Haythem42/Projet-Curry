@@ -14,7 +14,7 @@
 
 
         /**
-         * COnstructor of the class which instanciate the object with a connection
+         * Constructor of the class which instanciate the object with a connection
          *
          * @param type $connexion
          */
@@ -28,7 +28,7 @@
 
 
         /**
-         * Function which recover all the user from the database
+         * Function which recovers all the user from the database
          * 
          * @return array $users
          */
@@ -88,7 +88,7 @@
 
 
         /**
-         * Function which modify an existing user in the database
+         * Function which modifies an existing user in the database
          * 
          * @param User $user
          * 
@@ -118,7 +118,7 @@
 
 
         /**
-         * Function which delete an existing user from the database
+         * Function which deletes an existing user from the database
          * 
          * @param int $id
          * 

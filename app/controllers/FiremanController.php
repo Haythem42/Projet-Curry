@@ -293,7 +293,7 @@
 
 
         /**
-         * Function which display error404 page
+         * Function which displays error404 page
          */
         public function error() : void {
 
