@@ -108,7 +108,7 @@ class DAOBarrack
      * Remove a barrack from barrack
      * 
      * @param Barrack $barrack
-     * @return string $message
+     * @return int $lignesRmv
     */
     // Real function : public function remove(Barrack $barrack): void
     public function remove($numCaserne): int
@@ -155,6 +155,11 @@ class DAOBarrack
 
     }
 
+    /**
+     * Find all barracks
+     * 
+     * @return array<Barrack>
+    */
     public function findAll() : Array {
 
         $requestSQL = "SELECT * FROM casernes";
