@@ -39,15 +39,15 @@ mysql -u root -p pompiers < dumpFiremen.sql
 
 * Recover role & user tables
 ```bash
-mysql -u root -p pompiers < dumpPermissions.sql
+mysql -u root -p pompiers < dumpRoles.sql
 mysql -u root -p pompiers < dumpUsers.sql
 ```
 
 * Recover data about firemen, barracks and disponibilities
 ```bash
-mysql -u root -p pompiers < dumpDataFiremen.sql
-mysql -u root -p pompiers < dumpDataFiremenDisponibilities.sql
-mysql -u root -p pompiers < dumpDataBarracks.sql
+mysql -u root -p pompiers < Path to the file dumpDataFiremen.sql
+mysql -u root -p pompiers < Path to the file dumpDataFiremenDisponibilities.sql
+mysql -u root -p pompiers < Path to the file dumpDataBarracks.sql
 ```
 
 ## Login and password
@@ -56,7 +56,7 @@ mysql -u root -p pompiers < dumpDataBarracks.sql
 
 ```bash
 The administrator account can see all the page of the project.
-Login : administrator
+Login : login.admin@orange.fr
 Password :
 ```
 
@@ -64,7 +64,7 @@ Password :
 
 ```bash
 The fireman manager account can see all the page related to firemen.
-Login : fireman manager
+Login : login.firemenmanager@orange.fr
 Password :
 ```
 
@@ -72,7 +72,7 @@ Password :
 
 ```bash
 The barrack manager account can see all the page related to barracks.
-Login : barrack manager
+Login : login.barrackmanager@orange.fr
 Password :
 ```
 
@@ -80,7 +80,7 @@ Password :
 
 ```bash
 The user account has limited permissions and can see a number limited of page.
-Login : user
+Login : login.user@orange.fr
 Password :
 ```
 

@@ -11,15 +11,36 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
         <title>Modification</title>
         <link rel="icon" type="image/x-icon" href="/img/fireman.ico" />
+
+        <script type="text/javascript">
+
+            $(document).ready(function () {
+                // Handler for .ready() called.
+                $('html, body').animate({
+                    scrollTop: $('#top').offset().top
+                }, 'slow');
+            });
+
+        </script>
+
     </head>
 
 
 
     <body>
         
+        <div class="scrollTop d-flex justify-content-center align-items-center" onclick="scrollToTop()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-chevron-up" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z"/>
+            </svg>
+            <p class="l-height-50px f-size-30px margin-t-15px margin-l-10px">TO TOP</p>
+        </div>
+
+
         <!-- PART : NAVIGATION BAR -->
         <header>
 
@@ -69,7 +90,7 @@
         <!-- PART : TITLE MODIFYING FIREMAN -->
         <div class="separator-150px"></div>
 
-        <div class="container yellow w-circle h-35px b-radius"></div>
+        <div class="container yellow w-circle h-35px b-radius" id="top"></div>
         <div class="container blue w-25 h-35px b-radius margin-t-5px"></div>
         <div class="container yellow w-50 h-35px b-radius margin-t-5px"></div>
 
@@ -123,41 +144,154 @@
 
                 <div class="row">
                     <div class="col">
-                        <label for="firstNameInput">First name *</label>
-                        <input type="text" class="form-control w-75 b-radius" value="<?php echo($fireman->getPrenom());?>" name="firstNameInput">
+                        <?php 
+                        if (isset($_SESSION['checkUpdate'])) {
+                            if($_SESSION['checkUpdate']['firstNameInput'] == true) {?>
+                                <label for="firstNameInput">First name *</label>
+                                <input type="text" class="form-control w-75 b-radius true" value="<?php echo($_SESSION['modifyUserValue']['firstNameInput'])?>" name="firstNameInput">
+                            <?php
+                            } else { ?>
+                                <label for="firstNameInput">First name *</label>
+                                <input type="text" class="form-control w-75 b-radius false" value="<?php echo($_SESSION['modifyUserValue']['firstNameInput'])?>" name="firstNameInput">
+                            <?php
+                            }
+                            ?>
+                        <?php
+                        } else {?>
+                            <label for="firstNameInput">First name *</label>
+                            <input type="text" class="form-control w-75 b-radius" value="<?php echo($fireman->getPrenom());?>" name="firstNameInput">
+                        <?php
+                        }?>
                     </div>
                     <div class="col">
-                        <label for="lastName">Last name *</label>
-                        <input type="text" class="form-control w-75 b-radius" value="<?php echo($fireman->getNom());?>" name="lastNameInput">
+                        <?php 
+                        if (isset($_SESSION['checkUpdate'])) {
+                            if($_SESSION['checkUpdate']['lastNameInput'] == true) {?>
+                                <label for="lastNameInput">Last name *</label>
+                                <input type="text" class="form-control w-75 b-radius true" value="<?php echo($_SESSION['modifyUserValue']['lastNameInput'])?>" name="lastNameInput">
+                            <?php
+                            } else { ?>
+                                <label for="lastNameInput">Last name *</label>
+                                <input type="text" class="form-control w-75 b-radius false" value="<?php echo($_SESSION['modifyUserValue']['lastNameInput'])?>" name="lastNameInput">
+                            <?php
+                            }
+                            ?>
+                        <?php
+                        } else {?>
+                            <label for="lastNameInput">Last name *</label>
+                            <input type="text" class="form-control w-75 b-radius" value="<?php echo($fireman->getNom());?>" name="lastNameInput">
+                        <?php
+                        }?>
                     </div>
                 </div><br><br>
 
                 <div class="row">
                     <div class="col">
-                        <label for="chefAgretInput">Chef Agret *</label>
-                        <input type="text" class="form-control w-75 b-radius" value="<?php echo($fireman->getChefAgret());?>" name="chefAgretInput">
+                        <?php 
+                        if (isset($_SESSION['checkUpdate'])) {
+                            if($_SESSION['checkUpdate']['chefAgretInput'] == true) {?>
+                                <label for="chefAgretInput">Chef Agret *</label>
+                                <input type="text" class="form-control w-75 b-radius true" value="<?php echo($_SESSION['modifyUserValue']['chefAgretInput'])?>" name="chefAgretInput">
+                            <?php
+                            } else { ?>
+                                <label for="chefAgretInput">Chef Agret *</label>
+                                <input type="text" class="form-control w-75 b-radius false" value="<?php echo($_SESSION['modifyUserValue']['chefAgretInput'])?>" name="chefAgretInput">
+                            <?php
+                            }
+                            ?>
+                        <?php
+                        } else {?>
+                            <label for="chefAgretInput">Chef Agret *</label>
+                            <input type="text" class="form-control w-75 b-radius" value="<?php echo($fireman->getChefAgret());?>" name="chefAgretInput">
+                        <?php
+                        }?>
                     </div>
                     <div class="col">
-                        <label for="birthDate">Birth date *</label>
-                        <input type="date" class="form-control w-75 b-radius" value="<?php echo($fireman->getDateNaissance());?>" name="birthDateInput">
+                        <?php 
+                        if (isset($_SESSION['checkUpdate'])) {
+                            if($_SESSION['checkUpdate']['birthDateInput'] == true) {?>
+                                <label for="birthDateInput">Birth date *</label>
+                                <input type="date" class="form-control w-75 b-radius true" value="<?php echo($_SESSION['modifyUserValue']['birthDateInput'])?>" name="birthDateInput">
+                            <?php
+                            } else { ?>
+                                <label for="birthDateInput">Birth date *</label>
+                                <input type="date" class="form-control w-75 b-radius false" value="<?php echo($_SESSION['modifyUserValue']['birthDateInput'])?>" name="birthDateInput">
+                            <?php
+                            }
+                            ?>
+                        <?php
+                        } else {?>
+                            <label for="birthDateInput">Birth date *</label>
+                            <input type="date" class="form-control w-75 b-radius" value="<?php echo($fireman->getDateNaissance());?>" name="birthDateInput">
+                        <?php
+                        }?>
                     </div>
                 </div><br><br>
 
                 <div class="row">
                     <div class="col">
-                        <label for="numberBarrackInput">Barrack number *</label>
-                        <input type="number" class="form-control w-75 b-radius" value="<?php echo($fireman->getNumCaserne());?>" name="numberBarrackInput">
+                        <?php 
+                        if (isset($_SESSION['checkUpdate'])) {
+                            if($_SESSION['checkUpdate']['numberBarrackInput'] == true) {?>
+                                <label for="numberBarrackInput">Barrack number *</label>
+                                <input type="number" class="form-control w-75 b-radius true" value="<?php echo($_SESSION['modifyUserValue']['numberBarrackInput'])?>" name="numberBarrackInput">
+                            <?php
+                            } else { ?>
+                                <label for="numberBarrackInput">Barrack number *</label>
+                                <input type="number" class="form-control w-75 b-radius false" value="<?php echo($_SESSION['modifyUserValue']['numberBarrackInput'])?>" name="numberBarrackInput">
+                            <?php
+                            }
+                            ?>
+                        <?php
+                        } else {?>
+                            <label for="numberBarrackInput">Barrack number *</label>
+                            <input type="number" class="form-control w-75 b-radius" value="<?php echo($fireman->getNumCaserne());?>" name="numberBarrackInput">
+                        <?php
+                        }?>
                     </div>
                     <div class="col">
-                        <label for="gradeInput">Grade code *</label>
-                        <input type="text" class="form-control w-75 b-radius" value="<?php echo($fireman->getCodeGrade());?>" name="gradeInput">
+                        <?php 
+                        if (isset($_SESSION['checkUpdate'])) {
+                            if($_SESSION['checkUpdate']['gradeInput'] == true) {?>
+                                <label for="gradeInput">Grade code *</label>
+                                <input type="text" class="form-control w-75 b-radius true" value="<?php echo($_SESSION['modifyUserValue']['gradeInput'])?>" name="gradeInput">
+                            <?php
+                            } else { ?>
+                                <label for="gradeInput">Grade code *</label>
+                                <input type="text" class="form-control w-75 b-radius false" value="<?php echo($_SESSION['modifyUserValue']['gradeInput'])?>" name="gradeInput">
+                            <?php
+                            }
+                            ?>
+                        <?php
+                        } else {?>
+                            <label for="gradeInput">Grade code *</label>
+                            <input type="text" class="form-control w-75 b-radius" value="<?php echo($fireman->getCodeGrade());?>" name="gradeInput">
+                        <?php
+                        }?>
                     </div>
                 </div><br><br>
 
                 <div class="container w-50 d-flex justify-content-center">
                     <div class="form-group w-50">
-                        <label for="matriculeManagerInput">Matricule manager *</label>
-                        <input type="text" class="form-control b-radius" value="<?php echo($fireman->getMatriculeResponsable());?>" name="matriculeManagerInput">
+                        <?php 
+                        if (isset($_SESSION['checkUpdate'])) {
+                            if($_SESSION['checkUpdate']['matriculeManagerInput'] == true) {?>
+                                <label for="matriculeManagerInput">Matricule manager *</label>
+                                <input type="text" class="form-control b-radius true" value="<?php echo($_SESSION['modifyUserValue']['matriculeManagerInput'])?>" name="matriculeManagerInput">
+                            <?php
+                            } else { ?>
+                                <label for="matriculeManagerInput">Matricule manager *</label>
+                                <input type="text" class="form-control b-radius false" value="<?php echo($_SESSION['modifyUserValue']['matriculeManagerInput'])?>" name="matriculeManagerInput">
+                            <?php
+                            }
+                            ?>
+                        <?php
+                        } else {?>
+                            <label for="matriculeManagerInput">Matricule manager *</label>
+                            <input type="text" class="form-control b-radius" value="<?php echo($fireman->getMatriculeResponsable());?>" name="matriculeManagerInput">
+                        <?php
+                        }
+                        ?>
                     </div>
                 </div><br><br><br><br>
 
@@ -176,7 +310,10 @@
 
         <div class="separator-150px"></div>
 
-
+        <?php
+        unset($_SESSION['checkUpdate']);
+        unset($_SESSION['modifyUserValue']);
+        ?>
 
 
 
@@ -190,6 +327,21 @@
 
             
         </footer>
+
+        <script>
+            window.addEventListener('scroll', function()  {
+
+                var scroll = document.querySelector('.scrollTop');
+                scroll.classList.toggle('active', window.scrollY > 500);
+
+            })
+
+            function scrollToTop() {
+                window.scrollTo({
+                    top : 0
+                })
+            }
+        </script>
 
     </body>
 

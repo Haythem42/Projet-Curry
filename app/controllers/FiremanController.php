@@ -152,6 +152,8 @@
 
             } else {
 
+                $_SESSION['checkCreation'] = $tableCheck;
+                $_SESSION['addUserValue'] = $_POST;
                 header('Location: ../fireman/create');
 
             }
@@ -231,6 +233,8 @@
 
             } else {
 
+                $_SESSION['checkUpdate'] = $tableCheck;
+                $_SESSION['modifyUserValue'] = $_POST;
                 header('Location: ../fireman/modify/'.$_POST['matriculeInput']);
 
             }

@@ -7,18 +7,38 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
-            <link rel="stylesheet" href="/css/homeStyle.css">
-            <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+        <link rel="stylesheet" href="/css/homeStyle.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+        <link rel="icon" type="image/x-icon" href="/img/fireman.ico" />
 
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
         <title>Creation</title>
-        <link rel="icon" type="image/x-icon" href="/img/fireman.ico" />
+
+        <script type="text/javascript">
+
+            $(document).ready(function () {
+                // Handler for .ready() called.
+                $('html, body').animate({
+                    scrollTop: $('#top').offset().top
+                }, 'slow');
+            });
+
+        </script>
+
     </head>
 
 
     <body>
 
+
+        <div class="scrollTop d-flex justify-content-center align-items-center" onclick="scrollToTop()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-chevron-up" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z"/>
+            </svg>
+            <p class="l-height-50px f-size-30px margin-t-15px margin-l-10px">TO TOP</p>
+        </div>
     
         <!-- PART : NAVIGATION BAR -->
         <header>
@@ -70,7 +90,7 @@
 
         <div class="separator-150px"></div>
         
-        <div class="container green w-circle h-35px b-radius"></div>
+        <div class="container green w-circle h-35px b-radius" id="top"></div>
         <div class="container blue w-25 h-35px b-radius margin-t-5px"></div>
         <div class="container green w-50 h-35px b-radius margin-t-5px"></div>
 
@@ -115,8 +135,24 @@
 
                 <div class="container w-50 d-flex justify-content-center">
                     <div class="form-group w-50">
-                        <label for="matriculeInput">Matricule *</label>
-                        <input type="text" class="form-control b-radius" name="matriculeInput">
+                        <?php 
+                        if (isset($_SESSION['checkCreation'])) {
+                            if($_SESSION['checkCreation']['matriculeInput'] == true) {?>
+                                <label for="matriculeInput">Matricule *</label>
+                                <input type="text" class="form-control b-radius true" name="matriculeInput" value="<?php echo($_SESSION['addUserValue']['matriculeInput'])?>">
+                            <?php
+                            } else { ?>
+                                <label for="matriculeInput">Matricule *</label>
+                                <input type="text" class="form-control b-radius false" name="matriculeInput" value="<?php echo($_SESSION['addUserValue']['matriculeInput'])?>">
+                            <?php
+                            }
+                            ?>
+                        <?php
+                        } else {?>
+                            <label for="matriculeInput">Matricule *</label>
+                            <input type="text" class="form-control b-radius" name="matriculeInput">
+                        <?php
+                        }?>
                     </div>
                 </div>
 
@@ -124,41 +160,153 @@
 
                 <div class="row">
                     <div class="col">
-                        <label for="firstNameInput">First name *</label>
-                        <input type="text" class="form-control w-75 b-radius" name="firstNameInput">
+                        <?php 
+                        if (isset($_SESSION['checkCreation'])) {
+                            if($_SESSION['checkCreation']['firstNameInput'] == true) {?>
+                                <label for="firstNameInput">First name *</label>
+                                <input type="text" class="form-control w-75 b-radius true" name="firstNameInput" value="<?php echo($_SESSION['addUserValue']['firstNameInput'])?>">
+                            <?php
+                            } else { ?>
+                                <label for="firstNameInput">First name *</label>
+                                <input type="text" class="form-control w-75 b-radius false" name="firstNameInput" value="<?php echo($_SESSION['addUserValue']['firstNameInput'])?>">
+                            <?php
+                            }
+                            ?>
+                        <?php
+                        } else {?>
+                            <label for="firstNameInput">First name *</label>
+                            <input type="text" class="form-control w-75 b-radius" name="firstNameInput">
+                        <?php
+                        }?>
                     </div>
                     <div class="col">
-                        <label for="lastName">Last name *</label>
-                        <input type="text" class="form-control w-75 b-radius" name="lastNameInput">
+                        <?php 
+                        if (isset($_SESSION['checkCreation'])) {
+                            if($_SESSION['checkCreation']['lastNameInput'] == true) {?>
+                                <label for="lastNameInput">Last name *</label>
+                                <input type="text" class="form-control w-75 b-radius true" name="lastNameInput" value="<?php echo($_SESSION['addUserValue']['lastNameInput'])?>">
+                            <?php
+                            } else { ?>
+                                <label for="lastNameInput">Last name *</label>
+                                <input type="text" class="form-control w-75 b-radius false" name="lastNameInput" value="<?php echo($_SESSION['addUserValue']['lastNameInput'])?>">
+                            <?php
+                            }
+                            ?>
+                        <?php
+                        } else {?>
+                            <label for="lastNameInput">Last name *</label>
+                            <input type="text" class="form-control w-75 b-radius" name="lastNameInput">
+                        <?php
+                        }?>
                     </div>
                 </div><br><br>
 
                 <div class="row">
                     <div class="col">
-                        <label for="chefAgretInput">Chef Agret *</label>
-                        <input type="text" class="form-control w-75 b-radius" name="chefAgretInput">
+                        <?php 
+                        if (isset($_SESSION['checkCreation'])) {
+                            if($_SESSION['checkCreation']['chefAgretInput'] == true) {?>
+                                <label for="chefAgretInput">Chef Agret *</label>
+                                <input type="text" class="form-control w-75 b-radius true" name="chefAgretInput" value="<?php echo($_SESSION['addUserValue']['chefAgretInput'])?>">
+                            <?php
+                            } else { ?>
+                                <label for="chefAgretInput">Chef Agret *</label>
+                                <input type="text" class="form-control w-75 b-radius false" name="chefAgretInput" value="<?php echo($_SESSION['addUserValue']['chefAgretInput'])?>">
+                            <?php
+                            }
+                            ?>
+                        <?php
+                        } else {?>
+                            <label for="chefAgretInput">Chef Agret *</label>
+                            <input type="text" class="form-control w-75 b-radius" name="chefAgretInput">
+                        <?php
+                        }?>
                     </div>
                     <div class="col">
-                        <label for="birthDate">Birth date *</label>
-                        <input type="date" class="form-control w-75 b-radius" name="birthDateInput">
+                        <?php 
+                        if (isset($_SESSION['checkCreation'])) {
+                            if($_SESSION['checkCreation']['birthDateInput'] == true) {?>
+                                <label for="birthDateInput">Birth date *</label>
+                                <input type="date" class="form-control w-75 b-radius true" name="birthDateInput" value="<?php echo($_SESSION['addUserValue']['birthDateInput'])?>">
+                            <?php
+                            } else { ?>
+                                <label for="birthDateInput">Birth date *</label>
+                                <input type="date" class="form-control w-75 b-radius false" name="birthDateInput" value="<?php echo($_SESSION['addUserValue']['birthDateInput'])?>">
+                            <?php
+                            }
+                            ?>
+                        <?php
+                        } else {?>
+                            <label for="birthDateInput">Birth date *</label>
+                            <input type="date" class="form-control w-75 b-radius" name="birthDateInput">
+                        <?php
+                        }?>
                     </div>
                 </div><br><br>
 
                 <div class="row">
                     <div class="col">
-                        <label for="numberBarrackInput">Barrack number *</label>
-                        <input type="number" class="form-control w-75 b-radius" name="numberBarrackInput">
+                        <?php 
+                        if (isset($_SESSION['checkCreation'])) {
+                            if($_SESSION['checkCreation']['numberBarrackInput'] == true) {?>
+                                <label for="numberBarrackInput">Barrack number *</label>
+                                <input type="number" class="form-control w-75 b-radius true" name="numberBarrackInput" value="<?php echo($_SESSION['addUserValue']['numberBarrackInput'])?>">
+                            <?php
+                            } else { ?>
+                                <label for="numberBarrackInput">Barrack number *</label>
+                                <input type="number" class="form-control w-75 b-radius false" name="numberBarrackInput" value="<?php echo($_SESSION['addUserValue']['numberBarrackInput'])?>">
+                            <?php
+                            }
+                            ?>
+                        <?php
+                        } else {?>
+                            <label for="numberBarrackInput">Barrack number *</label>
+                            <input type="number" class="form-control w-75 b-radius" name="numberBarrackInput">
+                        <?php
+                        }?>
                     </div>
                     <div class="col">
-                        <label for="gradeInput">Grade code *</label>
-                        <input type="text" class="form-control w-75 b-radius" name="gradeInput">
+                        <?php 
+                        if (isset($_SESSION['checkCreation'])) {
+                            if($_SESSION['checkCreation']['gradeInput'] == true) {?>
+                                <label for="gradeInput">Grade code *</label>
+                                <input type="text" class="form-control w-75 b-radius true" name="gradeInput" value="<?php echo($_SESSION['addUserValue']['gradeInput'])?>">
+                            <?php
+                            } else { ?>
+                                <label for="gradeInput">Grade code *</label>
+                                <input type="text" class="form-control w-75 b-radius false" name="gradeInput" value="<?php echo($_SESSION['addUserValue']['gradeInput'])?>">
+                            <?php
+                            }
+                            ?>
+                        <?php
+                        } else {?>
+                            <label for="gradeInput">Grade code *</label>
+                            <input type="text" class="form-control w-75 b-radius" name="gradeInput">
+                        <?php
+                        }?>
                     </div>
                 </div><br><br>
 
                 <div class="container w-50 d-flex justify-content-center">
                     <div class="form-group w-50">
-                        <label for="matriculeManagerInput">Matricule manager *</label>
-                        <input type="text" class="form-control b-radius" name="matriculeManagerInput">
+                        <?php 
+                        if (isset($_SESSION['checkCreation'])) {
+                            if($_SESSION['checkCreation']['matriculeManagerInput'] == true) {?>
+                                <label for="matriculeManagerInput">Matricule manager *</label>
+                                <input type="text" class="form-control b-radius true" name="matriculeManagerInput" value="<?php echo($_SESSION['addUserValue']['matriculeManagerInput'])?>">
+                            <?php
+                            } else { ?>
+                                <label for="matriculeManagerInput">Matricule manager *</label>
+                                <input type="text" class="form-control b-radius false" name="matriculeManagerInput" value="<?php echo($_SESSION['addUserValue']['matriculeManagerInput'])?>">
+                            <?php
+                            }
+                            ?>
+                        <?php
+                        } else {?>
+                            <label for="matriculeManagerInput">Matricule manager *</label>
+                            <input type="text" class="form-control b-radius" name="matriculeManagerInput">
+                        <?php
+                        }?>
                     </div>
                 </div><br><br><br><br>
 
@@ -184,7 +332,10 @@
         <div class="separator-150px"></div>
 
 
-
+        <?php
+        unset($_SESSION['checkCreation']);
+        unset($_SESSION['addUserValue']);
+        ?>
 
 
         <!-- PART : FOOTER -->
@@ -197,6 +348,22 @@
 
 
         </footer>
+
+
+        <script>
+            window.addEventListener('scroll', function()  {
+
+                var scroll = document.querySelector('.scrollTop');
+                scroll.classList.toggle('active', window.scrollY > 500);
+
+            })
+
+            function scrollToTop() {
+                window.scrollTo({
+                    top : 0
+                })
+            }
+        </script>
 
     </body>
 

@@ -12,10 +12,22 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
         <title>Research</title>
 
         <link rel="icon" type="image/x-icon" href="/img/fireman.ico" />
+
+        <script type="text/javascript">
+
+            $(document).ready(function () {
+                // Handler for .ready() called.
+                $('html, body').animate({
+                    scrollTop: $('#top').offset().top
+                }, 'slow');
+            });
+
+        </script>
 
     </head>
 
@@ -34,7 +46,7 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item align-items-center">
-                            <a class="nav-link" href="../..">
+                            <a class="nav-link" href="../../">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house-door-fill" viewBox="0 0 16 16">
                                     <path d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5z"/>
                                 </svg>
@@ -90,7 +102,7 @@
             <!-- PART : TITLE FIREMEN LIST -->
             <div class="separator-150px"></div>
 
-            <div class="container grey w-circle h-35px b-radius"></div>
+            <div class="container grey w-circle h-35px b-radius" id="top"></div>
             <div class="container blue w-25 h-35px b-radius margin-t-5px"></div>
             <div class="container grey w-50 h-35px b-radius margin-t-5px"></div>
 
