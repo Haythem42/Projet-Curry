@@ -56,32 +56,32 @@ mysql -u root -p pompiers < Path to the file dumpDataBarracks.sql
 
 ```bash
 The administrator account can see all the page of the project.
-Login : login.admin@orange.fr
-Password :
+Login : a.taken
+Password : H5g#H59Mplj
 ```
 
 * **Fireman manager**
 
 ```bash
 The fireman manager account can see all the page related to firemen.
-Login : login.firemenmanager@orange.fr
-Password :
+Login : q.chavet
+Password : f58G&hk@59d5L
 ```
 
 * **Barrack manager**
 
 ```bash
 The barrack manager account can see all the page related to barracks.
-Login : login.barrackmanager@orange.fr
-Password :
+Login : h.belhadjmansour
+Password : g25@h#k5OpPmd56
 ```
 
 * **User**
 
 ```bash
 The user account has limited permissions and can see a number limited of page.
-Login : login.user@orange.fr
-Password :
+Login : p.dupont
+Password : G7@oi45E&J56
 ```
 
 

@@ -14,7 +14,7 @@
         private string $id;
         private string $login;
         private string $password;
-        private string $role;
+        private string $roleId;
         
 
 
@@ -24,14 +24,14 @@
          * @param string $id
          * @param string $login
          * @param string $password
-         * @param string $role
+         * @param string $roleId
         */
-        public function __construct(string $id, string $login, string $password, string $role) {
+        public function __construct(string $id, string $login, string $password, string $roleId) {
 
             $this->id = $id;
             $this->login = $login;
             $this->password = $password;
-            $this->role = $role;
+            $this->roleId = $roleId;
 
         }
 
@@ -58,7 +58,7 @@
             /**
              * Function which get the role of the user
              */
-            public function getRole() { return $this->role; }
+            public function getRoleId() { return $this->roleId; }
 
         
 
@@ -106,9 +106,9 @@
              * 
              * @param string $roleId
              */
-            public function setRole($role) {
+            public function setRoleId($roleId) {
 
-                $this->role = $role;
+                $this->roleId = $roleId;
                 return $this;
 
             }

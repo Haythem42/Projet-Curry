@@ -34,22 +34,22 @@
          */
         public function displayUser() : array {
 
-            $sql = "SELECT * FROM user";
+            $sql = "SELECT utilisateur.id,utilisateur.login,utilisateur.password,role.libelle  FROM utilisateur INNER JOIN role ON utilisateur.roleId =role.id";
 
             $preparedStatement = $this->connexion->prepare($sql);
 
             $preparedStatement->execute();
 
-            $users = array();
+            $fullUsers = array();
 
             while ($data = $preparedStatement->fetch(\PDO::FETCH_OBJ)) {
 
-                $user = new User($data->id, $data->login, $data->password, $data->role);
-                array_push($users, $user);
+                $fullUser = new FullUser($data->id,$data->login, $data->password, $data->libelle);
+                array_push($fullUsers, $fullUser);
 
             }
 
-            return $users;
+            return $fullUsers;
 
         }
 
@@ -67,14 +67,14 @@
         public function createUser(User $user) : int { 
 
 
-            $sql = "INSERT INTO user VALUES (?, ?, ?, ?)";
+            $sql = "INSERT INTO utilisateur VALUES (?, ?, ?, ?)";
 
             $preparedStatement = $this->connexion->prepare($sql);
 
             $preparedStatement->bindValue(1,$user->getId());
             $preparedStatement->bindValue(2,$user->getLogin());
             $preparedStatement->bindValue(3,$user->getPassword());
-            $preparedStatement->bindValue(4,$user->getRole());
+            $preparedStatement->bindValue(4,$user->getRoleId());
 
             $preparedStatement->execute();
 
@@ -102,7 +102,7 @@
 
             $preparedStatement->bindValue(':userLogin', $user->getLogin());
             $preparedStatement->bindValue(':userPassword', $user->getPassword());
-            $preparedStatement->bindValue(':userRole', $user->getRole());
+            $preparedStatement->bindValue(':userRole', $user->getRoleId());
             $preparedStatement->bindValue(':userId', $user->getId());
 
             $preparedStatement->execute();
@@ -126,7 +126,7 @@
          */
         public function deleteUser($id) : int {
 
-            $sql = "DELETE FROM user WHERE id = ?";
+            $sql = "DELETE FROM utilisateur WHERE id = ?";
 
             $preparedStatement = $this->connexion->prepare($sql);
 

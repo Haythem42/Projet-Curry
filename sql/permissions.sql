@@ -16,27 +16,43 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `role`
+-- Table structure for table `permissions`
 --
 
-DROP TABLE IF EXISTS `role`;
+DROP TABLE IF EXISTS `permissions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `role` (
-  `id` varchar(50) NOT NULL,
-  `libelle` varchar(50) DEFAULT NULL,
-  `permissions` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+CREATE TABLE `permissions` (
+  `showUsers` tinyint(1) DEFAULT NULL,
+  `createUsers` tinyint(1) DEFAULT NULL,
+  `modifyUsers` tinyint(1) DEFAULT NULL,
+  `deleteUsers` tinyint(1) DEFAULT NULL,
+  `showPermissions` tinyint(1) DEFAULT NULL,
+  `createPermissions` tinyint(1) DEFAULT NULL,
+  `modifyPermissions` tinyint(1) DEFAULT NULL,
+  `deletePermissions` tinyint(1) DEFAULT NULL,
+  `showPompiers` tinyint(1) DEFAULT NULL,
+  `createPompiers` tinyint(1) DEFAULT NULL,
+  `modifyPompiers` tinyint(1) DEFAULT NULL,
+  `deletePompiers` tinyint(1) DEFAULT NULL,
+  `showCasernes` tinyint(1) DEFAULT NULL,
+  `createCasernes` tinyint(1) DEFAULT NULL,
+  `modifyCasernes` tinyint(1) DEFAULT NULL,
+  `deleteCasernes` tinyint(1) DEFAULT NULL,
+  `roleId` int(11) DEFAULT NULL,
+  KEY `roleId` (`roleId`),
+  CONSTRAINT `permissions_ibfk_1` FOREIGN KEY (`roleId`) REFERENCES `role` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `role`
+-- Dumping data for table `permissions`
 --
 
-LOCK TABLES `role` WRITE;
-/*!40000 ALTER TABLE `role` DISABLE KEYS */;
-/*!40000 ALTER TABLE `role` ENABLE KEYS */;
+LOCK TABLES `permissions` WRITE;
+/*!40000 ALTER TABLE `permissions` DISABLE KEYS */;
+INSERT INTO `permissions` VALUES (1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1),(0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,2),(0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,3),(0,0,0,0,0,0,0,0,1,1,0,0,1,1,0,0,4);
+/*!40000 ALTER TABLE `permissions` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -48,4 +64,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-10-15 15:53:57
+-- Dump completed on 2021-10-27 21:50:30

@@ -125,9 +125,6 @@ function pompierRoutes_post($fragments)
         case "erase":
             call_user_func_array([new FiremanController(), "delete"], $fragments);
             break;
-        
-        //add,modify,erase
-
 
         default:
             // echo "Action '$action' non defini <hr>";
@@ -238,6 +235,13 @@ function usersRoutes_get($fragments) {
 
     switch ($action) {
 
+        case "display":
+            call_user_func_array([new UserController(), "show"], $fragments);
+            break;
+
+        default:
+            call_user_func_array([new UserController(), "error"], $fragments);
+            break;
     }
 
 }
@@ -248,6 +252,17 @@ function usersRoutes_post($fragments) {
 
     switch ($action) {
 
+        case "erase":
+            call_user_func_array([new UserController(), "delete"], $fragments);
+            break;
+
+        case "create":
+            call_user_func_array([new UserController(), "insert"], $fragments);
+            break;
+        
+        default:
+            call_user_func_array([new UserController(), "error"], $fragments);
+            break;
 
     }
 }

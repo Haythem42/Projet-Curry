@@ -525,8 +525,6 @@
         visibility : hidden;
         display : 0;
         transition : 0.5s;
-
-
     }
 
     .scrollTop.active {

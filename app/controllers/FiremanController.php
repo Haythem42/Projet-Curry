@@ -264,8 +264,6 @@
 
         /**
          * Function which deletes a specific fireman from the database using the fragments
-         * 
-         * @param string $fragments
          */
         public function delete() : void{
 
