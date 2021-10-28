@@ -145,7 +145,13 @@
                                 </div><br>
                                 <div class="form-group">
                                     <label for="passwordInput'.$index.'">Password</label>
-                                    <textarea class="form-control" id="passwordInput'.$index.'" rows="3" readonly>'.$fullUsers[$i]->getPassword().'</textarea>
+                                    <input type="password" class="form-control" id="passwordInput'.$index.'" value="'.$fullUsers[$i]->getPassword().'" readonly="true">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="'.$index.'" onclick="showPassword(this)">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                            Toggle password visibility
+                                        </label>
+                                    </div>
                                 </div><br>
                                 <div class="form-group">
                                     <label for="roleInput'.$index.'">Role</label>
@@ -187,7 +193,13 @@
                                 </div><br>
                                 <div class="form-group">
                                     <label for="passwordInput'.$index.'">Password</label>
-                                    <textarea class="form-control" id="passwordInput'.$index.'" rows="3" readonly>'.$fullUsers[$i]->getPassword().'</textarea>
+                                    <input type="password" class="form-control" id="passwordInput'.$index.'" value="'.$fullUsers[$i]->getPassword().'" readonly="true">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="'.$index.'" onclick="showPassword(this)">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                            Toggle password visibility
+                                        </label>
+                                    </div>
                                 </div><br>
                                 <div class="form-group">
                                     <label for="roleInput'.$index.'">Role</label>
@@ -273,7 +285,7 @@
                         <label for="passwordInput">Password</label>
                         <input type="password" class="form-control w-50" id="passwordInput" name="passwordInput" placeholder="Enter a password">
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" onclick="toggleVisibility()">
+                            <input class="form-check-input" type="checkbox" value="" onclick="toggleVisibilityCreate()">
                             <label class="form-check-label" for="flexCheckDefault">
                                 Toggle password visibility
                             </label>
@@ -327,7 +339,7 @@
                         <label for="passwordInputModify">Password</label>
                         <input type="password" class="form-control w-50" id="passwordInputModify" name="passwordInputModify" placeholder="Enter a password">
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" onclick="toggleVisibility()">
+                            <input class="form-check-input" type="checkbox" value="" onclick="toggleVisibilityModify()">
                             <label class="form-check-label" for="flexCheckDefault">
                                 Toggle password visibility
                             </label>
@@ -409,21 +421,25 @@
                 })
             }
 
-            function toggleVisibility() {
+            function toggleVisibilityCreate() {
 
                 var input = document.getElementById("passwordInput");
-                var input2 = document.getElementById("passwordInputModify");
+                if (input.type === "password") {
+                    input.type = "text";
+                } else {
+                    input.type = "password";
+                }
+            }
+
+            function toggleVisibilityModify() { 
+
+                var input = document.getElementById("passwordInputModify");
                 if (input.type === "password") {
                     input.type = "text";
                 } else {
                     input.type = "password";
                 }
 
-                if (input2.type === "password") {
-                    input2.type = "text";
-                } else {
-                    input2.type = "password";
-                }
             }
 
             window.addEventListener('scroll', function()  {
@@ -432,6 +448,17 @@
                 scroll.classList.toggle('active', window.scrollY > 500);
 
             })
+
+            function showPassword(e) {
+                var id = e.id
+                var input = document.getElementById('passwordInput'+id);
+
+                if (input.type === "password") {
+                    input.type = "text";
+                } else {
+                    input.type = "password";
+                }
+            }
 
         </script>
     </body>

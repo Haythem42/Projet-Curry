@@ -42,9 +42,14 @@
 
             $fullUsers = array();
 
+            $ciphering = "AES-128-CTR";
+            $option = 0;
+            $decryption_key = "devanshu";
+            $decryption_iv = "1234567890123456";
+
             while ($data = $preparedStatement->fetch(\PDO::FETCH_OBJ)) {
 
-                $fullUser = new FullUser($data->id,$data->login, $data->password, $data->roleId, $data->libelle);
+                $fullUser = new FullUser($data->id,$data->login, openssl_decrypt($data->password,$ciphering,$decryption_key,$option,$decryption_iv), $data->roleId, $data->libelle);
                 array_push($fullUsers, $fullUser);
 
             }

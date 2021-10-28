@@ -107,12 +107,15 @@
 
             if($countValidity == count($tableCheck)) {
 
-
+                $ciphering = "AES-128-CTR";
+                $option = 0;
+                $encryption_iv = '1234567890123456';
+                $encryption_key = "devanshu";
 
                 $user = new User(
                     htmlspecialchars($_POST['idInput']),
                     htmlspecialchars($_POST['loginInput']),
-                    htmlspecialchars(password_hash($_POST['passwordInput'], PASSWORD_DEFAULT)),
+                    htmlspecialchars(openssl_encrypt($_POST['passwordInput'],$ciphering,$encryption_key,$option,$encryption_iv)),
                     htmlspecialchars($_POST['roleIdInput']),
                 );
 
@@ -176,12 +179,15 @@
 
             if($countValidity == count($tableCheck)) {
 
-
+                $ciphering = "AES-128-CTR";
+                $option = 0;
+                $encryption_iv = '1234567890123456';
+                $encryption_key = "devanshu";
 
                 $user = new User(
                     htmlspecialchars($_POST['idInputModify']),
                     htmlspecialchars($_POST['loginInputModify']),
-                    htmlspecialchars(password_hash($_POST['passwordInputModify'], PASSWORD_DEFAULT)),
+                    htmlspecialchars(openssl_encrypt($_POST['passwordInputModify'],$ciphering,$encryption_key,$option,$encryption_iv)),
                     htmlspecialchars($_POST['roleIdInputModify']),
                 );
 

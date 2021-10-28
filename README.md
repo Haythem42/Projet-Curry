@@ -57,7 +57,7 @@ mysql -u root -p pompiers < Path to the file dumpDataBarracks.sql
 
 ```bash
 The administrator account can see all the page of the project.
-Login : a.taken / a.itemx
+Login : a.taken / a.itemx / a.lourenco
 Password : H5g#H59Mplj / G8@d12#d56jUi
 ```
 
