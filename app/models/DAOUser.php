@@ -34,7 +34,7 @@
          */
         public function displayUser() : array {
 
-            $sql = "SELECT utilisateur.id,utilisateur.login,utilisateur.password,role.libelle  FROM utilisateur INNER JOIN role ON utilisateur.roleId =role.id";
+            $sql = "SELECT utilisateur.id,utilisateur.login,utilisateur.password,utilisateur.roleId,role.libelle  FROM utilisateur INNER JOIN role ON utilisateur.roleId =role.id";
 
             $preparedStatement = $this->connexion->prepare($sql);
 
@@ -44,7 +44,7 @@
 
             while ($data = $preparedStatement->fetch(\PDO::FETCH_OBJ)) {
 
-                $fullUser = new FullUser($data->id,$data->login, $data->password, $data->libelle);
+                $fullUser = new FullUser($data->id,$data->login, $data->password, $data->roleId, $data->libelle);
                 array_push($fullUsers, $fullUser);
 
             }
@@ -96,7 +96,7 @@
          */
         public function modifyUser(User $user) : int {  
 
-            $sql = "UPDATE user SET login=:userLogin, password=:userPassword, role=:userRole WHERE id=:userId";
+            $sql = "UPDATE utilisateur SET login=:userLogin, password=:userPassword, roleId=:userRole WHERE id=:userId";
 
             $preparedStatement = $this->connexion->prepare($sql);
 

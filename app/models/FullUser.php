@@ -11,9 +11,10 @@
     class FullUser {
 
         // Properties of the class
-        private string $id;
+        private int $id;
         private string $login;
         private string $password;
+        private int $roleId;
         private string $roleLibelle;
 
         /**
@@ -22,13 +23,15 @@
          * @param int $id
          * @param string $login
          * @param string $password
+         * @param int $roleId
          * @param string $roleLibelle
         */
-        public function __construct(int $id, string $login, string $password, string $roleLibelle) {
+        public function __construct(int $id, string $login, string $password, int $roleId, string $roleLibelle) {
 
             $this->id = $id;
             $this->login = $login;
             $this->password = $password;
+            $this->roleId = $roleId;
             $this->roleLibelle = $roleLibelle;
 
         }
@@ -50,6 +53,11 @@
              * Function which get the password of the user
              */
             public function getPassword() { return $this->password; }
+
+            /**
+             * Function which get the role ID of the user
+             */
+            public function getRoleId() {return $this->roleId;}
 
             /**
              * Function which get the role of the user

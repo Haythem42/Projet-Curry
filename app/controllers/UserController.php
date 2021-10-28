@@ -150,6 +150,75 @@
 
         }
 
+
+        /**
+         * Function which update a user stored in the database
+         */
+        public function update() {
+
+            $filter = new Filter($_POST);
+
+            $filter->acceptVisitor('idInputModify', new IdVisitor());
+            $filter->acceptVisitor('loginInputModify', new LoginVisitor());
+            $filter->acceptVisitor('passwordInputModify', new PasswordVisitor());
+            $filter->acceptVisitor('roleIdInputModify', new IdVisitor());
+
+            $tableCheck = $filter->visit();
+
+            $countValidity = 0;
+
+            //Check if everything is correct
+            foreach($tableCheck as $key => $value) {
+
+                if($tableCheck[$key] == true) { $countValidity = $countValidity + 1; }
+
+            }
+
+            if($countValidity == count($tableCheck)) {
+
+
+
+                $user = new User(
+                    htmlspecialchars($_POST['idInputModify']),
+                    htmlspecialchars($_POST['loginInputModify']),
+                    htmlspecialchars(password_hash($_POST['passwordInputModify'], PASSWORD_DEFAULT)),
+                    htmlspecialchars($_POST['roleIdInputModify']),
+                );
+
+                try {
+
+                    $success = $this->daoUser->modifyUser($user);
+    
+                } catch (\Exception $error) {}
+
+                //First case : if the request worked correctly ==> we redirect to fireman.php with a success flash message
+                if ($success != 0) {
+
+                    $_SESSION['result'] = "The user has been updated !";
+                    $_SESSION['color'] = "green";
+                    header('Location: ../user/display');
+
+                }
+                
+                //Second case : if the request didn't work correctly ==> we redirect to fireman.php with an error flash message
+                else {
+
+                    $_SESSION['result'] = "Oopsi... It seems like the user hasn't been updated correctly !";
+                    $_SESSION['color'] = "red";
+                    header('Location: ../user/display');
+
+                }
+
+            } else {
+
+                $_SESSION['result'] = "Oopsi... The values entered in the form are not validated by the filter.";
+                $_SESSION['color'] = "red";
+                header('Location: ../user/display');
+
+            }
+
+        }
+
     }
 
 ?>

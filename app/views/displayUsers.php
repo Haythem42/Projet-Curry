@@ -59,15 +59,8 @@
                                 <li><a class="dropdown-item" href="../../barrack/create">Create a barrack</a></li>
                             </ul>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle px-5" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Users
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <li><a class="dropdown-item" href="">Display all the users</a></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="create">Create a user</a></li>
-                            </ul>
+                        <li class="nav-item">
+                            <a class="nav-link px-5" href="">Users</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle px-5" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -136,7 +129,9 @@
         <?php
         for($i=0;$i<count($fullUsers);$i++) {
 
-            if($i%4 == 0) {
+            $index = $i+1;
+
+            if($i%3 == 0) {
 
                 echo(
                 '<div class="user" style="clear:left;">
@@ -144,20 +139,30 @@
                         <div class="picture"></div>
                         <div class="containerData">
                             <p class="data" style="overflow-wrap: break-word;">
-                                Login • '.$fullUsers[$i]->getLogin().'<br><br>
-                                Password • '.$fullUsers[$i]->getPassword().'<br><br>
-                                Role • '.$fullUsers[$i]->getRoleLibelle().'
+                                <div class="form-group">
+                                    <label for="loginInput'.$index.'">Login</label>
+                                    <input type="text" class="form-control" id="loginInput'.$index.'" readonly="true" value="'.$fullUsers[$i]->getLogin().'">
+                                </div><br>
+                                <div class="form-group">
+                                    <label for="passwordInput'.$index.'">Password</label>
+                                    <textarea class="form-control" id="passwordInput'.$index.'" rows="3" readonly>'.$fullUsers[$i]->getPassword().'</textarea>
+                                </div><br>
+                                <div class="form-group">
+                                    <label for="roleInput'.$index.'">Role</label>
+                                    <input type="text" class="form-control" id="RoleInput'.$index.'" readonly="true" value="'.$fullUsers[$i]->getRoleLibelle().'">
+                                </div>
+                                <input type="hidden" class="form-control" id="RoleIdInput'.$index.'" value="'.$fullUsers[$i]->getRoleId().'">
                             </p>
                         </div>
                     </div>
                     <div class="action d-flex justify-content-center">
-                        <a class="btn btn-warning" href="modify/'.$fullUsers[$i]->getId().'">
+                        <button type="button" class="btn btn-warning" id="'.$fullUsers[$i]->getId().'" data-bs-toggle="modal" data-bs-target="#modifyModal"  onclick="retrieveData(this)">
                             Edit
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                                 <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
                                 <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
                             </svg>
-                        </a>
+                        </button>
                         <button type="button" class="btn btn-danger" id="'.$fullUsers[$i]->getId().'" data-bs-toggle="modal" data-bs-target="#deleteModal"  onclick="matchId(this)">
                             Delete
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-dash" viewBox="0 0 16 16">
@@ -176,20 +181,30 @@
                         <div class="picture"></div>
                         <div class="containerData">
                             <p class="data" style="overflow-wrap: break-word;">
-                                Login • '.$fullUsers[$i]->getLogin().'<br><br>
-                                Password • '.$fullUsers[$i]->getPassword().'<br><br>
-                                Role • '.$fullUsers[$i]->getRoleLibelle().'
+                                <div class="form-group">
+                                    <label for="loginInput'.$index.'">Login</label>
+                                    <input type="text" class="form-control" id="loginInput'.$index.'" readonly="true" value="'.$fullUsers[$i]->getLogin().'">
+                                </div><br>
+                                <div class="form-group">
+                                    <label for="passwordInput'.$index.'">Password</label>
+                                    <textarea class="form-control" id="passwordInput'.$index.'" rows="3" readonly>'.$fullUsers[$i]->getPassword().'</textarea>
+                                </div><br>
+                                <div class="form-group">
+                                    <label for="roleInput'.$index.'">Role</label>
+                                    <input type="text" class="form-control" id="roleInput'.$index.'" readonly="true" value="'.$fullUsers[$i]->getRoleLibelle().'">
+                                </div>
+                                <input type="hidden" class="form-control" id="RoleIdInput'.$index.'" value="'.$fullUsers[$i]->getRoleId().'">
                             </p>
                         </div>
                     </div>
                     <div class="action d-flex justify-content-center">
-                        <a class="btn btn-warning" href="modify/'.$fullUsers[$i]->getId().'">
+                        <button type="button" class="btn btn-warning" id="'.$fullUsers[$i]->getId().'" data-bs-toggle="modal" data-bs-target="#modifyModal"  onclick="retrieveData(this)">
                             Edit
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                                 <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
                                 <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
                             </svg>
-                        </a>
+                        </button>
                         <button type="button" class="btn btn-danger" id="'.$fullUsers[$i]->getId().'" data-bs-toggle="modal" data-bs-target="#deleteModal"  onclick="matchId(this)">
                             Delete
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-dash" viewBox="0 0 16 16">
@@ -291,6 +306,61 @@
             </div>
         </div>
 
+
+        <div class="modal fade" id="modifyModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                <div class="modal-header d-block">
+                    <h5 class="modal-title text-center" id="staticBackdropLabel">Modify a user</h5>
+                </div>
+                <div class="modal-body d-block">
+                    <form action="modify" method="POST">
+                    <div class="form-group" style="margin-left:250px;">
+                        <label for="idInputModify">User ID</label>
+                        <input type="number" class="form-control w-50" id="idInputModify" name="idInputModify" min="0" readonly="true">
+                    </div><br>
+                    <div class="form-group" style="margin-left:250px;">
+                        <label for="loginInputModify">User login</label>
+                        <input type="text" class="form-control w-50" id="loginInputModify" name="loginInputModify" placeholder="Enter a login">
+                    </div><br>
+                    <div class="form-group" style="margin-left:250px;">
+                        <label for="passwordInputModify">Password</label>
+                        <input type="password" class="form-control w-50" id="passwordInputModify" name="passwordInputModify" placeholder="Enter a password">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" onclick="toggleVisibility()">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                Toggle password visibility
+                            </label>
+                        </div>
+                    </div><br>
+                    <div class="form-group" style="margin-left:250px;">
+                        <label for="roleIdInputModify">User role ID</label>
+                        <input type="number" class="form-control w-50" id="roleIdInputModify" name="roleIdInputModify" min="0">
+                    </div>
+                </div>
+                <div class="modal-footer d-block">
+                    <div class="d-flex justify-content-center w-100">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+                            </svg>
+                            Go back
+                        </button>
+                        <button type="submit" class="btn btn-success">
+                            Modify user
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                                <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                            </svg>
+                        </button>
+                    </div>
+                    </form>
+                </div>
+                </div>
+            </div>
+        </div>
+
+
         <div class="separator"></div>
 
         <footer>
@@ -305,6 +375,25 @@
                 console.log(id);
                 document.getElementById("userToDelete").value = id;
 
+            }
+
+            function retrieveData(e) {
+
+                var id = e.id
+
+                var inputLogin = document.getElementById("loginInput"+id).value;
+                var inputPassword = document.getElementById("passwordInput"+id).value;
+                var inputRoleId = document.getElementById("RoleIdInput"+id).value;
+                
+                var modifyInputId = document.getElementById("idInputModify");
+                var modifyInputLogin = document.getElementById("loginInputModify");
+                var modifyInputPassword = document.getElementById("passwordInputModify");
+                var modifyInputRole = document.getElementById("roleIdInputModify");
+
+                modifyInputId.value = id;
+                modifyInputLogin.value = inputLogin;
+                modifyInputPassword.value = inputPassword;
+                modifyInputRole.value = inputRoleId;
             }
 
             $(document).ready(function () {
@@ -323,10 +412,17 @@
             function toggleVisibility() {
 
                 var input = document.getElementById("passwordInput");
+                var input2 = document.getElementById("passwordInputModify");
                 if (input.type === "password") {
                     input.type = "text";
                 } else {
                     input.type = "password";
+                }
+
+                if (input2.type === "password") {
+                    input2.type = "text";
+                } else {
+                    input2.type = "password";
                 }
             }
 

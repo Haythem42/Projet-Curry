@@ -41,6 +41,7 @@ mysql -u root -p pompiers < dumpFiremen.sql
 ```bash
 mysql -u root -p pompiers < dumpRoles.sql
 mysql -u root -p pompiers < dumpUsers.sql
+mysql -u root -p pompiers < dumpPermissions.sql
 ```
 
 * Recover data about firemen, barracks and disponibilities
@@ -56,8 +57,8 @@ mysql -u root -p pompiers < Path to the file dumpDataBarracks.sql
 
 ```bash
 The administrator account can see all the page of the project.
-Login : a.taken
-Password : H5g#H59Mplj
+Login : a.taken / a.itemx
+Password : H5g#H59Mplj / G8@d12#d56jUi
 ```
 
 * **Fireman manager**

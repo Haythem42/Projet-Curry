@@ -259,6 +259,10 @@ function usersRoutes_post($fragments) {
         case "create":
             call_user_func_array([new UserController(), "insert"], $fragments);
             break;
+
+        case "modify":
+            call_user_func_array([new UserController(), "update"], $fragments);
+            break;
         
         default:
             call_user_func_array([new UserController(), "error"], $fragments);
