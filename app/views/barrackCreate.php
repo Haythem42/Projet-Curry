@@ -73,7 +73,7 @@
 
 
                                 <div>
-                                    <label for="codeTypeC" class="form-label">Numéro de caserne</label>
+                                    <label for="codeTypeC" class="form-label">Numéro du type de caserne</label>
                                     <input name="codeTypeC" class="form-control" type="text" id="codeTypeC" placeholder="N°" required>
                                 </div>
                             </div>

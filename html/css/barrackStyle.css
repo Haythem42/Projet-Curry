@@ -11483,3 +11483,35 @@ p {
 .address strong {
   font-size: 1.2rem;
 }
+
+/* Search bar */
+
+
+
+
+/* Scroll up */
+.scrollup {
+  position: fixed;
+  right: 1rem;
+  bottom: 10px;
+  background-color: #B22222;
+  opacity: .8;
+  padding: 0 .3rem;
+  border-radius: .4rem;
+  z-index: var(--z-tooltip);
+  transition: .4s;
+}
+
+.scrollup:hover {
+  background-color : #8B0000;
+}
+
+.scrollup__icon {
+  font-size: 1.rem;
+  color: #fff;
+}
+
+/* Show scroll */
+/* .show-scroll {
+  bottom: 5rem;
+} */

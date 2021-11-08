@@ -11,9 +11,9 @@
     class Role  {
 
         // Properties of the class
-        private int $id;
-        private string $libelle;
-        private int $permissions;
+        private $id;
+        private $libelle;
+        // private $permissions;
 
 
         /**
@@ -23,11 +23,11 @@
          * @param string $libelle
          * @param int $permissions
         */
-        public function __construct(string $id, string $libelle, int $permissions) {
+        public function __construct($id, $libelle) {
 
             $this->id = $id;
             $this->libelle = $libelle;
-            $this->permissions = $permissions;
+            // $this->permissions = $permissions;
 
         }
 

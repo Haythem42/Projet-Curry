@@ -40,7 +40,7 @@ class DAORole
 
         $data = $prepareStatement->fetch(\PDO::FETCH_OBJ);
 
-        $id = new Role($data->id, $data->libelle, $data->permissions);
+        $id = new Role($data->id, $data->libelle);
         
         return $id;
 
@@ -128,7 +128,7 @@ class DAORole
      * @param int $limit
      * @return array<Role>
      */
-    public function findAllRole($offset, $limit): array
+    public function findAllRoles($offset, $limit): array
     {
 
         $SQL = 'SELECT * FROM role LIMIT ' . $limit . ' OFFSET ' . $offset . ';';
@@ -141,7 +141,8 @@ class DAORole
         while($data = $prepareStatement->fetch(\PDO::FETCH_OBJ)){
             
             // Pour renvoyer en private
-            $temp = new Role($data->id, $data->libelle, $data->permissions);
+            $temp = new Role($data->id, $data->libelle);
+            
             array_push($role, $temp);
 
         }
@@ -167,7 +168,7 @@ class DAORole
 
         while ($data = $preparedStatement->fetch(\PDO::FETCH_OBJ)) {
 
-            $temp = new Role($data->id, $data->libelle, $data->permissions);
+            $temp = new Role($data->id, $data->libelle);
             array_push($role, $temp);
 
         }

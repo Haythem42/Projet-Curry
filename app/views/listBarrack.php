@@ -7,11 +7,15 @@
         <meta name="author" content="" />
         <title>Barrack's List</title>
         <link rel="icon" type="image/x-icon" href="/img/barrack.ico" />
+
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+
         <!-- Google fonts-->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet" />
+        
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="/css/barrackStyle.css" rel="stylesheet" />
     </head>
@@ -32,6 +36,7 @@
                         <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="../">Home</a></li>
                         <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="../fireman/display">Firemen</a></li>
                         <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="">Barracks</a></li>
+                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="../role/display">Role</a></li>
                     </ul>
                 </div>
             </div>
@@ -46,11 +51,12 @@
                             <span class="section-heading-lower">Barrack's List</span>
                         </h2>
                         <p class="mb-3">You can see the barrack's list of our company!</p>
-                        <div class="intro-button mx-auto"><a class="btn btn-primary btn-xl" href="#!">View the barrack's list!</a></div>
+                        <div class="intro-button mx-auto"><a class="btn btn-primary btn-xl" href="#myTable">View the barrack's list!</a></div>
                     </div>
                 </div>
             </div>
         </section>
+        
         <section class="page-section cta">
             <div class="container">
                 <div class="row">
@@ -61,7 +67,7 @@
                                 <span class="section-heading-lower p-sm-2">
 
                                     <div class="d-grid gap-2 col-5 mx-auto">
-                                    <a class="btn btn-primary" href="create">ADD  A NEW BARRACK</a>
+                                    <a class="btn btn-primary" href="create">ADD A NEW BARRACK</a>
                                     </div>
 
                                 </span>
@@ -104,12 +110,22 @@
                 </div>
             </div>
         </section>
+        
         <footer class="footer text-faded text-center py-5">
             <div class="container"><p class="m-0 small">Haythem & Quentin properties | All rights reserved &copy;</p></div>
         </footer>
+
+        <!-- Scroll top -->
+        <a href="#" class="scrollup" id="scroll-up">
+            <i class="uil uil-arrow-up scrollup__icon"></i>
+        </a>
+
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
+        
         <!-- Core theme JS-->
-        <script src="/js/scripts.js"></script>
+        <script src="/js/scriptBarrack.js"></script>
+    
     </body>
+
 </html>

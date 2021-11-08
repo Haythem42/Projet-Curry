@@ -73,6 +73,7 @@
 
 
                                 <div>
+                                    <label for="codeTypeC" class="form-label">Numéro du type de caserne</label>
                                     <input name="codeTypeC" class="form-control" type="text" id="codeTypeC" value="<?= $barrack->getCodeTypeC(); ?>" required>
                                 </div>
                             </div>

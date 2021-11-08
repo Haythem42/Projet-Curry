@@ -11,6 +11,7 @@ require_once '../autoloader.php';
 use app\controllers\FiremanController;
 use app\controllers\BarrackController;
 use app\controllers\UserController;
+use app\controllers\RoleController;
 
 
 if (isset($_SERVER["PATH_INFO"])) {
@@ -60,6 +61,16 @@ switch ($control) {
         if($_SERVER["REQUEST_METHOD"] == "POST") {
 
             usersRoutes_post($fragments);
+        }
+        break;
+    
+    case "role" :
+
+        if ($_SERVER["REQUEST_METHOD"] == "GET") {
+            roleRoutes_get($fragments);
+        }
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            roleRoutes_post($fragments);
         }
         break;
 
@@ -267,6 +278,68 @@ function usersRoutes_post($fragments) {
         default:
             call_user_func_array([new UserController(), "error"], $fragments);
             break;
+
+    }
+}
+
+function roleRoutes_get($fragments)
+{
+    $action = array_shift($fragments);
+    switch ($action) {
+
+        case "display":
+
+            call_user_func_array([new RoleController(),"show"], $fragments);
+            break;
+
+        case "expose":
+
+            call_user_func_array([new RoleController(),"visualize"], $fragments);
+            break;
+
+        case "create" :
+            
+            call_user_func_array([new RoleController(), "add"], $fragments);
+            break;
+        
+        case "modify" :
+        
+            call_user_func_array([new RoleController(), "update"], $fragments);
+            break;
+        
+        case "erase" :
+        
+            call_user_func_array([new RoleController(), "delete"], $fragments);
+            break;
+        
+        default :
+        
+            call_user_func_array([new BarrackController(), "error"], $fragments);
+            break;
+            
+    }
+}
+
+function roleRoutes_post($fragments)
+{
+    $action = array_shift($fragments);
+    switch ($action) {
+
+        case "create":
+
+            call_user_func_array([new RoleController(), "insert"], $fragments);
+            break;
+
+        case "modify":
+
+            call_user_func_array([new RoleController(), "alter"], $fragments);
+            break;
+
+        default:
+
+        call_user_func_array([new BarrackController(), "error"], $fragments);
+            break;
+
 
     }
 }
