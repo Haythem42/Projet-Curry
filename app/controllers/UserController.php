@@ -32,8 +32,8 @@
          */
         public function show($fragments = null) {
 
-            $fullUsers = $this->daoUser->displayUser();
-            $pageUser = Renderer::render('displayUsers.php', compact('fullUsers'));
+            $users = $this->daoUser->displayUser();
+            $pageUser = Renderer::render('displayUsers.php', compact('users'));
             echo($pageUser);
 
         }
@@ -46,11 +46,12 @@
 
             try {
 
-                $success = $this->daoUser->deleteUser(htmlspecialchars($_POST["userToDelete"]));
+                $success = $this->daoUser->deleteUser(htmlspecialchars($_POST["idInput"]));
 
-            } catch (\Exception $error) {}
+            } 
+            catch (\Exception $error) {}
 
-            //First case : if the request worked correctly ==> we redirect to displayUsers.php with a success flash message
+                // First case : if the request worked correctly ==> we redirect to displayUsers.php with a success flash message
             if ($success != 0) {
 
                 $_SESSION['result'] = "The user has been deleted correctly from the database !";
@@ -89,10 +90,12 @@
 
             $filter = new Filter($_POST);
 
-            $filter->acceptVisitor('idInput', new IdVisitor());
-            $filter->acceptVisitor('loginInput', new LoginVisitor());
-            $filter->acceptVisitor('passwordInput', new PasswordVisitor());
-            $filter->acceptVisitor('roleIdInput', new IdVisitor());
+            $filter->acceptVisitor('emailC', new MailVisitor());
+            $filter->acceptVisitor('passwordC', new PasswordVisitor());
+            $filter->acceptVisitor('firstNameC', new FirstNameVisitor());
+            $filter->acceptVisitor('lastNameC', new LastNameVisitor());
+            $filter->acceptVisitor('roleId', new RoleIdVisitor());
+
 
             $tableCheck = $filter->visit();
 
@@ -107,16 +110,16 @@
 
             if($countValidity == count($tableCheck)) {
 
-                $ciphering = "AES-128-CTR";
-                $option = 0;
-                $encryption_iv = '1234567890123456';
-                $encryption_key = "devanshu";
 
                 $user = new User(
-                    htmlspecialchars($_POST['idInput']),
-                    htmlspecialchars($_POST['loginInput']),
-                    htmlspecialchars(openssl_encrypt($_POST['passwordInput'],$ciphering,$encryption_key,$option,$encryption_iv)),
-                    htmlspecialchars($_POST['roleIdInput']),
+                    0,
+                    htmlspecialchars($_POST["emailC"]),
+                    htmlspecialchars($_POST["passwordC"]),
+                    htmlspecialchars($_POST["firstNameC"]),
+                    htmlspecialchars($_POST["lastNameC"]),
+                    htmlspecialchars($_POST["roleId"]),
+                    " ",
+                    0
                 );
 
                 try {

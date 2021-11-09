@@ -34,27 +34,41 @@
          */
         public function displayUser() : array {
 
-            $sql = "SELECT utilisateur.id,utilisateur.login,utilisateur.password,utilisateur.roleId,role.libelle  FROM utilisateur INNER JOIN role ON utilisateur.roleId =role.id";
+            $sql = "SELECT  utilisateurs.id,
+                            utilisateurs.mail,
+                            utilisateurs.password,
+                            utilisateurs.firstName,
+                            utilisateurs.lastName,
+                            utilisateurs.roleId,
+                            role.name,
+                            role.permissions
+                    FROM utilisateurs 
+                    INNER JOIN role ON utilisateurs.roleId =role.id";
 
             $preparedStatement = $this->connexion->prepare($sql);
 
             $preparedStatement->execute();
 
-            $fullUsers = array();
-
-            $ciphering = "AES-128-CTR";
-            $option = 0;
-            $decryption_key = "devanshu";
-            $decryption_iv = "1234567890123456";
+            $users = array();
 
             while ($data = $preparedStatement->fetch(\PDO::FETCH_OBJ)) {
 
-                $fullUser = new FullUser($data->id,$data->login, openssl_decrypt($data->password,$ciphering,$decryption_key,$option,$decryption_iv), $data->roleId, $data->libelle);
-                array_push($fullUsers, $fullUser);
+                $user = new User(   
+                                        $data->id,
+                                        $data->mail,
+                                        $data->password,
+                                        $data->firstName,
+                                        $data->lastName,
+                                        $data->roleId,
+                                        $data->name,
+                                        $data->permissions
+                                    );
+
+                array_push($users, $user);
 
             }
 
-            return $fullUsers;
+            return $users;
 
         }
 
@@ -72,14 +86,16 @@
         public function createUser(User $user) : int { 
 
 
-            $sql = "INSERT INTO utilisateur VALUES (?, ?, ?, ?)";
+            $sql = "INSERT INTO utilisateurs (mail, password, firstName, lastName, roleId)
+                    VALUES (?, ?, ?, ?, ?)";
 
             $preparedStatement = $this->connexion->prepare($sql);
 
-            $preparedStatement->bindValue(1,$user->getId());
-            $preparedStatement->bindValue(2,$user->getLogin());
-            $preparedStatement->bindValue(3,$user->getPassword());
-            $preparedStatement->bindValue(4,$user->getRoleId());
+            $preparedStatement->bindValue(1,$user->getMail());
+            $preparedStatement->bindValue(2,password_hash($user->getPassword(), PASSWORD_DEFAULT));
+            $preparedStatement->bindValue(3,$user->getFirstName());
+            $preparedStatement->bindValue(4,$user->getLastName());
+            $preparedStatement->bindValue(5,$user->getRoleId());
 
             $preparedStatement->execute();
 
@@ -101,14 +117,19 @@
          */
         public function modifyUser(User $user) : int {  
 
-            $sql = "UPDATE utilisateur SET login=:userLogin, password=:userPassword, roleId=:userRole WHERE id=:userId";
+            $sql = "UPDATE utilisateurs 
+                    SET mail=:userMail,
+                        firstName=:userFirstName,
+                        lastName=:userLastName,
+                        roleId=:userRoleId 
+                    WHERE id=:userId";
 
             $preparedStatement = $this->connexion->prepare($sql);
 
-            $preparedStatement->bindValue(':userLogin', $user->getLogin());
-            $preparedStatement->bindValue(':userPassword', $user->getPassword());
-            $preparedStatement->bindValue(':userRole', $user->getRoleId());
-            $preparedStatement->bindValue(':userId', $user->getId());
+            $preparedStatement->bindValue(':userMail', $user->getMail());
+            $preparedStatement->bindValue(':userFirstName', $user->getFirstName());
+            $preparedStatement->bindValue(':userLastName', $user->getLastName());
+            $preparedStatement->bindValue(':userRoleId', $user->getRoleId());
 
             $preparedStatement->execute();
 
@@ -131,7 +152,8 @@
          */
         public function deleteUser($id) : int {
 
-            $sql = "DELETE FROM utilisateur WHERE id = ?";
+            $sql = "DELETE FROM utilisateurs 
+                    WHERE id = ?";
 
             $preparedStatement = $this->connexion->prepare($sql);
 

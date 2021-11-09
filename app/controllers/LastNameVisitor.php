@@ -31,7 +31,7 @@
          */
         public function checkUppercase(string $lastName) : bool {
 
-            return preg_match('~^\p{Lu}~u', $lastName);
+            return preg_match('/^[A-Z]/', $lastName);
             
         }
 
