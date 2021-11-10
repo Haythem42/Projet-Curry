@@ -11,27 +11,39 @@
     class User {
 
         // Properties of the class
-        private string $id;
-        private string $login;
+        private int $id;
+        private string $mail;
         private string $password;
-        private string $roleId;
+        private string $firstName;
+        private string $lastName;
+        private int $roleId;
+        private string $roleName;
+        private int $permissions;
         
 
 
         /**
          * Construct of User
          * 
-         * @param string $id
-         * @param string $login
+         * @param int $id
+         * @param string $mail
          * @param string $password
-         * @param string $roleId
+         * @param string $firstName
+         * @param string $lastName
+         * @param int $roleId
+         * @param string $roleName
+         * @param int $permissions
         */
-        public function __construct(string $id, string $login, string $password, string $roleId) {
+        public function __construct(?int $id, ?string $mail, ?string $password, ?string $firstName, ?string $lastName, ?int $roleId, ?string $roleName, ?int $permissions) {
 
             $this->id = $id;
-            $this->login = $login;
+            $this->mail = $mail;
             $this->password = $password;
+            $this->firstName = $firstName;
+            $this->lastName = $lastName;
             $this->roleId = $roleId;
+            $this->roleName = $roleName;
+            $this->permissions = $permissions;
 
         }
 
@@ -45,9 +57,9 @@
 
 
             /**
-             * Function which get the login of the user
+             * Function which get the mail of the user
              */
-            public function getLogin() { return $this->login; }
+            public function getMail() { return $this->mail; }
 
 
             /**
@@ -56,9 +68,29 @@
             public function getPassword() { return $this->password; }
 
             /**
-             * Function which get the role of the user
+             * Function which get the first name of the user
+             */
+            public function getFirstName() { return $this->firstName; }
+
+            /**
+             * Function which get the last name of the user
+             */
+            public function getLastName() { return $this->lastName; }
+
+            /**
+             * Function which get the role id of the user
              */
             public function getRoleId() { return $this->roleId; }
+
+            /**
+             * Function which get the role name of the user
+             */
+            public function getRoleName() { return $this->roleName; }
+
+            /**
+             * Function which get the permissions of the user
+             */
+            public function getPermissions() { return $this->permissions; }
 
         
 
@@ -66,25 +98,13 @@
         // ==================== Setter for private properties ====================
 
             /**
-             * Function which set the id of a user
+             * Function which set the mail of a user
              * 
-             * @param string $id
+             * @param string $mail
              */
-            public function setId($id) {
+            public function setMail($mail) {
 
-                $this->id = $id;
-                return $this;
-
-            }
-
-            /**
-             * Function which set the login of a user
-             * 
-             * @param string $login
-             */
-            public function setLogin($login) {
-
-                $this->login = $login;
+                $this->mail = $mail;
                 return $this;
 
             }
@@ -102,7 +122,31 @@
             }
 
             /**
-             * Function which set the role of a user
+             * Function which set the first name of a user
+             * 
+             * @param string $firstName
+             */
+            public function setFirstName($firstName) {
+
+                $this->firstName = $firstName;
+                return $this;
+
+            }
+
+            /**
+             * Function which set the last name of a user
+             * 
+             * @param string $lastName
+             */
+            public function setLastName($lastName) {
+
+                $this->lastName = $lastName;
+                return $this;
+
+            }
+
+            /**
+             * Function which set the role id of a user
              * 
              * @param string $roleId
              */
@@ -112,6 +156,7 @@
                 return $this;
 
             }
+            
 
     }
 

@@ -10,8 +10,9 @@
         <link rel="stylesheet" href="../css/userStyle.css">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
         <title>List of users</title>
 
@@ -62,16 +63,6 @@
                         <li class="nav-item">
                             <a class="nav-link px-5" href="">Users</a>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle px-5" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Permissions
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <li><a class="dropdown-item" href="../../permissions/display">Display all permissions</a></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="../../permissions/create">Create a permission</a></li>
-                            </ul>
-                        </li>
                     </ul>
                 </div>
             </nav>
@@ -116,7 +107,7 @@
             <div>
                 <p class="title">User Management</p>
             </div>
-            <button type="button" class="btn btn-info" style="color:white;" data-bs-toggle="modal" data-bs-target="#createUserModal">
+            <button type="button" class="btn btn-info" style="color:white;" data-bs-toggle="modal" data-bs-target="#creationStaticBackdrop">
                 Add User
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person-plus" viewBox="0 0 16 16">
                     <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
@@ -125,252 +116,210 @@
             </a>
         </div>
 
-
+        <div class="container-fluid">
         <?php
-        for($i=0;$i<count($fullUsers);$i++) {
+        $i = 1;
+        foreach($users as $user) {
 
-            $index = $i+1;
 
-            if($i%3 == 0) {
+            if($i == 1 || $i%3 == 1) {?>
 
-                echo(
-                '<div class="user" style="clear:left;">
-                    <div class="d-flex">
-                        <div class="picture"></div>
-                        <div class="containerData">
-                            <p class="data" style="overflow-wrap: break-word;">
-                                <div class="form-group">
-                                    <label for="loginInput'.$index.'">Login</label>
-                                    <input type="text" class="form-control" id="loginInput'.$index.'" readonly="true" value="'.$fullUsers[$i]->getLogin().'">
-                                </div><br>
-                                <div class="form-group">
-                                    <label for="passwordInput'.$index.'">Password</label>
-                                    <input type="password" class="form-control" id="passwordInput'.$index.'" value="'.$fullUsers[$i]->getPassword().'" readonly="true">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="'.$index.'" onclick="showPassword(this)">
-                                        <label class="form-check-label" for="flexCheckDefault">
-                                            Toggle password visibility
-                                        </label>
-                                    </div>
-                                </div><br>
-                                <div class="form-group">
-                                    <label for="roleInput'.$index.'">Role</label>
-                                    <input type="text" class="form-control" id="RoleInput'.$index.'" readonly="true" value="'.$fullUsers[$i]->getRoleLibelle().'">
+                <div class="row" style="margin-bottom: 50px;margin-top: 50px;">
+                    <div class="col-4">
+                        <div class="card">
+                            <div class="container">
+                                <div class="picture"></div>
+                                <div class="data">
+                                    <p class="data-text">
+                                    First name  •  <b><?php echo($user->getFirstName());?></b><br>
+                                    Last name  •  <b><?php echo($user->getLastName());?></b><br>
+                                    Role  • <b><?php echo($user->getRoleName()); ?></b><br><br>
+                                    <a href="">See permissions</a>
+                                    </p>
                                 </div>
-                                <input type="hidden" class="form-control" id="RoleIdInput'.$index.'" value="'.$fullUsers[$i]->getRoleId().'">
-                            </p>
+                            </div>
+                            <div class="container d-flex justify-content-center" style="margin-top: 30px;">
+                                <button class="btn btn-warning">
+                                    Edit user
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                        <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                                        <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                                    </svg>
+                                </button>
+                                <button class="btn btn-danger" id="<?php echo($user->getId());?>" data-bs-toggle="modal" data-bs-target="#staticBackdrop" onclick="obtainId(this)">
+                                    Delete user
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-dash" viewBox="0 0 16 16">
+                                        <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+                                        <path fill-rule="evenodd" d="M11 7.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5z"/>
+                                    </svg>
+                                </button>
+                            </div>
                         </div>
                     </div>
-                    <div class="action d-flex justify-content-center">
-                        <button type="button" class="btn btn-warning" id="'.$fullUsers[$i]->getId().'" data-bs-toggle="modal" data-bs-target="#modifyModal"  onclick="retrieveData(this)">
-                            Edit
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                                <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-                                <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
-                            </svg>
-                        </button>
-                        <button type="button" class="btn btn-danger" id="'.$fullUsers[$i]->getId().'" data-bs-toggle="modal" data-bs-target="#deleteModal"  onclick="matchId(this)">
-                            Delete
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-dash" viewBox="0 0 16 16">
-                                <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
-                                <path fill-rule="evenodd" d="M11 7.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5z"/>
-                            </svg>
-                        </a>
-                    </div>
-                </div>');
-
-            } else {
-
-                echo(
-                '<div class="user">
-                    <div class="d-flex">
-                        <div class="picture"></div>
-                        <div class="containerData">
-                            <p class="data" style="overflow-wrap: break-word;">
-                                <div class="form-group">
-                                    <label for="loginInput'.$index.'">Login</label>
-                                    <input type="text" class="form-control" id="loginInput'.$index.'" readonly="true" value="'.$fullUsers[$i]->getLogin().'">
-                                </div><br>
-                                <div class="form-group">
-                                    <label for="passwordInput'.$index.'">Password</label>
-                                    <input type="password" class="form-control" id="passwordInput'.$index.'" value="'.$fullUsers[$i]->getPassword().'" readonly="true">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="'.$index.'" onclick="showPassword(this)">
-                                        <label class="form-check-label" for="flexCheckDefault">
-                                            Toggle password visibility
-                                        </label>
-                                    </div>
-                                </div><br>
-                                <div class="form-group">
-                                    <label for="roleInput'.$index.'">Role</label>
-                                    <input type="text" class="form-control" id="roleInput'.$index.'" readonly="true" value="'.$fullUsers[$i]->getRoleLibelle().'">
-                                </div>
-                                <input type="hidden" class="form-control" id="RoleIdInput'.$index.'" value="'.$fullUsers[$i]->getRoleId().'">
-                            </p>
-                        </div>
-                    </div>
-                    <div class="action d-flex justify-content-center">
-                        <button type="button" class="btn btn-warning" id="'.$fullUsers[$i]->getId().'" data-bs-toggle="modal" data-bs-target="#modifyModal"  onclick="retrieveData(this)">
-                            Edit
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                                <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-                                <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
-                            </svg>
-                        </button>
-                        <button type="button" class="btn btn-danger" id="'.$fullUsers[$i]->getId().'" data-bs-toggle="modal" data-bs-target="#deleteModal"  onclick="matchId(this)">
-                            Delete
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-dash" viewBox="0 0 16 16">
-                                <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
-                                <path fill-rule="evenodd" d="M11 7.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5z"/>
-                            </svg>
-                        </button>
-                    </div>
-                </div>');
+            <?php
             }
+
+
+            if($i%3 == 2){?>
+
+                    <div class="col-4">
+                        <div class="card">
+                            <div class="container">
+                                <div class="picture"></div>
+                                <div class="data">
+                                    <p class="data-text">
+                                    First name  •  <b><?php echo($user->getFirstName());?></b><br>
+                                    Last name  •  <b><?php echo($user->getLastName());?></b><br>
+                                    Role  • <b><?php echo($user->getRoleName()); ?></b><br><br>
+                                    <a href="">See permissions</a>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="container d-flex justify-content-center" style="margin-top: 30px;">
+                                <button class="btn btn-warning">
+                                    Edit user
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                        <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                                        <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                                    </svg>
+                                </button>
+                                <button class="btn btn-danger" id="<?php echo($user->getId());?>" data-bs-toggle="modal" data-bs-target="#staticBackdrop" onclick="obtainId(this)">
+                                    Delete user
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-dash" viewBox="0 0 16 16">
+                                        <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+                                        <path fill-rule="evenodd" d="M11 7.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5z"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+            <?php
+            }
+
+
+            if($i%3 == 0) {?>
+
+                    <div class="col-4">
+                        <div class="card">
+                            <div class="container">
+                                <div class="picture"></div>
+                                <div class="data">
+                                    <p class="data-text">
+                                        <?php
+                                        $table = explode(".", "q.chavet@orange.fr");
+                                        $new_string = str_replace("@", "", $table[1]);
+                                        echo($new_string);
+                                        ?>
+                                        First name  •  <b><?php echo($user->getFirstName());?></b><br>
+                                        Last name  •  <b><?php echo($user->getLastName());?></b><br>
+                                        Role  • <b><?php echo($user->getRoleName()); ?></b><br><br>
+                                        <a href="">See permissions</a>  
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="container d-flex justify-content-center" style="margin-top: 30px;">
+                                <button class="btn btn-warning">
+                                    Edit user
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                        <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                                        <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                                    </svg>
+                                </button>
+                                <button class="btn btn-danger" id="<?php echo($user->getId());?>" data-bs-toggle="modal" data-bs-target="#staticBackdrop" onclick="obtainId(this)">
+                                    Delete user
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-dash" viewBox="0 0 16 16">
+                                        <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+                                        <path fill-rule="evenodd" d="M11 7.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5z"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            <?php
+            }
+
+            $i++;
+
         }
         ?>
 
+        </div>
 
-        <div class="modal fade" id="deleteModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        
+        <!-- Modal when someone wants to delete a user -->
+
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="deleteModal" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
-                <div class="modal-header d-block">
-                    <h5 class="modal-title text-center" id="staticBackdropLabel">Delete a user</h5>
-                </div>
-                <div class="modal-body d-block">
-                    <p class="text-center">Are you sure you want to delete this user ?</p>
-                    <form action="erase" method="POST">
-                        <input type="hidden" id="userToDelete" name="userToDelete">
-                </div>
-                <div class="modal-footer d-block">
-                    <div class="d-flex justify-content-center w-100">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
-                                <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
-                            </svg>
-                            Go back
-                        </button>
-                        <button type="submit" class="btn btn-danger" name="buttonDelete">
-                            Delete
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-dash" viewBox="0 0 16 16">
-                                <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
-                                <path fill-rule="evenodd" d="M11 7.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5z"/>
-                            </svg>
-                        </button>
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Deleting a user</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    </form>
-                </div>
+                    <div class="modal-body">
+                        Are you sure you want to delete this user ?
+                        <form action="erase" method="POST">
+                        <input type="number" class="form-control" id="idInput" name="idInput"/>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-danger">Confirm</button>
+                    </div>
+                        </form>
                 </div>
             </div>
         </div>
 
 
-        <div class="modal fade" id="createUserModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
+        <!-- Modal when someone wants to create a new user -->
+        <div class="modal fade" id="creationStaticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="deleteModal" aria-hidden="true">
+            <div class="modal-dialog">
                 <div class="modal-content">
-                <div class="modal-header d-block">
-                    <h5 class="modal-title text-center" id="staticBackdropLabel">Create a user</h5>
-                </div>
-                <div class="modal-body d-block">
-                    <form action="create" method="POST">
-                    <div class="form-group" style="margin-left:250px;">
-                        <label for="idInput">User ID</label>
-                        <input type="number" class="form-control w-50" id="idInput" name="idInput" min="0">
-                    </div><br>
-                    <div class="form-group" style="margin-left:250px;">
-                        <label for="loginInput">User login</label>
-                        <input type="text" class="form-control w-50" id="loginInput" name="loginInput" placeholder="Enter a login">
-                    </div><br>
-                    <div class="form-group" style="margin-left:250px;">
-                        <label for="passwordInput">Password</label>
-                        <input type="password" class="form-control w-50" id="passwordInput" name="passwordInput" placeholder="Enter a password">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" onclick="toggleVisibilityCreate()">
-                            <label class="form-check-label" for="flexCheckDefault">
-                                Toggle password visibility
-                            </label>
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Creating a user</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="create" method="POST">
+                        <div class="form-group">
+                            <label for="emailC">Email address</label>
+                            <input type="email" class="form-control w-75" id="emailC"  name="emailC" placeholder="E-mail...">
+                        </div><br>
+                        <div class="form-group">
+                            <label for="passwordC">Password</label>
+                            <input type="password" class="form-control w-75" id="passwordC" name="passwordC" placeholder="Password...">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="passwordBox" onclick="toggleVisibility()">
+                                <label class="form-check-label" for="passwordBox">
+                                    Toggle visibility
+                                </label>
+                            </div>
+                        </div><br>
+                        <div class="form-group">
+                            <label for="firstNameC">First name</label>
+                            <input type="text" class="form-control w-75" id="firstNameC"  name="firstNameC" placeholder="First name...">
+                        </div><br>
+                        <div class="form-group">
+                            <label for="lastNameC">Last name</label>
+                            <input type="text" class="form-control w-75" id="lastNameC"  name="lastNameC" placeholder="Last name...">
+                        </div><br>
+                        <div class="form-group">
+                            <label for="roleId">Role id</label>
+                            <input type="number" class="form-control w-75" id="roleId"  name="roleId" max="4" min="1">
                         </div>
-                    </div><br>
-                    <div class="form-group" style="margin-left:250px;">
-                        <label for="roleIdInput">User role ID</label>
-                        <input type="number" class="form-control w-50" id="roleIdInput" name="roleIdInput" min="0">
                     </div>
-                </div>
-                <div class="modal-footer d-block">
-                    <div class="d-flex justify-content-center w-100">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
-                                <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
-                            </svg>
-                            Go back
-                        </button>
-                        <button type="submit" class="btn btn-success">
-                            Add user
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-plus" viewBox="0 0 16 16">
-                                <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
-                                <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
-                            </svg>
-                        </button>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-success">Confirm</button>
                     </div>
-                    </form>
-                </div>
+                        </form>
                 </div>
             </div>
         </div>
 
 
-        <div class="modal fade" id="modifyModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                <div class="modal-header d-block">
-                    <h5 class="modal-title text-center" id="staticBackdropLabel">Modify a user</h5>
-                </div>
-                <div class="modal-body d-block">
-                    <form action="modify" method="POST">
-                    <div class="form-group" style="margin-left:250px;">
-                        <label for="idInputModify">User ID</label>
-                        <input type="number" class="form-control w-50" id="idInputModify" name="idInputModify" min="0" readonly="true">
-                    </div><br>
-                    <div class="form-group" style="margin-left:250px;">
-                        <label for="loginInputModify">User login</label>
-                        <input type="text" class="form-control w-50" id="loginInputModify" name="loginInputModify" placeholder="Enter a login">
-                    </div><br>
-                    <div class="form-group" style="margin-left:250px;">
-                        <label for="passwordInputModify">Password</label>
-                        <input type="password" class="form-control w-50" id="passwordInputModify" name="passwordInputModify" placeholder="Enter a password">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" onclick="toggleVisibilityModify()">
-                            <label class="form-check-label" for="flexCheckDefault">
-                                Toggle password visibility
-                            </label>
-                        </div>
-                    </div><br>
-                    <div class="form-group" style="margin-left:250px;">
-                        <label for="roleIdInputModify">User role ID</label>
-                        <input type="number" class="form-control w-50" id="roleIdInputModify" name="roleIdInputModify" min="0">
-                    </div>
-                </div>
-                <div class="modal-footer d-block">
-                    <div class="d-flex justify-content-center w-100">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
-                                <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
-                            </svg>
-                            Go back
-                        </button>
-                        <button type="submit" class="btn btn-success">
-                            Modify user
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                                <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-                                <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
-                            </svg>
-                        </button>
-                    </div>
-                    </form>
-                </div>
-                </div>
-            </div>
-        </div>
+
 
 
         <div class="separator"></div>
@@ -381,85 +330,50 @@
 
         <script>
 
-            function matchId(e) {
-
-                var id = e.id;
-                console.log(id);
-                document.getElementById("userToDelete").value = id;
-
-            }
-
-            function retrieveData(e) {
-
-                var id = e.id
-
-                var inputLogin = document.getElementById("loginInput"+id).value;
-                var inputPassword = document.getElementById("passwordInput"+id).value;
-                var inputRoleId = document.getElementById("RoleIdInput"+id).value;
-                
-                var modifyInputId = document.getElementById("idInputModify");
-                var modifyInputLogin = document.getElementById("loginInputModify");
-                var modifyInputPassword = document.getElementById("passwordInputModify");
-                var modifyInputRole = document.getElementById("roleIdInputModify");
-
-                modifyInputId.value = id;
-                modifyInputLogin.value = inputLogin;
-                modifyInputPassword.value = inputPassword;
-                modifyInputRole.value = inputRoleId;
-            }
-
+            // Scrolling to success / error message when this message exists.
             $(document).ready(function () {
-                // Handler for .ready() called.
                 $('html, body').animate({
                     scrollTop: $('#error').offset().top
                 }, 'slow');
             });
 
-            function scrollToTop() {
-                window.scrollTo({
-                    top : 0
-                })
+
+            // Function which give the user's id when someone want's to delete.
+            function obtainId(e) {
+                var id = e.id;
+                document.getElementById("idInput").value = id;
             }
 
-            function toggleVisibilityCreate() {
 
-                var input = document.getElementById("passwordInput");
-                if (input.type === "password") {
-                    input.type = "text";
+            // Function which toggle visibility for password input when creating a user.
+            function toggleVisibility() {
+
+                var x = document.getElementById("passwordC");
+                console.log(x);
+                if (x.type === "password") {
+                    x.type = "text";
                 } else {
-                    input.type = "password";
+                    x.type = "password";
                 }
             }
 
-            function toggleVisibilityModify() { 
 
-                var input = document.getElementById("passwordInputModify");
-                if (input.type === "password") {
-                    input.type = "text";
-                } else {
-                    input.type = "password";
-                }
+            // function scrollToTop() {
+            //     window.scrollTo({
+            //         top : 0
+            //     })
+            // }
 
-            }
+            // window.addEventListener('scroll', function()  {
 
-            window.addEventListener('scroll', function()  {
+            //     var scroll = document.querySelector('.scrollTop');
+            //     scroll.classList.toggle('active', window.scrollY > 500);
 
-                var scroll = document.querySelector('.scrollTop');
-                scroll.classList.toggle('active', window.scrollY > 500);
+            // })
 
-            })
-
-            function showPassword(e) {
-                var id = e.id
-                var input = document.getElementById('passwordInput'+id);
-
-                if (input.type === "password") {
-                    input.type = "text";
-                } else {
-                    input.type = "password";
-                }
-            }
 
         </script>
+
     </body>
+
 </html>
