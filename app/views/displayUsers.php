@@ -12,6 +12,7 @@
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
         <title>List of users</title>
@@ -40,25 +41,11 @@
                         <li class="nav-item">
                             <a class="nav-link px-5" href="../..">Home</a>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle px-5" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Firemen
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <li><a class="dropdown-item" href="../../fireman/display">Display all the firemen</a></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="../../fireman/create">Create a fireman</a></li>
-                            </ul>
+                        <li class="nav-item">
+                            <a class="nav-link px-5" href="../../fireman/display">Firemen</a>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle px-5" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Barracks
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <li><a class="dropdown-item" href="../../barrack/display">Display all the barracks</a></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="../../barrack/create">Create a barrack</a></li>
-                            </ul>
+                        <li class="nav-item">
+                            <a class="nav-link px-5" href="../../barrack/display">Barracks</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link px-5" href="">Users</a>
@@ -139,7 +126,7 @@
                                 </div>
                             </div>
                             <div class="container d-flex justify-content-center" style="margin-top: 30px;">
-                                <button class="btn btn-warning">
+                                <button class="btn btn-warning" id="<?php echo($user->getId());?>" data-bs-toggle="modal" data-bs-target="#modifyModal" onclick="fillId(this)">
                                     Edit user
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                                         <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
@@ -176,7 +163,7 @@
                                 </div>
                             </div>
                             <div class="container d-flex justify-content-center" style="margin-top: 30px;">
-                                <button class="btn btn-warning">
+                                <button class="btn btn-warning" id="<?php echo($user->getId());?>" data-bs-toggle="modal" data-bs-target="#modifyModal" onclick="fillId(this)">
                                     Edit user
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                                         <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
@@ -205,11 +192,6 @@
                                 <div class="picture"></div>
                                 <div class="data">
                                     <p class="data-text">
-                                        <?php
-                                        $table = explode(".", "q.chavet@orange.fr");
-                                        $new_string = str_replace("@", "", $table[1]);
-                                        echo($new_string);
-                                        ?>
                                         First name  •  <b><?php echo($user->getFirstName());?></b><br>
                                         Last name  •  <b><?php echo($user->getLastName());?></b><br>
                                         Role  • <b><?php echo($user->getRoleName()); ?></b><br><br>
@@ -218,7 +200,7 @@
                                 </div>
                             </div>
                             <div class="container d-flex justify-content-center" style="margin-top: 30px;">
-                                <button class="btn btn-warning">
+                                <button class="btn btn-warning" id="<?php echo($user->getId());?>" data-bs-toggle="modal" data-bs-target="#modifyModal" onclick="fillId(this)">
                                     Edit user
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                                         <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
@@ -260,7 +242,7 @@
                     <div class="modal-body">
                         Are you sure you want to delete this user ?
                         <form action="erase" method="POST">
-                        <input type="number" class="form-control" id="idInput" name="idInput"/>
+                        <input type="number" class="form-control" id="idInput" name="idInput" hidden="true"/>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -319,6 +301,38 @@
         </div>
 
 
+        <!-- Modal when someone wants to modify a new user -->
+
+
+        <div class="modal fade" id="modifyModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="deleteModal" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Modify a user</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="modify" method="POST">
+                        <div class="form-group">
+                            <label for="passwordM">Password</label>
+                            <input type="password" class="form-control w-75" id="passwordM" name="passwordM" placeholder="Password...">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="passwordBox" onclick="toggleVisibility()">
+                                <label class="form-check-label" for="passwordBox">
+                                    Toggle visibility
+                                </label>
+                            </div>
+                            <input type="number" class="form-control" id="idInputModify" name="idInputModify" hidden="true"/>
+                        </div><br>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-success">Confirm</button>
+                    </div>
+                        </form>
+                </div>
+            </div>
+        </div>
 
 
 
@@ -344,32 +358,45 @@
                 document.getElementById("idInput").value = id;
             }
 
+            function fillId(x) {
+                var id = x.id;
+                document.getElementById("idInputModify").value = id
+            }
+
 
             // Function which toggle visibility for password input when creating a user.
             function toggleVisibility() {
 
                 var x = document.getElementById("passwordC");
-                console.log(x);
+                var y = document.getElementById("passwordM");
                 if (x.type === "password") {
                     x.type = "text";
                 } else {
                     x.type = "password";
                 }
+
+                if (y.type === "password") {
+                    y.type = "text";
+                } else {
+                    y.type = "password";
+                }
+                
+
             }
 
 
-            // function scrollToTop() {
-            //     window.scrollTo({
-            //         top : 0
-            //     })
-            // }
+            function scrollToTop() {
+                window.scrollTo({
+                    top : 0
+                })
+            }
 
-            // window.addEventListener('scroll', function()  {
+            window.addEventListener('scroll', function()  {
 
-            //     var scroll = document.querySelector('.scrollTop');
-            //     scroll.classList.toggle('active', window.scrollY > 500);
+                var scroll = document.querySelector('.scrollTop');
+                scroll.classList.toggle('active', window.scrollY > 500);
 
-            // })
+            })
 
 
         </script>

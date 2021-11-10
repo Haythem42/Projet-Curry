@@ -9,11 +9,14 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
         <link rel="stylesheet" href="/css/homeStyle.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+        <link rel="stylesheet" href="http://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css"></script>
+  
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-        <script type="text/javascript">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="http://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
 
+        <script>
             $(document).ready(function () {
                 // Handler for .ready() called.
                 $('html, body').animate({
@@ -145,7 +148,7 @@
 
 
         <!-- PART : TABLE WHICH DISPLAY ALL THE FIREMEN -->
-        <div class="w-90 margin-r-5p f-r">
+        <div class="w-90 f-r" style="margin-top: 20px;margin-right: 50px;">
             <div class="flex justify-content-center">
                 <a href="create" class="btn btn-success w-15 b-radius margin-r-80px">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-plus-fill" viewBox="0 0 16 16">
@@ -154,12 +157,6 @@
                     </svg>
                     NEW FIREMAN
                 </a>
-                <input type="text" class="form-control w-15 shadow-none b-radius-left" placeholder="Search a first name" id="searchBar">
-                <button class="btn btn-info b-radius-right" onclick="search()">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-                    </svg>
-                </button>
             </div> 
             <div class="separator-50px"></div>
             <div class="separator-50px"></div>
@@ -167,21 +164,18 @@
 
 
 
-        <table class="table w-90 margin-l-5p" id="firemenTable">
+        <div class="container" style="background-color: white;border-radius: 2%;">
+        <table id="firemenTable">
 
             <thead>
                 <tr>
                     <th scope="col" style="width : 5%;" class="text-center">#</th>
-                    <th scope="col" style="width : 10%;" class="text-center">Matricule</th>
-                    <th scope="col" style="width : 10%;" class="text-center">Prenom</th>
-                    <th scope="col" style="width : 10%;" class="text-center">Nom</th>
-                    <th scope="col" style="width : 5%;" class="text-center">Chef Agret</th>
-                    <th scope="col" style="width : 10%;" class="text-center">Date de naissance</th>
-                    <th scope="col" style="width : 5%;" class="text-center">Numero de caserne</th>
-                    <th scope="col" style="width : 5%;" class="text-center">Code de grade</th>
-                    <th scope="col" style="width : 10%;" class="text-center">Matricule du responsable</th>
-                    <th scope="col" style="width : 10%;" class="text-center">Edit</th>
-                    <th scope="col" style="width : 10%;" class="text-center">Delete</th>
+                    <th scope="col" style="width : 15%;" class="text-center">Matricule</th>
+                    <th scope="col" style="width : 15%;" class="text-center">Prenom</th>
+                    <th scope="col" style="width : 15%;" class="text-center">Nom</th>
+                    <th scope="col" style="width : 15%;" class="text-center">Edit</th>
+                    <th scope="col" style="width : 15%;" class="text-center">Delete</th>
+                    <th scope="col" style="width : 20%;" class="text-center">Details</th>
                 </tr>
             </thead>
 
@@ -194,11 +188,6 @@
                         <td class="text-center"><?php echo($firemen[$i]->getMatricule());?></td>
                         <td class="text-center"><?php echo($firemen[$i]->getPrenom());?></td>
                         <td class="text-center"><?php echo($firemen[$i]->getNom());?></td>
-                        <td class="text-center"><?php echo($firemen[$i]->getChefAgret());?></td>
-                        <td class="text-center"><?php echo($firemen[$i]->getDateNaissance());?></td>
-                        <td class="text-center"><?php echo($firemen[$i]->getNumCaserne());?></td>
-                        <td class="text-center"><?php echo($firemen[$i]->getCodeGrade());?></td>
-                        <td class="text-center"><?php echo($firemen[$i]->getMatriculeResponsable());?></td>
                         <td class="text-center">
                             <a href="modify/<?php echo($firemen[$i]->getMatricule());?>" class="btn btn-warning w-75 b-radius">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
@@ -209,13 +198,23 @@
                             </a>
                         </td>
                         <td class="text-center">
-                            <button type="button" class="btn btn-danger w-75 b-radius" id="<?php echo($firemen[$i]->getMatricule());?> "data-bs-toggle="modal" data-bs-target="#deleteModal"  onclick="matchId(this)">
+                            <button type="button" class="btn btn-danger w-75 b-radius" id="<?php echo($firemen[$i]->getMatricule());?> " data-bs-toggle="modal" data-bs-target="#deleteModal"  onclick="matchId(this)">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
                                     <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
                                 </svg>
                                 DELETE
                             </button>
                         </td>
+                        <td class="text-center">
+                            <button type="button" class="btn btn-dark w-75 b-radius" id="<?php echo($i);?>" onclick="matchInfo(this);" data-bs-toggle="modal" data-bs-target="#showInfo">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                    <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                                </svg>
+                                SHOW INFO
+                            </button>
+                        </td>
+                        <input type="text" id="info<?php echo($i); ?>" title="<?php echo($firemen[$i]->getMatricule());echo(","); echo($firemen[$i]->getPrenom());echo(","); echo($firemen[$i]->getNom());echo(","); echo($firemen[$i]->getChefAgret());echo(","); echo($firemen[$i]->getDateNaissance());echo(","); echo($firemen[$i]->getNumCaserne());echo(","); echo($firemen[$i]->getCodeGrade());echo(","); echo($firemen[$i]->getMatriculeResponsable());?>" hidden="true"/>
                     </tr>
                 <?php
                 }
@@ -223,6 +222,7 @@
             </tbody>
 
         </table>
+        </div>
 
         <div class="separator-150px"></div>
 
@@ -243,7 +243,7 @@
                     ⚠️     Are you sure you want to delete this fireman ?     ⚠️
                     <div class="separator-50px"></div>
                     <form action="erase" method="POST">
-                        <input type="hidden" id="matriculeToDelete" name="matriculeToDelete">
+                    <input type="hidden" id="matriculeToDelete" name="matriculeToDelete">
                 </div>
                 <div class="modal-footer">
                     <div class="separator-50px"></div>
@@ -261,6 +261,57 @@
                 </div>
             </div>
         </div>
+
+
+        <!-- PART : MODAL WHEN SHOWING INFORMATION A FIREMAN -->
+        <div class="modal fade" id="showInfo" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-center" id="staticBackdropLabel">Information about this fireman</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="separator-50px"></div>
+                        <div class="form-group">
+                            <label for="matricule">Matricule</label>
+                            <input type="text" class="form-control w-50" id="matricule" readonly>
+                        </div><br>
+                        <div class="form-group">
+                            <label for="firstName">First name</label>
+                            <input type="text" class="form-control w-50" id="firstName" readonly>
+                        </div><br>
+                        <div class="form-group">
+                            <label for="lastName">Last name</label>
+                            <input type="text" class="form-control w-50" id="lastName"  readonly>
+                        </div><br>
+                        <div class="form-group">
+                            <label for="chefAgret">Chef agret</label>
+                            <input type="text" class="form-control w-50" id="chefAgret" readonly>
+                        </div><br>
+                        <div class="form-group">
+                            <label for="chefAgret">Birth date</label>
+                            <input type="date" class="form-control w-50" id="birthDate" readonly>
+                        </div><br>
+                        <div class="form-group">
+                            <label for="barrackNumber">Barrack's number</label>
+                            <input type="number" class="form-control w-50" id="barrackNumber" readonly>
+                        </div><br>
+                        <div class="form-group">
+                            <label for="gradeCode">Grade code</label>
+                            <input type="text" class="form-control w-50" id="gradeCode" readonly>
+                        </div><br>
+                        <div class="form-group">
+                            <label for="managerMatricule">Manager matricule</label>
+                            <input type="text" class="form-control w-50" id="managerMatricule" readonly>
+                        </div><br>
+                    <div class="separator-50px"></div>
+                </div>
+                <div class="modal-footer"></div>
+                </div>
+            </div>
+        </div>
+
 
 
 
@@ -290,23 +341,10 @@
 
             }
 
-            function search() {
-
-                if (document.getElementById("searchBar").value.length == 0) {
-                    window.location.href = "http://127.0.0.1:8080/fireman/display";
-                } else {
-                    window.location.href = "http://127.0.0.1:8080/fireman/display/" + document.getElementById("searchBar").value ;
-                }
-
-            }
-
-        </script>
-
-        <script>
             window.addEventListener('scroll', function()  {
 
-                var scroll = document.querySelector('.scrollTop');
-                scroll.classList.toggle('active', window.scrollY > 500);
+            var scroll = document.querySelector('.scrollTop');
+            scroll.classList.toggle('active', window.scrollY > 500);
 
             })
 
@@ -315,6 +353,36 @@
                     top : 0
                 })
             }
+
+            $(document).ready( function () {
+                $('#firemenTable').DataTable({
+
+                });
+            } );
+
+            function matchInfo(btn) {
+
+                var idUser = btn.id;
+
+                var information = document.getElementsByTagName("input");
+
+                var input = document.getElementById("info" + idUser).title;
+
+                var tableInformation = input.split(",");
+
+                document.getElementById("matricule").value = tableInformation[0];
+                document.getElementById("firstName").value = tableInformation[1];
+                document.getElementById("lastName").value = tableInformation[2];
+                document.getElementById("chefAgret").value = tableInformation[3];
+                document.getElementById("birthDate").value = tableInformation[4];
+                document.getElementById("barrackNumber").value = tableInformation[5];
+                document.getElementById("gradeCode").value = tableInformation[6];
+                document.getElementById("managerMatricule").value = tableInformation[7];
+
+
+
+            }
+
         </script>
 
 
