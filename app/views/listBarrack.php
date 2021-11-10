@@ -18,6 +18,7 @@
         
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="/css/barrackStyle.css" rel="stylesheet" />
+        
     </head>
     <body>
         <header>
@@ -36,7 +37,7 @@
                         <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="../">Home</a></li>
                         <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="../fireman/display">Firemen</a></li>
                         <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="">Barracks</a></li>
-                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="../role/display">Role</a></li>
+                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="../role/display">Roles</a></li>
                     </ul>
                 </div>
             </div>
@@ -69,6 +70,19 @@
                                     <div class="d-grid gap-2 col-5 mx-auto">
                                     <a class="btn btn-primary" href="create">ADD A NEW BARRACK</a>
                                     </div>
+
+                                    <br>
+
+                                    <form action="" method="GET">
+
+                                    <div class="input-group mb-4 border rounded-pill p-1">
+                                        <input name="result" type="search" placeholder="Search a barrack" aria-describedby="button-addon3" class="form-control bg-none border-0">
+                                    <div class="input-group-append border-0">
+                                        <button name="send" id="button-addon3" type="button" class="btn btn-link text-success"><i class="fa fa-search"></i></button>
+                                    </div>
+                                    </div>
+
+                                    </form>
 
                                 </span>
                             </h2>
@@ -122,6 +136,7 @@
 
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
         
         <!-- Core theme JS-->
         <script src="/js/scriptBarrack.js"></script>

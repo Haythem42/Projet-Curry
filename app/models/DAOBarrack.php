@@ -178,7 +178,25 @@ class DAOBarrack
         }
 
         return $barracks;
-}
+
+        $searchSQL = "SELECT * from casernes Where Ville LIKE '%".$recherche."%' ORDER BY NumCaserne";
+
+        if (isset($_GET['result']) AND !empty($_GET['result'])) {
+            $recherche = htmlspecialchars($_GET['result']);
+            $resultat = $this->connexion->prepare($searchSQL);
+        }
+
+        $res = array();
+        while ($data = $resultat->fetch(\PDO::FETCH_OBJ)) {
+
+            $tem = new Barrack($data->NumCaserne, $data->Adresse, $data->CP, $data->Ville, $data->CodeTypeC);
+            array_push($res, $tem);
+
+        }
+
+        return $res;
+
+    }
 
     /**
      * Retrieve number of Barrack in DB

@@ -87,46 +87,114 @@ class BarrackController extends BaseController {
         //Il faut penser à la sécurité
         //Gestion des erreurs PDO ou autres ...
 
-        $barrack = new Barrack($_POST['numCaserne'], $_POST['adresseCaserne'], $_POST['CP'], $_POST['ville'], $_POST['codeTypeC'],);
-        
-        $newBarrack = $this->daoBarrack->save($barrack);
+        $filter = new Filter($_POST);
 
-        //First case : if the request worked correctly ==> we redirect to listBarrack.php with a success flash message
-        if ($newBarrack != 0) {
+        $filter->acceptVisitor('numCaserne', new BarrackNumberVisitor());
+        $filter->acceptVisitor('adresseCaserne', new AddressVisitor());
+        $filter->acceptVisitor('CP', new PostalVisitor());
+        $filter->acceptVisitor('ville', new CityVisitor());
+        $filter->acceptVisitor('codeTypeC', new TypeNumberVisitor());
 
-            header('Location: ../barrack/display');
+        $verify = $filter->visit();
+
+        $counter = 0;
+
+        foreach( $verify as $key => $value ) {
+
+            if ( $verify[$key] == true ) {
+
+                $counter += 1;
+
+            }
 
         }
+
+        if ( length($verify) == $counter ) {
+
+            $insertBarrack = new Barrack(htmlspecialchars($_POST['numCaserne']), htmlspecialchars($_POST['adresseCaserne']), htmlspecialchars($_POST['CP']), htmlspecialchars($_POST['ville']), htmlspecialchars($_POST['codeTypeC']));
         
-        //Second case : if the request didn't work correctly ==> we redirect to listBarrack.php with an error flash message
+            $newBarrack = $this->daoBarrack->save($barrack);
+
+            //First case : if the request worked correctly ==> we redirect to listBarrack.php with a success flash message
+            if ($newBarrack != 0) {
+
+                //IL faut que j'affiche des messages
+                header('Location: ../barrack/display');
+
+            }
+        
+            //Second case : if the request didn't work correctly ==> we redirect to listBarrack.php with an error flash message
+            else {
+
+                //IL faut que j'affiche des messages
+                header('Location: ../barrack/display');
+
+            }
+
+        }
+
         else {
 
-            header('Location: ../barrack/display');
-
+            //IL faut que j'affiche des messages
+            header('Location: ../barrack/create');
+            
         }
-
 
     }
 
 
     public function alter() {
 
+        $filter = new Filter($_POST);
 
-        $modifyBarrack = new Barrack($_POST['numCaserne'], $_POST['adresseCaserne'], $_POST['CP'], $_POST['ville'], $_POST['codeTypeC'],);
+        $filter->acceptVisitor('numCaserne', new BarrackNumberVisitor());
+        $filter->acceptVisitor('adresseCaserne', new AddressVisitor());
+        $filter->acceptVisitor('CP', new PostalVisitor());
+        $filter->acceptVisitor('ville', new CityVisitor());
+        $filter->acceptVisitor('codeTypeC', new TypeNumberVisitor());
 
-        $updateBarrack = $this->daoBarrack->update($modifyBarrack);
+        $verify = $filter->visit();
 
-        //First case : if the request worked correctly ==> we redirect to listBarrack.php with a success flash message
-        if ($updateBarrack != 0) {
+        $counter = 0;
 
-            header('Location: ../barrack/display');
+        foreach( $verify as $key => $value ) {
+
+            if ( $verify[$key] == true ) {
+
+                $counter += 1;
+
+            }
 
         }
+
+        if ( length($verify) == $counter ) {
+
+            $modifybarrack = new Barrack(htmlspecialchars($_POST['numCaserne']), htmlspecialchars($_POST['adresseCaserne']), htmlspecialchars($_POST['CP']), htmlspecialchars($_POST['ville']), htmlspecialchars($_POST['codeTypeC']));
         
-        //Second case : if the request didn't work correctly ==> we redirect to listBarrack.php with an error flash message
+            $updateBarrack = $this->daoBarrack->update($modifyBarrack);
+
+            //First case : if the request worked correctly ==> we redirect to listBarrack.php with a success flash message
+            if ($updateBarrack != 0) {
+
+                //IL faut que j'affiche des messages
+                header('Location: ../barrack/display');
+
+            }
+        
+            //Second case : if the request didn't work correctly ==> we redirect to listBarrack.php with an error flash message
+            else {
+
+                //IL faut que j'affiche des messages
+                header('Location: ../barrack/display');
+
+            }
+        
+        } 
+        
         else {
 
-            header('Location: ../barrack/display');
+            //IL faut que j'affiche des messages
+            header('Location: ../barrack/modify/'.$_POST['numCaserne']);
 
         }
 
