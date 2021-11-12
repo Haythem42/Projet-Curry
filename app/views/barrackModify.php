@@ -45,12 +45,12 @@
                                 <span class="section-heading-upper">Fill new information about the barrack</span>
                                 <span class="section-heading-lower">Update Barrack</span>
                             </h2>
-                            <form action="/modify" method="POST" class="col-md-10 m-auto mt-3">
+                            <form action="modify" method="POST" class="col-md-10 m-auto mt-3">
                                
                             <div class="brd">
                                 <div>
-                                    <label for="numCaserne" class="form-label">Numéro de caserne</label>
-                                    <input name="numCaserne" class="form-control" type="text" id="numCaserne" value="<?= $barrack->getNumCaserne(); ?>" pattern="{1,200}" readonly>
+                                    <label for="numBarrack" class="form-label">Numéro de caserne</label>
+                                    <input name="numBarrack" class="form-control" type="text" id="numBarrack" value="<?= $barrack->getNumCaserne(); ?>" pattern="{1,200}" readonly>
                                 </div>
 
 
@@ -61,8 +61,8 @@
                                             <input name="adresseCaserne" type="text" class="form-control" id="adresse" value="<?= $barrack->getAdresse(); ?>" required>
                                         </div>
                                         <div class="col-md-4 col-sm-12">
-                                            <label for="cp" class="form-label">Code Postal</label>
-                                            <input name="CP" type="text" class="form-control" id="cp" value="<?= $barrack->getCP(); ?>" required>
+                                            <label for="CP" class="form-label">Code Postal</label>
+                                            <input name="CP" type="text" class="form-control" id="CP" value="<?= $barrack->getCP(); ?>" required>
                                         </div>
                                         <div class="col-md-4 col-sm-12">
                                             <label for="ville" class="form-label">Ville</label>

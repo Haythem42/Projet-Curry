@@ -164,10 +164,8 @@
 
             $filter = new Filter($_POST);
 
-            $filter->acceptVisitor('idInputModify', new IdVisitor());
-            $filter->acceptVisitor('loginInputModify', new LoginVisitor());
-            $filter->acceptVisitor('passwordInputModify', new PasswordVisitor());
-            $filter->acceptVisitor('roleIdInputModify', new IdVisitor());
+            $filter->acceptVisitor('passwordM', new PasswordVisitor());
+            $filter->acceptVisitor('idInputModify', new RoleIdVisitor());
 
             $tableCheck = $filter->visit();
 
@@ -182,16 +180,16 @@
 
             if($countValidity == count($tableCheck)) {
 
-                $ciphering = "AES-128-CTR";
-                $option = 0;
-                $encryption_iv = '1234567890123456';
-                $encryption_key = "devanshu";
 
                 $user = new User(
-                    htmlspecialchars($_POST['idInputModify']),
-                    htmlspecialchars($_POST['loginInputModify']),
-                    htmlspecialchars(openssl_encrypt($_POST['passwordInputModify'],$ciphering,$encryption_key,$option,$encryption_iv)),
-                    htmlspecialchars($_POST['roleIdInputModify']),
+                    htmlspecialchars($_POST["idInputModify"]),
+                    " ",
+                    htmlspecialchars($_POST["passwordM"]),
+                    " ",
+                    " ",
+                    0,
+                    " ",
+                    0
                 );
 
                 try {

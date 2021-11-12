@@ -138,7 +138,6 @@ function pompierRoutes_post($fragments)
             break;
 
         default:
-            // echo "Action '$action' non defini <hr>";
             call_user_func_array([new FiremanController(), "error"], $fragments);
             break;
 

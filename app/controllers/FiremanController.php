@@ -46,14 +46,7 @@
                     $pageFireman = Renderer::render('fireman.php', compact('firemen'));
                     echo($pageFireman);
 
-                } else {
-
-                    $firemen = $this->daoPompier->findByName($fragments);
-                    $pageFireman = Renderer::render('firemanSearched.php', compact('fragments','firemen'));
-                    echo($pageFireman);
-
                 }
-
             }
 
             //Second case : if the fragment has no value we display all the firemen stored in the database

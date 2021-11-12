@@ -118,18 +118,13 @@
         public function modifyUser(User $user) : int {  
 
             $sql = "UPDATE utilisateurs 
-                    SET mail=:userMail,
-                        firstName=:userFirstName,
-                        lastName=:userLastName,
-                        roleId=:userRoleId 
+                    SET password=:userPassword
                     WHERE id=:userId";
 
             $preparedStatement = $this->connexion->prepare($sql);
 
-            $preparedStatement->bindValue(':userMail', $user->getMail());
-            $preparedStatement->bindValue(':userFirstName', $user->getFirstName());
-            $preparedStatement->bindValue(':userLastName', $user->getLastName());
-            $preparedStatement->bindValue(':userRoleId', $user->getRoleId());
+            $preparedStatement->bindValue(':userId', $user->getId());
+            $preparedStatement->bindValue(':userPassword', password_hash($user->getPassword(), PASSWORD_DEFAULT));
 
             $preparedStatement->execute();
 

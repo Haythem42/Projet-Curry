@@ -84,11 +84,15 @@ class DAOBarrack
     public function update(Barrack $barrack): int
     {
 
-        $SQL = 'UPDATE casernes SET NumCaserne = :numCaserne, Adresse = :adresse, CP = :cp, Ville = :ville, CodeTypeC = :codeTypeC WHERE NumCaserne = :num'; 
+        $SQL = 'UPDATE casernes 
+                SET Adresse = :adresse, 
+                    CP = :cp, 
+                    Ville = :ville, 
+                    CodeTypeC = :codeTypeC 
+                WHERE NumCaserne = :num'; 
         
         $prepareStatement = $this->connexion->prepare($SQL);
 
-        $prepareStatement->bindValue(':numCaserne', $barrack->getNumCaserne(), \PDO::PARAM_INT);
         $prepareStatement->bindValue(':adresse', $barrack->getAdresse(), \PDO::PARAM_STR);
         $prepareStatement->bindValue(':cp', $barrack->getCP(), \PDO::PARAM_STR);
         $prepareStatement->bindValue(':ville', $barrack->getVille(), \PDO::PARAM_STR);

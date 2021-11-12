@@ -151,15 +151,44 @@ class BarrackController extends BaseController {
 
     public function alter() {
 
-            $modifyBarrack = new Barrack(htmlspecialchars($_POST['numCaserne']), htmlspecialchars($_POST['adresseCaserne']), htmlspecialchars($_POST['CP']), htmlspecialchars($_POST['ville']), htmlspecialchars($_POST['codeTypeC']));
+        $filter = new Filter($_POST);
+
+        $filter->acceptVisitor('numBarrack', new BarrackNumberVisitor());
+        $filter->acceptVisitor('adresseCaserne', new AddressVisitor());
+        $filter->acceptVisitor('CP', new PostalVisitor());
+        $filter->acceptVisitor('ville', new CityVisitor());
+        $filter->acceptVisitor('codeTypeC', new TypeNumberVisitor());
+
+        $verify = $filter->visit();
+
+        $counter = 0;
+
+        foreach( $verify as $key => $value ) {
+
+            if ( $verify[$key] == true ) {
+
+                $counter += 1;
+
+            }
+
+        }
+
+        if (count($verify) == $counter ) {
+
+
+            $modifyBarrack = new Barrack(   htmlspecialchars($_POST['numBarrack']),
+                                            htmlspecialchars($_POST['adresseCaserne']),
+                                            htmlspecialchars($_POST['CP']), 
+                                            htmlspecialchars($_POST['ville']), 
+                                            htmlspecialchars($_POST['codeTypeC']));
         
             $updateBarrack = $this->daoBarrack->update($modifyBarrack);
 
-            //First case : if the request worked correctly ==> we redirect to listBarrack.php with a success flash message
+             //First case : if the request worked correctly ==> we redirect to listBarrack.php with a success flash message
             if ($updateBarrack != 0) {
 
                 //IL faut que j'affiche des messages
-                header('Location: ../display');
+                header('Location: ../../../');
 
             }
         
@@ -167,9 +196,20 @@ class BarrackController extends BaseController {
             else {
 
                 //IL faut que j'affiche des messages
-                header('Location: ../modify/'.$_POST['numCaserne']);
+                header('Location: ../../barrack/display');
 
             }
+            
+        
+        } 
+        
+        else {
+
+            //IL faut que j'affiche des messages
+            header('Location: ../barrack/modify/'.$_POST['numCaserne']);
+
+        }
+
 
     }
 
