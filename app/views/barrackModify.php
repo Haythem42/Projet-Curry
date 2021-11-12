@@ -45,12 +45,12 @@
                                 <span class="section-heading-upper">Fill new information about the barrack</span>
                                 <span class="section-heading-lower">Update Barrack</span>
                             </h2>
-                            <form action="modify" method="post" class="col-md-10 m-auto mt-3">
+                            <form action="/modify" method="POST" class="col-md-10 m-auto mt-3">
                                
                             <div class="brd">
                                 <div>
                                     <label for="numCaserne" class="form-label">Numéro de caserne</label>
-                                    <input name="numCaserne" class="form-control" type="text" id="numCaserne" value="<?= $barrack->getNumCaserne(); ?>" pattern="{1,200}" disabled>
+                                    <input name="numCaserne" class="form-control" type="text" id="numCaserne" value="<?= $barrack->getNumCaserne(); ?>" pattern="{1,200}" readonly>
                                 </div>
 
 
@@ -79,7 +79,7 @@
                             </div>
 
                             <div class="py-4">
-                            <button class="btn btn-primary">Save modification</button>
+                            <button type="submit" class="btn btn-primary">Save modification</button>
                             </div>
 
                             </form>

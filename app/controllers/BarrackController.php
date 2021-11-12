@@ -109,11 +109,17 @@ class BarrackController extends BaseController {
 
         }
 
-        if ( length($verify) == $counter ) {
+        if ( count($verify) == $counter ) {
 
             $insertBarrack = new Barrack(htmlspecialchars($_POST['numCaserne']), htmlspecialchars($_POST['adresseCaserne']), htmlspecialchars($_POST['CP']), htmlspecialchars($_POST['ville']), htmlspecialchars($_POST['codeTypeC']));
         
-            $newBarrack = $this->daoBarrack->save($barrack);
+            try {
+
+            $newBarrack = $this->daoBarrack->save($insertBarrack);
+
+            } catch (\Exception $err) {
+
+            }
 
             //First case : if the request worked correctly ==> we redirect to listBarrack.php with a success flash message
             if ($newBarrack != 0) {
@@ -145,31 +151,7 @@ class BarrackController extends BaseController {
 
     public function alter() {
 
-        $filter = new Filter($_POST);
-
-        $filter->acceptVisitor('numCaserne', new BarrackNumberVisitor());
-        $filter->acceptVisitor('adresseCaserne', new AddressVisitor());
-        $filter->acceptVisitor('CP', new PostalVisitor());
-        $filter->acceptVisitor('ville', new CityVisitor());
-        $filter->acceptVisitor('codeTypeC', new TypeNumberVisitor());
-
-        $verify = $filter->visit();
-
-        $counter = 0;
-
-        foreach( $verify as $key => $value ) {
-
-            if ( $verify[$key] == true ) {
-
-                $counter += 1;
-
-            }
-
-        }
-
-        if ( length($verify) == $counter ) {
-
-            $modifybarrack = new Barrack(htmlspecialchars($_POST['numCaserne']), htmlspecialchars($_POST['adresseCaserne']), htmlspecialchars($_POST['CP']), htmlspecialchars($_POST['ville']), htmlspecialchars($_POST['codeTypeC']));
+            $modifyBarrack = new Barrack(htmlspecialchars($_POST['numCaserne']), htmlspecialchars($_POST['adresseCaserne']), htmlspecialchars($_POST['CP']), htmlspecialchars($_POST['ville']), htmlspecialchars($_POST['codeTypeC']));
         
             $updateBarrack = $this->daoBarrack->update($modifyBarrack);
 
@@ -177,7 +159,7 @@ class BarrackController extends BaseController {
             if ($updateBarrack != 0) {
 
                 //IL faut que j'affiche des messages
-                header('Location: ../barrack/display');
+                header('Location: ../display');
 
             }
         
@@ -185,19 +167,9 @@ class BarrackController extends BaseController {
             else {
 
                 //IL faut que j'affiche des messages
-                header('Location: ../barrack/display');
+                header('Location: ../modify/'.$_POST['numCaserne']);
 
             }
-        
-        } 
-        
-        else {
-
-            //IL faut que j'affiche des messages
-            header('Location: ../barrack/modify/'.$_POST['numCaserne']);
-
-        }
-
 
     }
 

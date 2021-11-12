@@ -18,6 +18,9 @@
         
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="/css/barrackStyle.css" rel="stylesheet" />
+
+        <!-- Datatables theme CSS (includes Bootstrap)-->
+        <!-- <link rel="stylesheet" href="//cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css"> -->
         
     </head>
     <body>
@@ -71,29 +74,16 @@
                                     <a class="btn btn-primary" href="create">ADD A NEW BARRACK</a>
                                     </div>
 
-                                    <br>
-
-                                    <form action="" method="GET">
-
-                                    <div class="input-group mb-4 border rounded-pill p-1">
-                                        <input name="result" type="search" placeholder="Search a barrack" aria-describedby="button-addon3" class="form-control bg-none border-0">
-                                    <div class="input-group-append border-0">
-                                        <button name="send" id="button-addon3" type="button" class="btn btn-link text-success"><i class="fa fa-search"></i></button>
-                                    </div>
-                                    </div>
-
-                                    </form>
-
                                 </span>
                             </h2>
                             <table class="table table-striped" id="myTable">
                                 <thead>
                                     <tr>
-                                        <th scope="col">NumCaserne</th>
+                                        <!-- <th scope="col">NumCaserne</th> -->
                                         <th scope="col">Adresse</th>
                                         <th scope="col">CP</th>
                                         <th scope="col">Ville</th>
-                                        <th scope="col">CodeTypeC</th>
+                                        <!-- <th scope="col">CodeTypeC</th> -->
                                         <th scope="col">Edit</th>
                                         <th scope="col">Delete</th>
                                         <th scope="col">More</th>
@@ -105,11 +95,11 @@
                 
                                     <tr>
                                         <!-- <th scope="row"></th> -->
-                                        <td><?= $barrack->getNumCaserne(); ?></td>
+                                        <!-- <td><?= $barrack->getNumCaserne(); ?></td> -->
                                         <td><?= $barrack->getAdresse(); ?></td>
                                         <td><?= $barrack->getCP(); ?></td>
                                         <td><?= $barrack->getVille(); ?></td>
-                                        <td><?= $barrack->getCodeTypeC(); ?></td>
+                                        <!-- <td><?= $barrack->getCodeTypeC(); ?></td> -->
                                         <td><a class="btn btn-outline-secondary" href="modify/<?= $barrack->getNumCaserne() ?>">MODIFY</a></td>
                                         <td><a class="btn btn-outline-danger" href="erase/<?= $barrack->getNumCaserne() ?>">DELETE</a></td>
                                         <td><a class="btn btn-outline-dark" href="expose/<?= $barrack->getNumCaserne() ?>"> > </a></td>
@@ -140,6 +130,15 @@
         
         <!-- Core theme JS-->
         <script src="/js/scriptBarrack.js"></script>
+
+        <!-- Datatables JS -->
+        <script src="//cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+
+        <script>
+            $(document).ready( function () {
+                $('#myTable').DataTable();
+            } );
+        </script>
     
     </body>
 

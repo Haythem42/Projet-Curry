@@ -11,10 +11,18 @@ class TypeNumberVisitor extends AbstractVisitor {
      * @param string $typeNumber
      * @return bool
      */
-    public function checkDataValidity($type) {
+    public function checkDataValidity($typeNumber) : bool {
 
-        if ( $this->checkNumber($type) == true && $this->checkLength($type) == true && $this->checkLetter($type) == true ) {return true;}
-        else {return false;}
+        if ( $this->checkNumber($typeNumber) == true && $this->checkLength($typeNumber) == true && $this->checkLetter($typeNumber) == true ) {
+            
+            return true;
+        
+        }
+        else {
+            
+            return false;
+        
+        }
 
     }
 
@@ -23,13 +31,21 @@ class TypeNumberVisitor extends AbstractVisitor {
     /**
      * Function which check if the type is a number
      * 
-     * @param string $type
+     * @param string $typeNumber
      * @return bool
      */
-    public function checkNumber($type) : bool {
+    public function checkNumber($typeNumber) : bool {
 
-        if( is_numeric($type) ) {return true;}
-        else {return false;}
+        if( is_numeric($typeNumber) ) {
+            
+            return true;
+        
+        }
+        else {
+            
+            return false;
+        
+        }
 
     }
 
@@ -38,13 +54,21 @@ class TypeNumberVisitor extends AbstractVisitor {
     /**
      * Function which check if the type number length
      * 
-     * @param string $type
+     * @param string $typeNumber
      * @return bool
      */
-    public function checkLength($type) : bool {
+    public function checkLength($typeNumber) : bool {
 
-        if ( strlen($type) == 1 ) {return true;}
-        else {return false;}
+        if ( strlen($typeNumber) == 1 ) {
+            
+            return true;
+        
+        }
+        else {
+            
+            return false;
+        
+        }
 
     }
 
@@ -53,13 +77,21 @@ class TypeNumberVisitor extends AbstractVisitor {
     /**
      * Function which check if the type number contains letters
      * 
-     * @param string $type
+     * @param string $typeNumber
      * @return bool
      */
-    public function checkLetter($type) : bool {
+    public function checkLetter($typeNumber) : bool {
 
-        if (preg_match('/[a-zA-Z ]/', $type)) {return false;}
-        else {return true;}
+        if (preg_match('/[a-zA-Z ]/', $typeNumber)) {
+            
+            return false;
+        
+        }
+        else {
+            
+            return true;
+        
+        }
 
     }
 }

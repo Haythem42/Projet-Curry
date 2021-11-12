@@ -17,7 +17,7 @@
 
             if($this->checkNumbers($barrackNumber) == true && $this->checkNegative($barrackNumber) == true){return true;}
             else {return false;}
-             
+            
         }
 
 
