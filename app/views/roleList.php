@@ -71,7 +71,7 @@
                         <div class="bg-faded p-5 d-flex ms-auto rounded">
                             <h2 class="section-heading mb-0">
                                 <span class="section-heading-upper text-center"><?= $roleList[0]->getId(); ?></span>
-                                <span class="section-heading-lower"><?= $roleList[0]->getLibelle(); ?></span>
+                                <span class="section-heading-lower"><?= $roleList[0]->getName(); ?></span>
                             </h2>
                         </div>
                     </div>
@@ -90,7 +90,7 @@
                         <div class="bg-faded p-5 d-flex me-auto rounded">
                             <h2 class="section-heading mb-0">
                                 <span class="section-heading-upper text-center"><?= $roleList[1]->getId(); ?></span>
-                                <span class="section-heading-lower"><?= $roleList[1]->getLibelle(); ?></span>
+                                <span class="section-heading-lower"><?= $roleList[1]->getName(); ?></span>
                             </h2>
                         </div>
                     </div>
@@ -109,7 +109,7 @@
                         <div class="bg-faded p-5 d-flex ms-auto rounded">
                             <h2 class="section-heading mb-0">
                                 <span class="section-heading-upper text-center"><?= $roleList[2]->getId(); ?></span>
-                                <span class="section-heading-lower"><?= $roleList[2]->getLibelle(); ?></span>
+                                <span class="section-heading-lower"><?= $roleList[2]->getName(); ?></span>
                             </h2>
                         </div>
                     </div>
@@ -128,7 +128,7 @@
                         <div class="bg-faded p-5 d-flex me-auto rounded">
                             <h2 class="section-heading mb-0">
                                 <span class="section-heading-upper text-center"><?= $roleList[3]->getId(); ?></span>
-                                <span class="section-heading-lower"><?= $roleList[3]->getLibelle(); ?></span>
+                                <span class="section-heading-lower"><?= $roleList[3]->getName(); ?></span>
                             </h2>
                         </div>
                     </div>

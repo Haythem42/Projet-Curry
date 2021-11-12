@@ -16,31 +16,33 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `utilisateur`
+-- Table structure for table `utilisateurs`
 --
 
-DROP TABLE IF EXISTS `utilisateur`;
+DROP TABLE IF EXISTS `utilisateurs`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `utilisateur` (
-  `id` int(11) NOT NULL,
-  `login` varchar(50) DEFAULT NULL,
-  `password` varchar(255) DEFAULT NULL,
-  `roleId` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
+CREATE TABLE `utilisateurs` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `mail` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `firstName` varchar(255) DEFAULT NULL,
+  `lastName` varchar(255) DEFAULT NULL,
+  `roleId` int(11) NOT NULL,
+  PRIMARY KEY (`id`,`mail`,`password`),
   KEY `roleId` (`roleId`),
-  CONSTRAINT `utilisateur_ibfk_1` FOREIGN KEY (`roleId`) REFERENCES `role` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  CONSTRAINT `utilisateurs_ibfk_1` FOREIGN KEY (`roleId`) REFERENCES `role` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `utilisateur`
+-- Dumping data for table `utilisateurs`
 --
 
-LOCK TABLES `utilisateur` WRITE;
-/*!40000 ALTER TABLE `utilisateur` DISABLE KEYS */;
-INSERT INTO `utilisateur` VALUES (1,'a.taken','Q5xpdQBrSjnx+/w=',1),(2,'a.itemx','TJFOMnlsUBC0ofzg5g==',1),(3,'a.lourenco','Q5xbPX8eUA/l8KGN',1),(4,'q.chavet','bZw2EW42GDS0rvKAww==',2),(5,'h.belhadjmansour','bJs7FiB9GEHO58bY6/HB',3),(6,'p.dupont','TJ5OOSFqRjGn3aOD',4),(7,'l.neeson','TJxeO3BzUCjno67/5A==',4),(8,'r.crowe','Q5EtLRU9RkzlzuPb',4),(9,'a.garfield','TN07bmF2FBLd86CDtoQ=',4);
-/*!40000 ALTER TABLE `utilisateur` ENABLE KEYS */;
+LOCK TABLES `utilisateurs` WRITE;
+/*!40000 ALTER TABLE `utilisateurs` DISABLE KEYS */;
+INSERT INTO `utilisateurs` VALUES (1,'mail1','password1','firstName1','lastname1',1),(2,'mail2','$2y$10$mFWCaoMjHtxU6MCwin7uW.pJ3XU6s2Ag.3tVWZoubLuqnSfRElgR6','firstName2','lastname2',2),(3,'mail3','$2y$10$1VimizLDZ9ncqdDmacSYquLNuyfXHI7sK70tOI3mBrMAYCOuoiAfW','firstName3','lastname3',3),(4,'mail4','password4','firstName4','lastname4',4),(7,'mail6','password6','firstName6','lastname6',1),(11,'q.chavet@orange.fr','5sfv899yufq7M7kG@#','Quentin','Chavet',1);
+/*!40000 ALTER TABLE `utilisateurs` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -52,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-10-28 17:09:35
+-- Dump completed on 2021-11-12 15:46:53

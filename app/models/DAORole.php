@@ -121,35 +121,6 @@ class DAORole
         return $lignesRmv;
     }
 
-    /**
-     * Find all roles between $offset and $limit
-     * 
-     * @param int $offset
-     * @param int $limit
-     * @return array<Role>
-     */
-    public function findAllRoles($offset, $limit): array
-    {
-
-        $SQL = 'SELECT * FROM role LIMIT ' . $limit . ' OFFSET ' . $offset . ';';
-
-        $prepareStatement = $this->connexion->prepare($SQL);
-        $prepareStatement->execute();
-
-        $role = array();
-
-        while($data = $prepareStatement->fetch(\PDO::FETCH_OBJ)){
-            
-            // Pour renvoyer en private
-            $temp = new Role($data->id, $data->libelle);
-            
-            array_push($role, $temp);
-
-        }
-        
-        return $role;
-
-    }
 
     /**
      * Find all roles
@@ -168,7 +139,7 @@ class DAORole
 
         while ($data = $preparedStatement->fetch(\PDO::FETCH_OBJ)) {
 
-            $temp = new Role($data->id, $data->libelle);
+            $temp = new Role($data->id, $data->name, $data->permissions);
             array_push($role, $temp);
 
         }
@@ -176,55 +147,7 @@ class DAORole
         return $role;
 }
 
-    /**
-     * Retrieve number of Role in DB
-     * 
-     * @return int $countRole
-     */
-    public function count(): int
-    {
 
-        $SQL = 'SELECT id FROM role;'; 
-            
-        $prepareStatement = $this->connexion->prepare($SQL);
-        $prepareStatement->execute();
-        
-        $countRole = 0;
 
-        while($data = $prepareStatement->fetch()){
-            
-            $countRole = $countRole + 1;
-
-        }
-
-        return $countRole;
-
-    }
-
-    /**
-     * Retrieve a user by the id of the role
-     * 
-     * @return array $users
-    */
-    public function findUsersFromRole(Role $role): array
-    {
-        $SQL = 'SELECT * FROM user WHERE id = :id';
-
-        $prepareStatement = $this->connexion->prepare($SQL);
-        $prepareStatement->bindValue("id", $role->getId());
-        $prepareStatement->execute();
-        
-        $users = array();
-
-        while($data = $prepareStatement->fetch(\PDO::FETCH_OBJ)){
-            
-            $temp = new User($data->id, $data->login, $data->password, $data->role);
-            array_push($users, $temp);
-
-        }
-
-        return $users;
-
-    }
     
 }

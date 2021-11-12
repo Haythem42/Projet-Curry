@@ -26,19 +26,11 @@ class RoleController extends BaseController {
         //Il faut penser à la sécurité
         //Gestion des erreurs PDO ou autres ...
 
-        if (isset($fragments)) {
+        $roleList = $this->daoRole->findAll();
+        $pageRole = Renderer::render('roleList.php', compact('roleList'));
+        echo $pageRole;
 
-            $roleList = $this->daoRole->findAllRoles((intval($fragments)*10)-10,10);
-            $pageRole = Renderer::render('roleList.php', compact('roleList'));
-            echo $pageRole;
-
-        } else {
-
-            $roleList = $this->daoRole->findAll();
-            $pageRole = Renderer::render('roleList.php', compact('roleList'));
-            echo $pageRole;
-
-        }
+        
     }
 
 
