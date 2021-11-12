@@ -147,7 +147,7 @@ class BarrackController extends BaseController {
 
         $filter = new Filter($_POST);
 
-        $filter->acceptVisitor('numCaserne', new BarrackNumberVisitor());
+        $filter->acceptVisitor('numBarrack', new BarrackNumberVisitor());
         $filter->acceptVisitor('adresseCaserne', new AddressVisitor());
         $filter->acceptVisitor('CP', new PostalVisitor());
         $filter->acceptVisitor('ville', new CityVisitor());
@@ -167,17 +167,22 @@ class BarrackController extends BaseController {
 
         }
 
-        if ( length($verify) == $counter ) {
+        if (count($verify) == $counter ) {
 
-            $modifybarrack = new Barrack(htmlspecialchars($_POST['numCaserne']), htmlspecialchars($_POST['adresseCaserne']), htmlspecialchars($_POST['CP']), htmlspecialchars($_POST['ville']), htmlspecialchars($_POST['codeTypeC']));
+
+            $modifyBarrack = new Barrack(   htmlspecialchars($_POST['numBarrack']),
+                                            htmlspecialchars($_POST['adresseCaserne']),
+                                            htmlspecialchars($_POST['CP']), 
+                                            htmlspecialchars($_POST['ville']), 
+                                            htmlspecialchars($_POST['codeTypeC']));
         
             $updateBarrack = $this->daoBarrack->update($modifyBarrack);
 
-            //First case : if the request worked correctly ==> we redirect to listBarrack.php with a success flash message
+             //First case : if the request worked correctly ==> we redirect to listBarrack.php with a success flash message
             if ($updateBarrack != 0) {
 
                 //IL faut que j'affiche des messages
-                header('Location: ../barrack/display');
+                header('Location: ../../../');
 
             }
         
@@ -185,9 +190,10 @@ class BarrackController extends BaseController {
             else {
 
                 //IL faut que j'affiche des messages
-                header('Location: ../barrack/display');
+                header('Location: ../../barrack/display');
 
             }
+            
         
         } 
         

@@ -11,7 +11,7 @@ class TypeNumberVisitor extends AbstractVisitor {
      * @param string $typeNumber
      * @return bool
      */
-    public function checkDataValidity($type) {
+    public function checkDataValidity($type) :bool {
 
         if ( $this->checkNumber($type) == true && $this->checkLength($type) == true && $this->checkLetter($type) == true ) {return true;}
         else {return false;}
