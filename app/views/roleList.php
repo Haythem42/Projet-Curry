@@ -37,6 +37,7 @@
                         <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="../fireman/display">Firemen</a></li>
                         <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="../barrack/display">Barracks</a></li>
                         <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="">Roles</a></li>
+                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="../user/display">Users</a></li>
                     </ul>
                 </div>
             </div>
