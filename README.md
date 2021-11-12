@@ -24,8 +24,8 @@ php -S 127.0.0.1:8080 -t html (You can change the port.)
     - [x] **Create, modify and delete** users.<br><br>
 
 * Role part
-    - [x] **Display all** the permissions.
-    - [x] **Create, modify and delete** permissions.<br><br>
+    - [x] **Display all** the roles and permissions.
+    - [x] **Create, modify and delete** roles and permissions.<br><br>
 
 
 ## Setting up database
@@ -41,7 +41,6 @@ mysql -u root -p pompiers < dumpFiremen.sql
 ```bash
 mysql -u root -p pompiers < dumpRoles.sql
 mysql -u root -p pompiers < dumpUsers.sql
-mysql -u root -p pompiers < dumpPermissions.sql
 ```
 
 * Recover data about firemen, barracks and disponibilities
@@ -57,32 +56,32 @@ mysql -u root -p pompiers < Path to the file dumpDataBarracks.sql
 
 ```bash
 The administrator account can see all the page of the project.
-Login : a.taken / a.itemx / a.lourenco
-Password : H5g#H59Mplj / G8@d12#d56jUi / H5Uk7@#{dg78
+Login : 
+Password : 
 ```
 
 * **Fireman manager**
 
 ```bash
 The fireman manager account can see all the page related to firemen.
-Login : q.chavet
-Password : f58G&hk@59d5L
+Login : 
+Password : 
 ```
 
 * **Barrack manager**
 
 ```bash
 The barrack manager account can see all the page related to barracks.
-Login : h.belhadjmansour
-Password : g25@h#k5OpPmd56
+Login : 
+Password : 
 ```
 
 * **User**
 
 ```bash
 The user account has limited permissions and can see a number limited of page.
-Login : p.dupont
-Password : G7@oi45E&J56
+Login : 
+Password : 
 ```
 
 

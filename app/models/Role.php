@@ -11,23 +11,23 @@
     class Role  {
 
         // Properties of the class
-        private $id;
-        private $libelle;
-        // private $permissions;
+        private int $id;
+        private string $name;
+        private int $permissions;
 
 
         /**
          * Construct of Role
          * 
-         * @param string $id
-         * @param string $libelle
+         * @param int $id
+         * @param string $name
          * @param int $permissions
         */
-        public function __construct($id, $libelle) {
+        public function __construct($id, $name, $permissions) {
 
             $this->id = $id;
-            $this->libelle = $libelle;
-            // $this->permissions = $permissions;
+            $this->name = $name;
+            $this->permissions = $permissions;
 
         }
 
@@ -40,9 +40,9 @@
             public function getId() { return $this->id; }
 
             /**
-             * Function which get the libelle of the role
+             * Function which get the name of the role
              */
-            public function getLibelle() { return $this->libelle; }
+            public function getName() { return $this->name; }
 
             /**
              * Function which get the permissions of the role
@@ -56,25 +56,13 @@
         // ==================== Setter for private properties ====================
 
             /**
-             * Function which set the id of a role
+             * Function which set the name of a role
              * 
-             * @param string $id
+             * @param string $name
              */
-            public function setId($id) {
+            public function setName($name) {
 
-                $this->id = $id;
-                return $this;
-
-            }
-
-            /**
-             * Function which set the libelle of a role
-             * 
-             * @param string $libelle
-             */
-            public function setLibelle($libelle) {
-
-                $this->libelle = $libelle;
+                $this->name = $name;
                 return $this;
 
             }

@@ -121,7 +121,6 @@
                                     First name  •  <b><?php echo($user->getFirstName());?></b><br>
                                     Last name  •  <b><?php echo($user->getLastName());?></b><br>
                                     Role  • <b><?php echo($user->getRoleName()); ?></b><br><br>
-                                    <a href="">See permissions</a>
                                     </p>
                                 </div>
                             </div>
@@ -158,7 +157,6 @@
                                     First name  •  <b><?php echo($user->getFirstName());?></b><br>
                                     Last name  •  <b><?php echo($user->getLastName());?></b><br>
                                     Role  • <b><?php echo($user->getRoleName()); ?></b><br><br>
-                                    <a href="">See permissions</a>
                                     </p>
                                 </div>
                             </div>
@@ -195,7 +193,6 @@
                                         First name  •  <b><?php echo($user->getFirstName());?></b><br>
                                         Last name  •  <b><?php echo($user->getLastName());?></b><br>
                                         Role  • <b><?php echo($user->getRoleName()); ?></b><br><br>
-                                        <a href="">See permissions</a>  
                                     </p>
                                 </div>
                             </div>
