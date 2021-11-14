@@ -52,19 +52,19 @@ class DAOBarrack
      * @param Barrack $barrack
      * @return int $linesAdded
     */
-    // Real function : public function save(Barrack $barrack): void
     public function save(Barrack $barrack): int
     {
 
-        $SQL = 'INSERT INTO casernes VALUES (:num, :adresse, :cp, :ville, :codeType)';
+        $SQL = 'INSERT INTO casernes 
+                VALUES (?, ?, ?, ?, ?)';
         
         $prepareStatement = $this->connexion->prepare($SQL);
 
-        $prepareStatement->bindValue(':num', $barrack->getNumCaserne());
-        $prepareStatement->bindValue(':adresse', $barrack->getAdresse());
-        $prepareStatement->bindValue(':cp', $barrack->getCP());
-        $prepareStatement->bindValue(':ville', $barrack->getVille());
-        $prepareStatement->bindValue(':codeType', $barrack->getCodeTypeC());
+        $prepareStatement->bindValue(1,$barrack->getNumCaserne());
+        $prepareStatement->bindValue(2,$barrack->getAdresse());
+        $prepareStatement->bindValue(3,$barrack->getCP());
+        $prepareStatement->bindValue(4,$barrack->getVille());
+        $prepareStatement->bindValue(5,$barrack->getCodeTypeC());
 
         $prepareStatement->execute();
 

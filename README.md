@@ -19,7 +19,7 @@ php -S 127.0.0.1:8080 -t html (You can change the port.)
 
 * Barrack part
     - [x] **DISPLAY | RESEARCH**
-    - [x] **CREATE | MODIFY | DELETE** barracks.<br><br>
+    - [x] **CREATE | MODIFY | DELETE**<br><br>
 
 * User part
     - [x] **DISPLAY**
@@ -95,25 +95,25 @@ Every role has a int number which corresponds to a binary number.
 
 * **Permissions'organization**
 
-BIT N°1 : display firemen
-BIT N°2 : create a new fireman
-BIT N°3 : modify | update a fireman
-BIT N°4 : delete a fireman
+BIT N°1 : display firemen\
+BIT N°2 : create a new fireman\
+BIT N°3 : modify | update a fireman\
+BIT N°4 : delete a fireman\
 
-BIT N°5 : display barracks
-BIT N°6 : create a new barrack
-BIT N°7 : modify | update a barrack
-BIT N°8 : delete a barrack
+BIT N°5 : display barracks\
+BIT N°6 : create a new barrack\
+BIT N°7 : modify | update a barrack\
+BIT N°8 : delete a barrack\
 
-BIT N°9 : display users
-BIT N°10 : create a new user
-BIT N°11 : modify | update a user
-BIT N°12 : delete a user
+BIT N°9 : display users\
+BIT N°10 : create a new user\
+BIT N°11 : modify | update a user\
+BIT N°12 : delete a user\
 
-BIT N°13 : display roles & permissions
-BIT N°14 : create a role
-BIT N°15 : modify | update a role or the role's permissions
-BIT N°16 : delete a role
+BIT N°13 : display roles & permissions\
+BIT N°14 : create a role\
+BIT N°15 : modify | update a role or the role's permissions\
+BIT N°16 : delete a role\
 
 
 * **Administrator**

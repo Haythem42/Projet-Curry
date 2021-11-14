@@ -65,6 +65,17 @@ use app\models\Auth;
             </div>
         </nav>
         <section class="page-section cta">
+        <?php   if(isset($_SESSION['filterMessage']) && $_SESSION['color'] == "red"): ?>
+            <div class="container flash" style="width : 30%;">
+                <div class="alert alert-danger text-center">
+                    <?php echo($_SESSION['filterMessage']); ?>
+                </div>
+            </div>
+                    
+        <?php   endif;
+                unset($_SESSION['filterMessage']);
+                unset($_SESSION['color']);
+        ?>
             <div class="container">
                 <div class="row">
                     <div class="col-xl-9 mx-auto">
@@ -73,7 +84,7 @@ use app\models\Auth;
                                 <span class="section-heading-upper">Fill information about the new barrack</span>
                                 <span class="section-heading-lower">Create a new Barrack</span>
                             </h2>
-                            <form action="create" method="post" class="col-md-10 m-auto mt-3">
+                            <form action="create" method="POST" class="col-md-10 m-auto mt-3">
                                
                             <div class="brd">
                                 <div>
@@ -107,7 +118,7 @@ use app\models\Auth;
                             </div>
 
                             <div class="py-4">
-                            <button class="btn btn-primary">Submit</button>
+                            <button type="submit" class="btn btn-primary">Submit</button>
                             </div>
 
                             </form>

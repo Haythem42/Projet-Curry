@@ -89,6 +89,31 @@ use app\models\Auth;
         </section>
         
         <section class="page-section cta">
+            <?php if (isset($_SESSION['message']) && $_SESSION['color'] == "green"): ?>
+                <div class="container flash" style="width : 30%;">
+                    <div class="alert alert-success text-center">
+                        <?php echo($_SESSION['message']); ?>
+                    </div>
+                </div>
+            <?php  endif ?>
+            <?php if (isset($_SESSION['message']) && $_SESSION['color'] == "red"): ?>
+                <div class="container flash" style="width : 30%;">
+                    <div class="alert alert-danger text-center">
+                        <?php echo($_SESSION['message']); ?>
+                    </div>
+                </div>
+            <?php endif ?>
+            <?php if (isset($_SESSION['messageFilter']) && $_SESSION['color'] == "red"): ?>
+                <div class="container flash" style="width : 30%;">
+                    <div class="alert alert-danger text-center">
+                        <?php echo($_SESSION['messageFilter']); ?>
+                    </div>
+                </div>
+            <?php endif ?>
+            <?php 
+            unset($_SESSION['message']);
+            unset($_SESSION['color']);
+            ?>
             <div class="container">
                 <div class="row">
                     <div class="col-xl-9 mx-auto">

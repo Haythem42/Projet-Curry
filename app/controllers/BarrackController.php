@@ -70,11 +70,6 @@ class BarrackController extends BaseController {
 
 
     public function insert() : void { //CREATE du CRUD, Méthode PUT du protocole HTTP
-        //CF PSR-7
-        //Il faut penser à filtrer les données (faille XSS) et vérifier les validités
-        //Il faut se protéger des failles CSRF
-        //Il faut penser à la sécurité
-        //Gestion des erreurs PDO ou autres ...
 
         $filter = new Filter($_POST);
 
@@ -98,44 +93,54 @@ class BarrackController extends BaseController {
 
         }
 
-        if ( count($verify) == $counter ) {
+        if (count($verify) === $counter) {
 
-            $insertBarrack = new Barrack(htmlspecialchars($_POST['numCaserne']), htmlspecialchars($_POST['adresseCaserne']), htmlspecialchars($_POST['CP']), htmlspecialchars($_POST['ville']), htmlspecialchars($_POST['codeTypeC']));
-        
+            $createdBarrack = new Barrack (
+                htmlspecialchars($_POST['numCaserne']),
+                htmlspecialchars($_POST['adresseCaserne']),
+                htmlspecialchars($_POST['CP']),
+                htmlspecialchars($_POST['ville']),
+                htmlspecialchars($_POST['codeTypeC'])
+
+            );
+
             try {
 
-            $newBarrack = $this->daoBarrack->save($insertBarrack);
+                $success = $this->daoBarrack->save($createdBarrack);
 
-            } catch (\Exception $err) {
+            } catch (\Exception $error) {}
 
-            }
 
             //First case : if the request worked correctly ==> we redirect to listBarrack.php with a success flash message
-            if ($newBarrack != 0) {
+            if ($success != 0) {
 
-                //IL faut que j'affiche des messages
+                $_SESSION['message'] = "The barrack has been correctly created in the database !";
+                $_SESSION['color'] = "green";
                 header('Location: ../barrack/display');
 
             }
-        
+
+            
             //Second case : if the request didn't work correctly ==> we redirect to listBarrack.php with an error flash message
             else {
 
-                //IL faut que j'affiche des messages
+                $_SESSION['message'] = "Oopsi... It seems like the barrack hasn't been created correctly in the database !";
+                $_SESSION['color'] = "red";
                 header('Location: ../barrack/display');
 
             }
 
-        }
 
-        else {
+        } else {
 
-            //IL faut que j'affiche des messages
+
+            $_SESSION['filterMessage'] = "Oopsi... The data were not validated by the filter !";
+            $_SESSION['color'] = "red";
             header('Location: ../barrack/create');
-            
-        }
 
+        }
     }
+
 
 
     public function alter() {
@@ -171,20 +176,27 @@ class BarrackController extends BaseController {
                                             htmlspecialchars($_POST['ville']), 
                                             htmlspecialchars($_POST['codeTypeC']));
         
-            $updateBarrack = $this->daoBarrack->update($modifyBarrack);
+
+            try {
+
+                $success = $this->daoBarrack->update($modifyBarrack);
+
+            } catch (\Exception $error) {}
 
              //First case : if the request worked correctly ==> we redirect to listBarrack.php with a success flash message
-            if ($updateBarrack != 0) {
+            if ($success != 0) {
 
-                //IL faut que j'affiche des messages
-                header('Location: ../../../');
+                $_SESSION['message'] = "The barrack has been correctly updated in the database !";
+                $_SESSION['color'] = "green";
+                header('Location: ../display');
 
             }
         
             //Second case : if the request didn't work correctly ==> we redirect to listBarrack.php with an error flash message
             else {
 
-                //IL faut que j'affiche des messages
+                $_SESSION['message'] = "Oopsi... It seems like the barrack hasn't been updated correctly in the database !";
+                $_SESSION['color'] = "red";
                 header('Location: ../../barrack/display');
 
             }
@@ -194,8 +206,9 @@ class BarrackController extends BaseController {
         
         else {
 
-            //IL faut que j'affiche des messages
-            header('Location: ../barrack/modify/'.$_POST['numCaserne']);
+            $_SESSION['messageFilter'] = "Oopsi... The data were not validated by the filter !";
+            $_SESSION['color'] = "red";
+            header('Location: ../../barrack/display');
 
         }
 
@@ -205,11 +218,6 @@ class BarrackController extends BaseController {
 
 
     public function update($fragments) : void { //UPDATE du CRUD, Méthode PUT du protocole HTTP
-        //CF PSR-7
-        //Il faut penser à filtrer les données (faille XSS) et vérifier les validités
-        //Il faut se protéger des failles CSRF
-        //Il faut penser à la sécurité
-        //Gestion des erreurs PDO ou autres ...
 
 
         $barrack = $this->daoBarrack->find($fragments);
@@ -219,6 +227,9 @@ class BarrackController extends BaseController {
     }
 
     
+    /**
+     * Function which displays the 404 error page.
+     */
     public function error404() : void {
 
         $error404Page = Renderer::render('error404.php');
@@ -238,18 +249,19 @@ class BarrackController extends BaseController {
 
 
     public function delete($fragments) : void { //DELETE du CRUD, Méthode PUT du protocole HTTP
-        //CF PSR-7
-        //Il faut penser à filtrer les données (faille XSS) et vérifier les validités
-        //Il faut se protéger des failles CSRF
-        //Il faut penser à la sécurité
-        //Gestion des erreurs PDO ou autres ..
 
+        try {
 
-        $deleteBarrack = $this->daoBarrack->remove($fragments);
+            $deleteBarrack = $this->daoBarrack->remove($fragments);
+
+        } catch (\Exception $error) {}
 
         //First case : if the request worked correctly ==> we redirect to listBarrack.php with a success flash message
         if ($deleteBarrack != 0) {
 
+
+            $_SESSION['message'] = "The barrack has been correctly deleted from the database !";
+            $_SESSION['color'] = "green";
             header('Location: ../display');
 
         }
@@ -257,15 +269,10 @@ class BarrackController extends BaseController {
         //Second case : if the request didn't work correctly ==> we redirect to listBarrack.php with an error flash message
         else {
 
+            $_SESSION['message'] = "TOopsi... It seems like the barrack hasn't been deleted correctly from the database !";
+            $_SESSION['color'] = "green";
             header('Location: ../display');
 
         }
-
-    }
-
-
-    public function showDetail(string $id) : void { 
-        //Il faut penser à la sécurité
-        //Gestion des erreurs PDO ou autres ...
     }
 }
