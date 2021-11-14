@@ -162,6 +162,121 @@
 
         }
 
+
+        /**
+         * Function which get a user by login.
+         * 
+         * @param $login
+         * 
+         * @return User $user
+         */
+        public function getByUsername($login) : User{
+
+            $sql = "SELECT  utilisateurs.id,
+                            utilisateurs.mail,
+                            utilisateurs.password,
+                            utilisateurs.firstName,
+                            utilisateurs.lastName,
+                            utilisateurs.roleId,
+                            role.name,
+                            role.permissions
+                    FROM utilisateurs 
+                    INNER JOIN role ON utilisateurs.roleId =role.id
+                    AND utilisateurs.mail = ?";
+
+            
+            $preparedStatement = $this->connexion->prepare($sql);
+
+            $preparedStatement->bindValue(1, $login);
+
+            $preparedStatement->execute();
+
+
+            $data = $preparedStatement->fetch(\PDO::FETCH_OBJ);
+
+            if(empty($data)){
+
+                header("Location: ");
+                $_SESSION['erreur'] = true;
+                exit();
+
+            } else {
+
+                $user = new User(   
+                    $data->id,
+                    $data->mail,
+                    $data->password,
+                    $data->firstName,
+                    $data->lastName,
+                    $data->roleId,
+                    $data->name,
+                    $data->permissions
+                );
+
+            }
+
+
+            return $user;
+        }
+
+
+        /**
+         * Function which returns the role of a user using his id.
+         * 
+         * @param $id
+         * 
+         * @return string $role
+         */
+        public function findRole($id) : string {
+
+            $sql = "SELECT role.name
+                    FROM utilisateurs
+                    INNER JOIN role ON utilisateurs.roleId =role.id
+                    AND utilisateurs.id = ?";
+
+            $preparedStatement = $this->connexion->prepare($sql);
+
+            $preparedStatement->bindValue(1, $id);
+
+            $preparedStatement->execute();
+
+            $array = $preparedStatement->fetch();
+
+            $role = $array[0];
+
+            return $role;
+
+        }
+
+
+        /**
+         * Function which returns the permissions of the user using his id.
+         * 
+         * @param int $id
+         * 
+         * @return int $permissions
+         */
+        public function getPermissions($id) {
+
+            $sql = "SELECT role.permissions
+                    FROM utilisateurs
+                    INNER JOIN role ON utilisateurs.roleId =role.id
+                    AND utilisateurs.id = ?";
+
+            $preparedStatement = $this->connexion->prepare($sql);
+
+            $preparedStatement->bindValue(1, $id);
+
+            $preparedStatement->execute();
+
+            $array = $preparedStatement->fetch();
+
+            $permissions = $array[0];
+
+            return $permissions;
+
+        }
+
     }
 
 ?>

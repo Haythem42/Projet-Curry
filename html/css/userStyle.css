@@ -24,15 +24,7 @@ li a {
     background-color : #22a6b3 !important;
 }
 
-.dropdown-divider {
-    background-color : white;
-}
 
-.dropdown-item:hover {
-    background-color : #dfe4ea;
-    color : black !important;
-    border-radius : 25px 25px 25px 25px;
-}
 
 .nav-item:hover {
     background-color : #22a6b3;

@@ -7,15 +7,15 @@
     use app\utils\Renderer;
 
 
-    class DefaultController{
+    class HomeController extends BaseController{
 
         /**
          * Function which render the home page when called
          */
-        public function connexion() {
+        public function home() {
 
-            $connexionPage = Renderer::render('connexion.php');
-            echo $connexionPage;
+            $homePage = Renderer::render('home.php');
+            echo $homePage;
             
         }
 

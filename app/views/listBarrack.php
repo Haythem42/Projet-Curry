@@ -1,3 +1,7 @@
+<?php
+use app\models\Auth;
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -37,11 +41,33 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mx-auto">
-                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="../">Home</a></li>
+                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="../home/display">Home</a></li>
+                        <?php if(Auth::has("Admin") || Auth::has("Manager F") || Auth::has("Employee")): ?>
                         <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="../fireman/display">Firemen</a></li>
+                        <?php endif ?>
+                        <?php if(Auth::has("Admin") || Auth::has("Manager B") || Auth::has("Employee")): ?>
                         <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="">Barracks</a></li>
-                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="../role/display">Roles</a></li>
+                        <?php endif ?>
+                        <?php if(Auth::has("Admin")): ?>
                         <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="../user/display">Users</a></li>
+                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="../role/display">Roles</a></li>
+                        <?php endif ?>
+                        <?php if(Auth::is_logged() == true): ?>
+                        <li class="nav-item px-lg-4">
+                            <p class="nav-link text-uppercase">
+                            LOGGED AS : <?php echo($_SESSION['auth'][1]." ".$_SESSION['auth'][2]);?>
+                            </p>
+                        </li>
+                        <li class="nav-item px-lg-4">
+                            <a href="../connexion/disconnect" class="nav-link text-uppercase">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-left" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0v2z"/>
+                                    <path fill-rule="evenodd" d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z"/>
+                                </svg>
+                                DISCONNECT
+                            </a>
+                        </li>
+                        <?php endif ?>
                     </ul>
                 </div>
             </div>
@@ -69,6 +95,7 @@
                         <div class="cta-inner bg-faded text-center rounded">
                             <h2 class="section-heading mb-4">
                                 <span class="section-heading-upper">barrack's List</span>
+                                <?php if(Auth::can(6)): ?>
                                 <span class="section-heading-lower p-sm-2">
 
                                     <div class="d-grid gap-2 col-5 mx-auto">
@@ -76,6 +103,7 @@
                                     </div>
 
                                 </span>
+                                <?php endif ?>
                             </h2>
                             <table class="table table-striped" id="myTable">
                                 <thead>
@@ -85,8 +113,12 @@
                                         <th scope="col">CP</th>
                                         <th scope="col">Ville</th>
                                         <!-- <th scope="col">CodeTypeC</th> -->
+                                        <?php if(Auth::can(7)): ?>
                                         <th scope="col">Edit</th>
+                                        <?php endif ?>
+                                        <?php if(Auth::can(8)): ?>
                                         <th scope="col">Delete</th>
+                                        <?php endif ?>
                                         <th scope="col">More</th>
                                     </tr>
                                 </thead>
@@ -101,8 +133,12 @@
                                         <td><?= $barrack->getCP(); ?></td>
                                         <td><?= $barrack->getVille(); ?></td>
                                         <!-- <td><?= $barrack->getCodeTypeC(); ?></td> -->
+                                        <?php if(Auth::can(7)): ?>
                                         <td><a class="btn btn-outline-secondary" href="modify/<?= $barrack->getNumCaserne() ?>">MODIFY</a></td>
+                                        <?php endif ?>
+                                        <?php if(Auth::can(8)): ?>
                                         <td><a class="btn btn-outline-danger" href="erase/<?= $barrack->getNumCaserne() ?>">DELETE</a></td>
+                                        <?php endif ?>
                                         <td><a class="btn btn-outline-dark" href="expose/<?= $barrack->getNumCaserne() ?>"> > </a></td>
                                     </tr>
                                     

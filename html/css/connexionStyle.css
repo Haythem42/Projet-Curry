@@ -1,0 +1,62 @@
+.col-5 {
+    background-image: url(../img/loginBackground.png);
+    background-size : cover;
+    background-repeat: no-repeat;
+}
+
+.title {
+    color: #00A5A7;
+    font-size: 50px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.welcome-title {
+    color : white;
+    font-size: 50px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.welcome-message {
+    color : white;
+    font-size : 25px;
+    text-align : center;
+}
+
+input[type=text], input[type=password] {
+    width : 500px;
+    height: 60px;
+    border : none;
+    background-color: #f1f2f6;
+    margin-bottom : 10px;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+    width : 500px;
+    height: 60px;
+    border : none;
+    outline : none;
+    box-shadow: none;
+    background-color: #f1f2f6;
+    margin-bottom : 10px;
+}
+
+.btn-primary {
+    background-color: #00A5A7 !important;
+    width : 200px;
+    border-radius : 25px 25px 25px 25px !important;
+    border : none !important;
+    margin-top : 50px;
+}
+
+.btn-primary:focus {
+    border : 1px solid white !important;
+    outline : none !important;
+    box-shadow : none !important;
+}
+
+.alert {
+    width : 500px;
+}
+

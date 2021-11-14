@@ -23,20 +23,9 @@ class BarrackController extends BaseController {
     }
 
 
-    //Renvoie la page avec la liste de tous les pompiers
-    //Avec la pagination
-    // public function show($offset, $limit){ //READ du CRUD, Méthode GET du protocole HTTP
-    //     //Il faut penser à la sécurité
-    //     //Gestion des erreurs PDO ou autres ...
-    //     $listBarrack = $this->daoBarrack->findAll($offset, $limit);
-    //     $page = Renderer::render('listBarrack.php', compact('listBarrack'));
-    //     echo $page;
-    // }
-
 
     public function show($fragments = null){ //READ du CRUD, Méthode GET du protocole HTTP
-        //Il faut penser à la sécurité
-        //Gestion des erreurs PDO ou autres ...
+
 
         if (isset($fragments)) {
 
@@ -230,11 +219,21 @@ class BarrackController extends BaseController {
     }
 
     
-    public function error() : void {
+    public function error404() : void {
 
-        $errorPage = Renderer::render('error404.php');
-        echo $errorPage;
+        $error404Page = Renderer::render('error404.php');
+        echo $error404Page;
 
+    }
+
+
+    
+    /**
+     * Function which displays the error403 page.
+     */
+    public function error403() : void {
+        $error403Page = Renderer::render('error403.php');
+        echo $error403Page;
     }
 
 

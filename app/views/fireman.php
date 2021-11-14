@@ -1,3 +1,7 @@
+<?php
+use app\models\Auth;
+?>
+
 <!DOCTYPE html>
 
     <html lang="en">
@@ -50,17 +54,18 @@
 
 
             <nav class="navbar navbar-expand yellow">
-                <a class="navbar-brand" href="../..">CURRY PROJECT</a>
+                <p class="navbar-brand">CURRY PROJECT</p>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item align-items-center">
-                            <a class="nav-link" href="../">
+                            <a class="nav-link" href="../home/display">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house-door-fill" viewBox="0 0 16 16">
                                     <path d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5z"/>
                                 </svg>
                                 HOME
                             </a>
                         </li>
+                        <?php if(Auth::has("Admin") || Auth::has("Manager F") || Auth::has("Employee")): ?>
                         <li class="nav-item align-items-center">
                             <a class="nav-link" href="">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
@@ -71,6 +76,8 @@
                                 FIREMEN
                             </a>
                         </li>
+                        <?php endif ?>
+                        <?php if(Auth::has("Admin") || Auth::has("Manager B") || Auth::has("Employee")): ?>
                         <li class="nav-item align-items-center">
                             <a class="nav-link" href="../barrack/display">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
@@ -79,6 +86,8 @@
                                 BARRACKS
                             </a>
                         </li>
+                        <?php endif ?>
+                        <?php if(Auth::has("Admin") == true): ?>
                         <li class="nav-item align-items-center">
                             <a class="nav-link" href="../user/display">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
@@ -88,6 +97,8 @@
                                 USERS
                             </a>
                         </li>
+                        <?php endif ?>
+                        <?php if(Auth::has("Admin") == true): ?>
                         <li class="nav-item align-items-center">
                             <a class="nav-link" href="../role/display">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
@@ -97,6 +108,23 @@
                                 ROLES
                             </a>
                         </li>
+                        <?php endif ?>
+                        <?php if(Auth::is_logged() == true): ?>
+                        <li class="nav-item align-items-end">
+                            <p class="nav-link">
+                            LOGGED AS : <?php echo($_SESSION['auth'][1]." ".$_SESSION['auth'][2]);?>
+                            </p>
+                        </li>
+                        <li class="nav-item align-items-center">
+                            <a href="../connexion/disconnect" class="nav-link">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-left" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0v2z"/>
+                                    <path fill-rule="evenodd" d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z"/>
+                                </svg>
+                                DISCONNECT
+                            </a>
+                        </li>
+                        <?php endif ?>
                     </ul>
                 </div>
             </nav><br>
@@ -157,6 +185,7 @@
 
 
         <!-- PART : TABLE WHICH DISPLAY ALL THE FIREMEN -->
+        <?php if(Auth::can(2)): ?>
         <div class="w-90 f-r" style="margin-top: 20px;margin-right: 50px;">
             <div class="flex justify-content-center">
                 <a href="create" class="btn btn-success w-15 b-radius margin-r-80px">
@@ -166,14 +195,15 @@
                     </svg>
                     NEW FIREMAN
                 </a>
-            </div> 
+            </div>
             <div class="separator-50px"></div>
             <div class="separator-50px"></div>
         </div>
+        <?php endif ?>
 
 
 
-        <div class="container" style="background-color: white;border-radius: 2%;">
+        <div class="container" style="background-color: white;border-radius: 2%; padding: 60px;">
         <table id="firemenTable">
 
             <thead>
@@ -182,8 +212,12 @@
                     <th scope="col" style="width : 15%;" class="text-center">Matricule</th>
                     <th scope="col" style="width : 15%;" class="text-center">Prenom</th>
                     <th scope="col" style="width : 15%;" class="text-center">Nom</th>
+                    <?php if(Auth::can(3)):?>
                     <th scope="col" style="width : 15%;" class="text-center">Edit</th>
+                    <?php endif ?>
+                    <?php if(Auth::can(4)):?>
                     <th scope="col" style="width : 15%;" class="text-center">Delete</th>
+                    <?php endif ?>
                     <th scope="col" style="width : 20%;" class="text-center">Details</th>
                 </tr>
             </thead>
@@ -197,6 +231,7 @@
                         <td class="text-center"><?php echo($firemen[$i]->getMatricule());?></td>
                         <td class="text-center"><?php echo($firemen[$i]->getPrenom());?></td>
                         <td class="text-center"><?php echo($firemen[$i]->getNom());?></td>
+                        <?php if(Auth::can(3)):?>
                         <td class="text-center">
                             <a href="modify/<?php echo($firemen[$i]->getMatricule());?>" class="btn btn-warning w-75 b-radius">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
@@ -206,6 +241,8 @@
                                 MODIFY
                             </a>
                         </td>
+                        <?php endif ?>
+                        <?php if(Auth::can(4)):?>
                         <td class="text-center">
                             <button type="button" class="btn btn-danger w-75 b-radius" id="<?php echo($firemen[$i]->getMatricule());?> " data-bs-toggle="modal" data-bs-target="#deleteModal"  onclick="matchId(this)">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
@@ -214,6 +251,7 @@
                                 DELETE
                             </button>
                         </td>
+                        <?php endif ?>
                         <td class="text-center">
                             <button type="button" class="btn btn-dark w-75 b-radius" id="<?php echo($i);?>" onclick="matchInfo(this);" data-bs-toggle="modal" data-bs-target="#showInfo">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">

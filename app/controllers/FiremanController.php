@@ -7,14 +7,12 @@
     use app\utils\SingletonDBMaria;
     use app\utils\Renderer;
     use app\models\Fireman;
-
-    session_start();
+    use app\models\Auth;
 
 
     class FiremanController extends BaseController {
 
         private DAOFireman $daoPompier;
-
 
         /**
          * Constructor of the class which initialize the DAO object of the controller
@@ -27,6 +25,9 @@
         }
 
 
+        public function logout() { 
+            Auth::logout();
+        }
 
 
 
@@ -60,6 +61,11 @@
             
         }
 
+
+        public function connect() : void {
+            $pageConnexion = Renderer::render('connexion.php');
+            echo $pageConnexion;
+        }
 
 
 
@@ -290,11 +296,21 @@
         /**
          * Function which displays error404 page
          */
-        public function error() : void {
+        public function error404() : void {
 
-            $errorPage = Renderer::render('error404.php');
-            echo $errorPage;
+            $error404Page = Renderer::render('error404.php');
+            echo $error404Page;
     
+        }
+
+
+        
+        /**
+         * Function which displays the error403 page.
+         */
+        public function error403() : void {
+            $error403Page = Renderer::render('error403.php');
+            echo $error403Page;
         }
 
     }

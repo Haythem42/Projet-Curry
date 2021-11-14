@@ -1,3 +1,7 @@
+<?php
+use app\models\Auth;
+?>
+
 <!DOCTYPE html>
     <html lang="en">
     <head>
@@ -9,6 +13,7 @@
 
         <link rel="stylesheet" href="../css/userStyle.css">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        <link rel="icon" type="image/x-icon" href="/img/role.ico" />
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
@@ -39,7 +44,7 @@
                 <div class="collapse navbar-collapse justify-content-center" id="navbarNavDropdown">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link px-5" href="../..">Home</a>
+                            <a class="nav-link px-5" href="../../home/display">Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link px-5" href="../../fireman/display">Firemen</a>
@@ -50,6 +55,25 @@
                         <li class="nav-item">
                             <a class="nav-link px-5" href="">Users</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link px-5" href="../../role/display">Roles</a>
+                        </li>
+                        <?php if(Auth::is_logged() == true): ?>
+                        <li>
+                            <p class="nav-link px-5" style="color: white;font-weight: bold;font-size: 20px;">
+                            LOGGED AS : <?php echo($_SESSION['auth'][1]." ".$_SESSION['auth'][2]);?>
+                            </p>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../connexion/disconnect" class="nav-link" style="color: white;font-weight: bold;font-size: 20px;">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-left" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0v2z"/>
+                                    <path fill-rule="evenodd" d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z"/>
+                                </svg>
+                                DISCONNECT
+                            </a>
+                        </li>
+                        <?php endif ?>
                     </ul>
                 </div>
             </nav>
