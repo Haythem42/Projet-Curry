@@ -49,7 +49,10 @@ class RoleController extends BaseController {
         //Il faut penser à la sécurité
         //Gestion des erreurs PDO ou autres ...
 
-        $role = new Role($_POST['id'], $_POST['libelle']);
+        $permission = 
+
+
+        $role = new Role($_POST['id'], $_POST['role'], $_POST['permission']);
         
         $newRole = $this->daoRole->save($role);
 
