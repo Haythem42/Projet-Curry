@@ -14,7 +14,6 @@
          * @return bool
          */
         public function checkDataValidity(string $mail) : bool {
-
            if(
                $this->checkMailBeginning($mail) == true and
                $this->checkDot($mail) == true and

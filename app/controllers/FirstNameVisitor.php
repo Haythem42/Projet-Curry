@@ -46,7 +46,7 @@
          */
         public function checkLetter(string $firstName) : bool {
 
-            if(ctype_alpha($firstName)) {return true;}
+            if(preg_match("/\A[A-Za-z\s\-]+\z/", $firstName)) {return true;}
             else {return false;}
 
         }

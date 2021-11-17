@@ -74,115 +74,155 @@ use app\models\Auth;
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form>
-                        <div class="form-group row">
-                            <label for="id" class="col-sm-3 col-form-label">Id</label>
-                            <div class="col-sm-9">
-                                <input name="id" type="text" class="form-control" id="id" placeholder="Ex. : 5" required>
-                            </div>
-                        </div>
+                    <form action="create" method="POST">
                         <div class="form-group row">
                             <label for="role" class="col-sm-3 col-form-label">Role</label>
                             <div class="col-sm-9">
                                 <input name="role" type="text" class="form-control" id="role" placeholder="Ex. : Admin" required>
                             </div>
-                        </div>
-                        <h4 class="text-center">Permissions of Fireman's pages</h4>
+                        </div><br>
+                        <h4 class="text-center">Firemen permissions</h4><br>
                         <div class="form-group row">
                             <div class="col-sm-3">Permissions</div>
                             <div class="col-sm-9">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="createPermission">
+                                    <input type="hidden" name="boxF1" value="N"/>
+                                    <input class="form-check-input" type="checkbox" id="createPermission" onclick="check(this);">
                                     <label class="form-check-label" for="createPermission">
-                                    Create
+                                    READ
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="readPermission">
+                                    <input type="hidden" name="boxF2" value="N"/>
+                                    <input class="form-check-input" type="checkbox" id="readPermission" onclick="check(this);">
                                     <label class="form-check-label" for="readPermission">
-                                    Read
+                                    CREATE
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="updatePermission">
+                                    <input type="hidden" name="boxF3" value="N"/>
+                                    <input class="form-check-input" type="checkbox" id="updatePermission" onclick="check(this);">
                                     <label class="form-check-label" for="updatePermission">
-                                    Update
+                                    UPDATE
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="deletePermission">
+                                    <input type="hidden" name="boxF4" value="N"/>
+                                    <input class="form-check-input" type="checkbox" id="deletePermission" onclick="check(this);">
                                     <label class="form-check-label" for="deletePermission">
-                                    Delete
+                                    DELETE
                                     </label>
                                 </div>
                             </div>
-                        </div>
-                        <h4 class="text-center">Permissions of Barrack's pages</h4>
+                        </div><br>
+                        <h4 class="text-center">Barracks permissions</h4><br>
                         <div class="form-group row">
                             <div class="col-sm-3">Permissions</div>
                             <div class="col-sm-9">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="createPermission">
+                                    <input type="hidden" name="boxB1" value="N"/>
+                                    <input class="form-check-input" type="checkbox" id="createPermission" onclick="check(this);">
                                     <label class="form-check-label" for="createPermission">
-                                    Create
+                                    READ
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="readPermission">
+                                    <input type="hidden" name="boxB2" value="N"/>
+                                    <input class="form-check-input" type="checkbox" id="readPermission"onclick="check(this);">
                                     <label class="form-check-label" for="readPermission">
-                                    Read
+                                    CREATE
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="updatePermission">
+                                    <input type="hidden" name="boxB3" value="N"/>
+                                    <input class="form-check-input" type="checkbox" id="updatePermission" onclick="check(this);">
                                     <label class="form-check-label" for="updatePermission">
-                                    Update
+                                    UPDATE
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="deletePermission">
+                                    <input type="hidden" name="boxB4" value="N"/>
+                                    <input class="form-check-input" type="checkbox" id="deletePermission" onclick="check(this);">
                                     <label class="form-check-label" for="deletePermission">
-                                    Delete
+                                    DELETE
                                     </label>
                                 </div>
                             </div>
-                        </div>
-                        <h4 class="text-center">Permissions of User's pages</h4>
+                        </div><br>
+                        <h4 class="text-center">User permissions</h4><br>
                         <div class="form-group row">
                             <div class="col-sm-3">Permissions</div>
                             <div class="col-sm-9">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="createPermission">
+                                    <input type="hidden" name="boxU1" value="N"/>
+                                    <input class="form-check-input" type="checkbox" id="createPermission" onclick="check(this);">
                                     <label class="form-check-label" for="createPermission">
-                                    Create
+                                    READ
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="readPermission">
+                                    <input type="hidden" name="boxU2" value="N"/>
+                                    <input class="form-check-input" type="checkbox" id="readPermission" onclick="check(this);">
                                     <label class="form-check-label" for="readPermission">
-                                    Read
+                                    CREATE
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="updatePermission">
+                                    <input type="hidden" name="boxU3" value="N"/>
+                                    <input class="form-check-input" type="checkbox" id="updatePermission" onclick="check(this);">
                                     <label class="form-check-label" for="updatePermission">
-                                    Update
+                                    UPDATE
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="deletePermission">
+                                    <input type="hidden" name="boxU4" value="N"/>
+                                    <input class="form-check-input" type="checkbox" id="deletePermission" onclick="check(this);">
                                     <label class="form-check-label" for="deletePermission">
-                                    Delete
+                                    DELETE
+                                    </label>
+                                </div>
+                            </div>
+                        </div><br>
+                        <h4 class="text-center">Role permissions</h4><br>
+                        <div class="form-group row">
+                            <div class="col-sm-3">Permissions</div>
+                            <div class="col-sm-9">
+                                <div class="form-check">
+                                    <input type="hidden" name="boxR1" value="N"/>
+                                    <input class="form-check-input" type="checkbox" id="createPermission" onclick="check(this);">
+                                    <label class="form-check-label" for="createPermission">
+                                    READ
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="hidden" name="boxR2" value="N"/>
+                                    <input class="form-check-input" type="checkbox" id="readPermission" onclick="check(this);">
+                                    <label class="form-check-label" for="readPermission">
+                                    CREATE
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="hidden" name="boxR3" value="N"/>
+                                    <input class="form-check-input" type="checkbox" id="updatePermission" onclick="check(this);">
+                                    <label class="form-check-label" for="updatePermission">
+                                    UPDATE
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="hidden" name="boxR4" value="N"/>
+                                    <input class="form-check-input" type="checkbox" id="deletePermission" onclick="check(this);">
+                                    <label class="form-check-label" for="deletePermission">
+                                    DELETE
                                     </label>
                                 </div>
                             </div>
                         </div>
-                    </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="submit" class="btn btn-primary">Confirm</button>
                 </div>
+                </form>
                 </div>
             </div>
         </div>
@@ -198,114 +238,224 @@ use app\models\Auth;
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form action="modify" method="POST">
                         <div class="form-group row">
-                            <label for="staticRole" class="col-sm-3 col-form-label">Role</label>
+                            <label for="id" class="col-sm-3 col-form-label">Id</label>
                             <div class="col-sm-9">
-                                <input type="text" readonly class="form-control-plaintext" id="staticRole" value="<?= $roleList[0]->getName() ?>">
+                                <input name="idModified" type="text" class="form-control" id="idModified" readonly>
                             </div>
-                        </div>
-                        <h4 class="text-center">Permissions of Fireman's pages</h4>
+                        </div><br>
                         <div class="form-group row">
-                            <div class="col-sm-3">Permissions</div>
+                            <label for="role" class="col-sm-3 col-form-label">Role</label>
                             <div class="col-sm-9">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="createPermission">
-                                    <label class="form-check-label" for="createPermission">
-                                    Create
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="readPermission">
-                                    <label class="form-check-label" for="readPermission">
-                                    Read
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="updatePermission">
-                                    <label class="form-check-label" for="updatePermission">
-                                    Update
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="deletePermission">
-                                    <label class="form-check-label" for="deletePermission">
-                                    Delete
-                                    </label>
-                                </div>
+                                <input name="roleModified" type="text" class="form-control" id="roleModified" required>
                             </div>
-                        </div>
-                        <h4 class="text-center">Permissions of Barrack's pages</h4>
+                        </div><br>
+                        <h4 class="text-center">Firemen permissions</h4><br>
                         <div class="form-group row">
                             <div class="col-sm-3">Permissions</div>
                             <div class="col-sm-9">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="createPermission">
+                                    <input type="hidden" name="boxModifiedInputF1" id="boxModifiedInputF1" value="N"/>
+                                    <input class="form-check-input" type="checkbox" id="boxModifiedF1" onclick="check(this);">
                                     <label class="form-check-label" for="createPermission">
-                                    Create
+                                    READ
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="readPermission">
+                                    <input type="hidden" name="boxModifiedInputF2" id="boxModifiedInputF2" value="N"/>
+                                    <input class="form-check-input" type="checkbox" id="boxModifiedF2" onclick="check(this);">
                                     <label class="form-check-label" for="readPermission">
-                                    Read
+                                    CREATE
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="updatePermission">
+                                    <input type="hidden" name="boxModifiedInputF3" id="boxModifiedInputF3" value="N"/>
+                                    <input class="form-check-input" type="checkbox" id="boxModifiedF3" onclick="check(this);">
                                     <label class="form-check-label" for="updatePermission">
-                                    Update
+                                    UPDATE
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="deletePermission">
+                                    <input type="hidden" name="boxModifiedInputF4" id="boxModifiedInputF4" value="N"/>
+                                    <input class="form-check-input" type="checkbox" id="boxModifiedF4" onclick="check(this);">
                                     <label class="form-check-label" for="deletePermission">
-                                    Delete
+                                    DELETE
                                     </label>
                                 </div>
                             </div>
-                        </div>
-                        <h4 class="text-center">Permissions of User's pages</h4>
+                        </div><br>
+                        <h4 class="text-center">Barracks permissions</h4><br>
                         <div class="form-group row">
                             <div class="col-sm-3">Permissions</div>
                             <div class="col-sm-9">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="createPermission">
+                                    <input type="hidden" name="boxModifiedInputB1" id="boxModifiedInputB1" value="N"/>
+                                    <input class="form-check-input" type="checkbox" id="boxModifiedB1" onclick="check(this);">
                                     <label class="form-check-label" for="createPermission">
-                                    Create
+                                    READ
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="readPermission">
+                                    <input type="hidden" name="boxModifiedInputB2" id="boxModifiedInputB2" value="N"/>
+                                    <input class="form-check-input" type="checkbox" id="boxModifiedB2"onclick="check(this);">
                                     <label class="form-check-label" for="readPermission">
-                                    Read
+                                    CREATE
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="updatePermission">
+                                    <input type="hidden" name="boxModifiedInputB3" id="boxModifiedInputB3" value="N"/>
+                                    <input class="form-check-input" type="checkbox" id="boxModifiedB3" onclick="check(this);">
                                     <label class="form-check-label" for="updatePermission">
-                                    Update
+                                    UPDATE
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="deletePermission">
+                                    <input type="hidden" name="boxModifiedInputB4" id="boxModifiedInputB4" value="N"/>
+                                    <input class="form-check-input" type="checkbox" id="boxModifiedB4" onclick="check(this);">
                                     <label class="form-check-label" for="deletePermission">
-                                    Delete
+                                    DELETE
+                                    </label>
+                                </div>
+                            </div>
+                        </div><br>
+                        <h4 class="text-center">User permissions</h4><br>
+                        <div class="form-group row">
+                            <div class="col-sm-3">Permissions</div>
+                            <div class="col-sm-9">
+                                <div class="form-check">
+                                    <input type="hidden" name="boxModifiedInputU1" id="boxModifiedInputU1" value="N"/>
+                                    <input class="form-check-input" type="checkbox" id="boxModifiedU1" onclick="check(this);">
+                                    <label class="form-check-label" for="createPermission">
+                                    READ
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="hidden" name="boxModifiedInputU2" id="boxModifiedInputU2" value="N"/>
+                                    <input class="form-check-input" type="checkbox" id="boxModifiedU2" onclick="check(this);">
+                                    <label class="form-check-label" for="readPermission">
+                                    CREATE
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="hidden" name="boxModifiedInputU3" id="boxModifiedInputU3" value="N"/>
+                                    <input class="form-check-input" type="checkbox" id="boxModifiedU3" onclick="check(this);">
+                                    <label class="form-check-label" for="updatePermission">
+                                    UPDATE
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="hidden" name="boxModifiedInputU4" id="boxModifiedInputU4" value="N"/>
+                                    <input class="form-check-input" type="checkbox" id="boxModifiedU4" onclick="check(this);">
+                                    <label class="form-check-label" for="deletePermission">
+                                    DELETE
+                                    </label>
+                                </div>
+                            </div>
+                        </div><br>
+                        <h4 class="text-center">Role permissions</h4><br>
+                        <div class="form-group row">
+                            <div class="col-sm-3">Permissions</div>
+                            <div class="col-sm-9">
+                                <div class="form-check">
+                                    <input type="hidden" name="boxModifiedInputR1" id="boxModifiedInputR1" value="N"/>
+                                    <input class="form-check-input" type="checkbox" id="boxModifiedR1" onclick="check(this);">
+                                    <label class="form-check-label" for="createPermission">
+                                    READ
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="hidden" name="boxModifiedInputR2" id="boxModifiedInputR2" value="N"/>
+                                    <input class="form-check-input" type="checkbox" id="boxModifiedR2" onclick="check(this);">
+                                    <label class="form-check-label" for="readPermission">
+                                    CREATE
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="hidden" name="boxModifiedInputR3" id="boxModifiedInputR3" value="N"/>
+                                    <input class="form-check-input" type="checkbox" id="boxModifiedR3" onclick="check(this);">
+                                    <label class="form-check-label" for="updatePermission">
+                                    UPDATE
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="hidden" name="boxModifiedInputR4" id="boxModifiedInputR4" value="N"/>
+                                    <input class="form-check-input" type="checkbox" id="boxModifiedR4" onclick="check(this);">
+                                    <label class="form-check-label" for="deletePermission">
+                                    DELETE
                                     </label>
                                 </div>
                             </div>
                         </div>
-                    </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
                 </div>
+                </form>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Delete Modal -->
+        <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="edit">Delete role</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="delete" method="POST">
+                    Are you sure you want to delete this role ?
+                    <input type="hidden" id="roleDelete" name="roleDelete"/>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-danger">Confirm</button>
+                </div>
+                </form>
                 </div>
             </div>
         </div>
         
         <section class="page-section cta">
+        <?php   if(isset($_SESSION['filterMessage']) && $_SESSION['color'] == "red"): ?>
+            <div class="container flash" style="width : 30%;">
+                <div class="alert alert-danger text-center">
+                    <?php echo($_SESSION['filterMessage']); ?>
+                </div>
+            </div>         
+        <?php  endif; ?>
+        <?php 
+            if (isset($_SESSION['result']) && $_SESSION['color'] == "green") {?>
+
+            <div class="container flash" style="width : 30%;">
+                <div class="alert alert-success text-center">
+                    <?php echo($_SESSION['result']); ?>
+                </div>
+            </div>   
+
+            <?php  
+            }
+
+            if (isset($_SESSION['result']) && $_SESSION['color'] == "red") {?>
+
+            <div class="container flash" style="width : 30%;">
+                <div class="alert alert-danger text-center">
+                    <?php echo($_SESSION['result']); ?>
+                </div>
+            </div> 
+            <?php
+            }
+
+            unset($_SESSION['result']);
+            unset($_SESSION['color']);
+            unset($_SESSION['filterMessage']);
+            ?>
             <div class="container">
                 <div class="row">
                     <div class="col-xl-9 mx-auto">
@@ -315,7 +465,7 @@ use app\models\Auth;
                                 <span class="section-heading-lower p-sm-2">
 
                                     <div class="d-grid gap-2 col-5 mx-auto">
-                                    <a class="btn btn-primary" href="create" data-toggle="modal" data-target="#create">ADD A NEW ROLE</a>
+                                    <a class="btn btn-primary" data-toggle="modal" data-target="#create">ADD A NEW ROLE</a>
                                     </div>
 
                                 </span>
@@ -326,85 +476,79 @@ use app\models\Auth;
             </div>
         </section>
 
-        <section class="page-section">
-            <div class="container">
-                <div class="product-item">
-                    <div class="product-item-title d-flex">
-                        <div class="bg-faded p-5 d-flex ms-auto rounded">
-                            <h2 class="section-heading mb-0">
-                                <span class="section-heading-upper text-center"><?= $roleList[0]->getId(); ?></span>
-                                <span class="section-heading-lower"><?= $roleList[0]->getName(); ?></span>
-                            </h2>
-                        </div>
-                    </div>
-                    <img class="product-item-img mx-auto d-flex rounded img-fluid mb-3 mb-lg-0" src="/img/manag.jpg" alt="..." />
-                    <div class="product-item-description d-flex me-auto">
-                        <div class="bg-faded p-5 rounded"><p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In eget aliquam lacus. Aliquam vel lacus lorem. Etiam id pretium nisl. Cras tempus turpis quis sem efficitur consectetur.</p>
-                            <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#edit">
-                            MODIFY
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
 
-        <section class="page-section">
-            <div class="container">
-                <div class="product-item">
-                    <div class="product-item-title d-flex">
-                        <div class="bg-faded p-5 d-flex me-auto rounded">
-                            <h2 class="section-heading mb-0">
-                                <span class="section-heading-upper text-center"><?= $roleList[1]->getId(); ?></span>
-                                <span class="section-heading-lower"><?= $roleList[1]->getName(); ?></span>
-                            </h2>
-                        </div>
-                    </div>
-                    <img class="product-item-img mx-auto d-flex rounded img-fluid mb-3 mb-lg-0" src="/img/manag.jpg" alt="..." />
-                    <div class="product-item-description d-flex ms-auto">
-                        <div class="bg-faded p-5 rounded"><p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In eget aliquam lacus. Aliquam vel lacus lorem. Etiam id pretium nisl. Cras tempus turpis quis sem efficitur consectetur.</p></div>
-                    </div>
-                </div>
-            </div>
-        </section>
+        <?php $count = 0;
+        foreach($roleList as $role) {
 
-        <section class="page-section">
-            <div class="container">
-                <div class="product-item">
-                    <div class="product-item-title d-flex">
-                        <div class="bg-faded p-5 d-flex ms-auto rounded">
-                            <h2 class="section-heading mb-0">
-                                <span class="section-heading-upper text-center"><?= $roleList[2]->getId(); ?></span>
-                                <span class="section-heading-lower"><?= $roleList[2]->getName(); ?></span>
-                            </h2>
-                        </div>
-                    </div>
-                    <img class="product-item-img mx-auto d-flex rounded img-fluid mb-3 mb-lg-0" src="/img/manag.jpg" alt="..." />
-                    <div class="product-item-description d-flex me-auto">
-                        <div class="bg-faded p-5 rounded"><p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In eget aliquam lacus. Aliquam vel lacus lorem. Etiam id pretium nisl. Cras tempus turpis quis sem efficitur consectetur.</p></div>
-                    </div>
-                </div>
-            </div>
-        </section>
+        if ($count%2 == 0) { ?>
 
-        <section class="page-section">
-            <div class="container">
-                <div class="product-item">
-                    <div class="product-item-title d-flex">
-                        <div class="bg-faded p-5 d-flex me-auto rounded">
-                            <h2 class="section-heading mb-0">
-                                <span class="section-heading-upper text-center"><?= $roleList[3]->getId(); ?></span>
-                                <span class="section-heading-lower"><?= $roleList[3]->getName(); ?></span>
-                            </h2>
+            <section class="page-section">
+                <div class="container">
+                    <div class="product-item">
+                        <div class="product-item-title d-flex">
+                            <div class="bg-faded p-5 d-flex ms-auto rounded">
+                                <h2 class="section-heading mb-0">
+                                    <span class="section-heading-upper text-center"><?= $role->getId(); ?></span>
+                                    <span class="section-heading-lower"><?= $role->getName(); ?></span>
+                                </h2>
+                            </div>
+                        </div>
+                        <img class="product-item-img mx-auto d-flex rounded img-fluid mb-3 mb-lg-0" src="/img/manag.jpg" alt="..." />
+                        <div class="product-item-description d-flex me-auto">
+                            <div class="bg-faded p-5 rounded">
+                                <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In eget aliquam lacus. Aliquam vel lacus lorem. Etiam id pretium nisl. Cras tempus turpis quis sem efficitur consectetur.</p>
+                                <button type="button" id="<?php echo($role->getId()); ?>" title="<?php echo($role->getId());echo(",");echo($role->getName());echo(",");echo($role->getPermissions());?>" class="btn btn-outline-secondary" data-toggle="modal" data-target="#edit" onclick="matchInfo(this);">
+                                    MODIFY
+                                </button>
+                                <button type="button" id="<?php echo($role->getId()); ?>" class="btn btn-outline-danger" data-toggle="modal" data-target="#delete" onclick="matchId(this);">
+                                    DELETE
+                                </button>
+                            </div>
                         </div>
                     </div>
-                    <img class="product-item-img mx-auto d-flex rounded img-fluid mb-3 mb-lg-0" src="/img/manag.jpg" alt="..." />
-                    <div class="product-item-description d-flex ms-auto">
-                        <div class="bg-faded p-5 rounded"><p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In eget aliquam lacus. Aliquam vel lacus lorem. Etiam id pretium nisl. Cras tempus turpis quis sem efficitur consectetur.</p></div>
+                </div>
+            </section>
+
+        <?php
+        }
+
+
+        if ($count%2 == 1) { ?>
+        
+            <section class="page-section">
+                <div class="container">
+                    <div class="product-item">
+                        <div class="product-item-title d-flex">
+                            <div class="bg-faded p-5 d-flex me-auto rounded">
+                                <h2 class="section-heading mb-0">
+                                    <span class="section-heading-upper text-center"><?= $role->getId(); ?></span>
+                                    <span class="section-heading-lower"><?= $role->getName(); ?></span>
+                                </h2>
+                            </div>
+                        </div>
+                        <img class="product-item-img mx-auto d-flex rounded img-fluid mb-3 mb-lg-0" src="/img/manag.jpg" alt="..." />
+                        <div class="product-item-description d-flex ms-auto">
+                            <div class="bg-faded p-5 rounded">
+                                <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In eget aliquam lacus. Aliquam vel lacus lorem. Etiam id pretium nisl. Cras tempus turpis quis sem efficitur consectetur.</p>
+                                <button type="button" id="<?php echo($role->getId()); ?>" title="<?php echo($role->getId());echo(",");echo($role->getName());echo(",");echo($role->getPermissions());?>" class="btn btn-outline-secondary" data-toggle="modal" data-target="#edit" onclick="matchInfo(this);">
+                                    MODIFY
+                                </button>
+                                <button type="button" id="<?php echo($role->getId()); ?>" class="btn btn-outline-danger" data-toggle="modal" data-target="#delete" onclick="matchId(this);">
+                                    DELETE
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
+
+        <?php
+        }
+
+        $count = $count + 1;
+
+        } ?>
+
         
         <footer class="footer text-faded text-center py-5">
             <div class="container"><p class="m-0 small">Haythem & Quentin properties | All rights reserved &copy;</p></div>
@@ -423,6 +567,142 @@ use app\models\Auth;
 
         <!-- Core theme JS-->
         <script src="/js/scriptBarrack.js"></script>
+
+        <script>
+
+            //Function to save the value of the checkboxes when creating a role.
+            function check(me) {
+                if(me.checked) {
+                    me.previousSibling.previousSibling.value = "Y";
+                } else {
+                    me.previousSibling.previousSibling.value = "N";
+                }
+            }
+
+
+            //Function which retrieves information about the role modified by the user.
+            function matchInfo(mdfButton) {
+
+                var roleInfo = mdfButton.title.split(",");
+
+                // Converting int number for permissions in binary string whose length is 16.
+                var intPermissions = roleInfo[2];
+                var binaryString = (intPermissions >>> 0).toString(2);
+                var finalBinary = "";
+
+                if(binaryString.length != 16) {
+
+                    var stringZero = "";
+                    for(i=0; i <16-binaryString.length; i++) {
+
+                        stringZero = stringZero.concat("0");
+
+                    }
+
+                    finalBinary = stringZero + binaryString;
+
+                    var splittedFinalBinary = finalBinary.split("");
+                    var reversedFinalBinary = splittedFinalBinary.reverse();
+                    var reversedStringBinary = reversedFinalBinary.join("");
+
+                    roleInfo[2] = reversedStringBinary;
+
+                } else {
+
+                    var splittedFinalBinary = binaryString.split("");
+                    var reversedFinalBinary = splittedFinalBinary.reverse();
+                    var reversedStringBinary = reversedFinalBinary.join("");
+
+                    roleInfo[2] = reversedStringBinary;
+
+                }
+                
+
+                console.log(roleInfo);
+
+                document.getElementById("idModified").value = roleInfo[0];
+                document.getElementById("roleModified").value = roleInfo[1];
+
+                // Filling checkboxes concerning firemen permissions section.
+                for(i=0; i<4; i++) {
+
+                    if(roleInfo[2][i] == "1") {
+
+                        document.getElementById("boxModifiedF"+(i+1)).checked = true;
+                        document.getElementById("boxModifiedInputF"+(i+1)).value = "Y";
+
+                    } else {
+
+                        document.getElementById("boxModifiedF"+(i+1)).checked = false;
+                        document.getElementById("boxModifiedInputF"+(i+1)).value = "N";
+
+                    }
+
+                }
+
+
+                // Filling checkboxes concerning barracks permissions section.
+                for(i=0; i<4; i++) {
+
+                    if((roleInfo[2][i + 4]) == "1") {
+
+                        document.getElementById("boxModifiedB"+(i+1)).checked = true;
+                        document.getElementById("boxModifiedInputB"+(i+1)).value = "Y";
+
+                    } else {
+
+                        document.getElementById("boxModifiedB"+(i+1)).checked = false;
+                        document.getElementById("boxModifiedInputB"+(i+1)).value = "N";
+
+                    }
+
+                }
+
+
+                // Filling checkboxes concerning users permissions section.
+                for(i=0; i<4; i++) {
+
+                    if((roleInfo[2][i + 8]) == "1") {
+
+                        document.getElementById("boxModifiedU"+(i+1)).checked = true;
+                        document.getElementById("boxModifiedInputU"+(i+1)).value = "Y";
+
+                    } else {
+
+                        document.getElementById("boxModifiedU"+(i+1)).checked = false;
+                        document.getElementById("boxModifiedInputU"+(i+1)).value = "N";
+
+                    }
+
+                }
+
+
+                // Filling checkboxes concerning roles permissions section.
+                for(i=0; i<4; i++) {
+
+                    if((roleInfo[2][i + 12]) == "1") {
+
+                        document.getElementById("boxModifiedR"+(i+1)).checked = true;
+                        document.getElementById("boxModifiedInputR"+(i+1)).value = "Y";
+
+                    } else {
+
+                        document.getElementById("boxModifiedR"+(i+1)).checked = false;
+                        document.getElementById("boxModifiedInputR"+(i+1)).value = "N";
+
+                    }
+
+                }
+
+            }
+
+            function matchId(buttonDelete) {
+
+                document.getElementById("roleDelete").value = buttonDelete.id;
+            }
+
+
+        </script>
     
     </body>
     

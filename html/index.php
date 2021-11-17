@@ -637,7 +637,7 @@ function roleRoutes_get($fragments)
             if(!empty($_SESSION['auth'])) {
 
                 // Second check : if the user has the permission to see the roles and permissions.
-                if(Auth::can(12)) {
+                if(Auth::can(13)) {
 
                     call_user_func_array([new RoleController(),"show"], $fragments);
 
@@ -661,14 +661,26 @@ function roleRoutes_get($fragments)
 
 
 
-        case "expose":
+        default :
+            call_user_func_array([new RoleController(), "error404"], $fragments);
+            break;
+
+    }
+}
+
+function roleRoutes_post($fragments)
+{
+    $action = array_shift($fragments);
+    switch ($action) {
+
+        case "create":
             //First check : if the user is logged.
             if(!empty($_SESSION['auth'])) {
 
-                // Second check : if the user has the permission to see details about the roles and permissions.
-                if(Auth::can(12)) {
+                // Second check : if the user has the permission to create a new role.
+                if(Auth::can(14)) {
 
-                    call_user_func_array([new RoleController(),"visualize"], $fragments);
+                    call_user_func_array([new RoleController(),"insert"], $fragments);
 
                 }
                 // If the user doesn't have the permission, we redirect to permission error page.
@@ -690,47 +702,66 @@ function roleRoutes_get($fragments)
 
 
 
-        case "create" :
-
-            call_user_func_array([new RoleController(), "add"], $fragments);
-            break;
-
-        case "modify" :
-
-            call_user_func_array([new RoleController(), "update"], $fragments);
-            break;
-
-        case "erase" :
-
-            call_user_func_array([new RoleController(), "delete"], $fragments);
-            break;
-
-        default :
-
-            call_user_func_array([new BarrackController(), "error404"], $fragments);
-            break;
-
-    }
-}
-
-function roleRoutes_post($fragments)
-{
-    $action = array_shift($fragments);
-    switch ($action) {
-
-        case "create":
-
-            call_user_func_array([new RoleController(), "insert"], $fragments);
-            break;
-
         case "modify":
+            //First check : if the user is logged.
+            if(!empty($_SESSION['auth'])) {
 
-            call_user_func_array([new RoleController(), "alter"], $fragments);
+                // Second check : if the user has the permission to modify role / permissions.
+                if(Auth::can(15)) {
+
+                    call_user_func_array([new RoleController(),"alter"], $fragments);
+
+                }
+                // If the user doesn't have the permission, we redirect to permission error page.
+                else { 
+                    
+                    call_user_func_array([new RoleController(),"error403"], $fragments);
+                
+                }
+
+            }
+            // If the user is not logged, we redirect to login page.
+            else { 
+
+                $_SESSION['notConnected'] = true;
+                header("Location: ../../"); 
+
+            }
             break;
+
+
+
+        case "delete":
+            //First check : if the user is logged.
+            if(!empty($_SESSION['auth'])) {
+
+                // Second check : if the user has the permission to delete a role.
+                if(Auth::can(16)) {
+
+                    call_user_func_array([new RoleController(),"erase"], $fragments);
+
+                }
+                // If the user doesn't have the permission, we redirect to permission error page.
+                else { 
+                    
+                    call_user_func_array([new RoleController(),"error403"], $fragments);
+                
+                }
+
+            }
+            // If the user is not logged, we redirect to login page.
+            else { 
+
+                $_SESSION['notConnected'] = true;
+                header("Location: ../../"); 
+
+            }
+            break;
+        
+
 
         default:
-
-        call_user_func_array([new BarrackController(), "error"], $fragments);
+        call_user_func_array([new RoleController(), "error404"], $fragments);
             break;
 
 

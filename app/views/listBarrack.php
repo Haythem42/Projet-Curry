@@ -82,21 +82,21 @@ use app\models\Auth;
         
         <section class="page-section cta">
             <?php if (isset($_SESSION['message']) && $_SESSION['color'] == "green"): ?>
-                <div class="container flash" style="width : 30%;">
+                <div class="container flash" style="width : 30%;" id="error">
                     <div class="alert alert-success text-center">
                         <?php echo($_SESSION['message']); ?>
                     </div>
                 </div>
             <?php  endif ?>
             <?php if (isset($_SESSION['message']) && $_SESSION['color'] == "red"): ?>
-                <div class="container flash" style="width : 30%;">
+                <div class="container flash" style="width : 30%;" id="error">
                     <div class="alert alert-danger text-center">
                         <?php echo($_SESSION['message']); ?>
                     </div>
                 </div>
             <?php endif ?>
             <?php if (isset($_SESSION['messageFilter']) && $_SESSION['color'] == "red"): ?>
-                <div class="container flash" style="width : 30%;">
+                <div class="container flash" style="width : 30%;" id="error">
                     <div class="alert alert-danger text-center">
                         <?php echo($_SESSION['messageFilter']); ?>
                     </div>
@@ -125,11 +125,9 @@ use app\models\Auth;
                             <table class="table table-striped" id="myTable">
                                 <thead>
                                     <tr>
-                                        <!-- <th scope="col">NumCaserne</th> -->
                                         <th scope="col">Adresse</th>
                                         <th scope="col">CP</th>
                                         <th scope="col">Ville</th>
-                                        <!-- <th scope="col">CodeTypeC</th> -->
                                         <?php if(Auth::can(7)): ?>
                                         <th scope="col">Edit</th>
                                         <?php endif ?>

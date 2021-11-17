@@ -22,29 +22,6 @@ class DAORole
         
     }
 
-    /**
-     * Retrieve a role by id
-     * 
-     * @param string $roleId
-     * @return id
-    */
-    //? veut dire qu'il ne peut rien retourner (NULL)
-    public function find($roleId): ?Role
-    {
-        
-        $SQL = 'SELECT * FROM role WHERE id = :id;';
-        
-        $prepareStatement = $this->connexion->prepare($SQL);
-        $prepareStatement->bindParam("id", $roleId);
-        $prepareStatement->execute();
-
-        $data = $prepareStatement->fetch(\PDO::FETCH_OBJ);
-
-        $id = new Role($data->id, $data->libelle);
-        
-        return $id;
-
-    }
 
     /**
      * Save/insert a new role into Role DB
@@ -53,16 +30,15 @@ class DAORole
      * @return int $linesAdded
     */
     // Real function : public function save(Role $role): void
-    public function save(Role $role): int
-    {
+    public function save(Role $role): int {
 
-        $SQL = 'INSERT INTO role VALUES (:id, :libelle, :permissions)';
+        $SQL = 'INSERT INTO role (name, permissions)
+                VALUES (?, ?)';
         
         $prepareStatement = $this->connexion->prepare($SQL);
 
-        $prepareStatement->bindValue(':id', $role->getId());
-        $prepareStatement->bindValue(':libelle', $role->getLibelle());
-        $prepareStatement->bindValue(':permissions', $role->getPermissions());
+        $prepareStatement->bindValue(1, $role->getName());
+        $prepareStatement->bindValue(2, $role->getPermissions());
 
         $prepareStatement->execute();
 
@@ -82,13 +58,16 @@ class DAORole
     public function update(Role $role): int
     {
 
-        $SQL = 'UPDATE role SET id = :id, libelle = :libelle, permissions = :permissions'; 
+        $SQL = 'UPDATE role 
+                SET name = ?, 
+                    permissions = ?
+                WHERE id = ?'; 
         
         $prepareStatement = $this->connexion->prepare($SQL);
 
-        $prepareStatement->bindValue(':id', $role->getId(), \PDO::PARAM_STR);
-        $prepareStatement->bindValue(':libelle', $role->getLibelle(), \PDO::PARAM_STR);
-        $prepareStatement->bindValue(':permissions', $role->getPermissions(), \PDO::PARAM_INT);
+        $prepareStatement->bindValue(1, $role->getName());
+        $prepareStatement->bindValue(2, $role->getPermissions());
+        $prepareStatement->bindValue(3, $role->getId());
 
 
         $prepareStatement->execute();
@@ -108,11 +87,12 @@ class DAORole
     // Real function : public function remove(Role $role): void
     public function remove($roleId): int
     {
-        $SQL = 'DELETE FROM role WHERE id = :id'; 
+        $SQL = 'DELETE FROM role 
+                WHERE id = ?'; 
             
         $prepareStatement = $this->connexion->prepare($SQL);
 
-        $prepareStatement->bindValue(':id', $roleId, \PDO::PARAM_STR);
+        $prepareStatement->bindValue(1, $roleId);
 
         $prepareStatement->execute();
 
@@ -135,16 +115,23 @@ class DAORole
 
         $preparedStatement->execute();
 
-        $role = array();
+        $roles = array();
 
         while ($data = $preparedStatement->fetch(\PDO::FETCH_OBJ)) {
 
-            $temp = new Role($data->id, $data->name, $data->permissions);
-            array_push($role, $temp);
+            $temp = new Role(
+                                $data->id, 
+                                $data->name, 
+                                $data->permissions
+                            );
+            array_push($roles, $temp);
 
         }
 
-        return $role;
+        return $roles;
+
+
+
 }
 
 
