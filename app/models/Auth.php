@@ -127,9 +127,19 @@ class Auth{
 
 
         // Completing binary number when his length is not equal to 16.
-        if (strlen($binary) === 4) { $binary = "000000000000".$binary; }
-        if (strlen($binary) === 8) { $binary = "00000000".$binary; }
-        if (strlen($binary) === 5) { $binary = "00000000000".$binary; }
+        if(strlen($binary) != 16) {
+
+            $stringZero = "";
+            for($i=0; $i < 16-strlen($binary); $i++) {
+
+                $stringZero = $stringZero."0";
+
+            }
+
+            $binary = $stringZero.$binary;
+
+        }
+
 
 
         // Checking if the user has the permission passed as a parameter.
@@ -141,10 +151,24 @@ class Auth{
 
 
 
-    public static function user() : User{
+    /**
+     * Function which returns a user using the id stored in the $_SESSION variable.
+     * 
+     * @param int $id
+     * 
+     * @return User $user
+     */
+    public static function user(int $id) : User {
 
-        
+
+        $daoUser = new DaoUser(SingletonDBMaria::getInstance()->getConnection());
+
+        $user = $daoUser->getById($id);
+
+        return $user;
 
     }
+
+
 
 }

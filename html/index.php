@@ -133,8 +133,20 @@ function homeRoutes_get($fragments){
 
 
         case "display":
-            // Displaying the landing page after the user has logged in.
-            call_user_func_array([new HomeController(), "home"], $fragments);
+            // First check : if the user is logged.
+            if (!empty($_SESSION['auth'])) { 
+
+                call_user_func_array([new HomeController(), "home"], $fragments); 
+
+            }
+            // If the user is not logged, we redirect to login page.
+            else { 
+
+                $_SESSION['notConnected'] = true;
+                header("Location: ../");
+                exit();
+
+            }
             break;
 
 
@@ -171,31 +183,87 @@ function pompierRoutes_get($fragments) {
 
 
         case "display" :
-            // If the user can display the firemen -> we display the page.
-            if (Auth::can(1)) { call_user_func_array([new FiremanController(), "show"], $fragments); }
+            //First check : if the user is logged.
+            if(!empty($_SESSION['auth'])) {
 
-            // If the user can't display the firemen -> we display the permissions error page.
-            else { call_user_func_array([new FiremanController(), "error403"], $fragments); }
+                // Second check : if the user has the permissions to see firemen.
+                if(Auth::can(1)) { 
+
+                    call_user_func_array([new FiremanController(), "show"], $fragments);
+
+                }
+                // If the user doesn't have the permission, we redirect to permission error page.
+                else { 
+                
+                    call_user_func_array([new FiremanController(), "error403"], $fragments);
+                
+                }
+
+            }
+            // If the user is not logged, we redirect to login page.
+            else { 
+
+                $_SESSION['notConnected'] = true;
+                header("Location: ../../"); 
+            
+            }
             break;
 
 
-
         case "modify":
-            // If the user can modify a fireman -> we display the modification page.
-            if (Auth::can(3)) { call_user_func_array([new FiremanController(), "update"], $fragments); }
+            //First check : if the user is logged.
+            if(!empty($_SESSION['auth'])) {
 
-            // If the user can't modify a fireman -> we display the permissions error page.
-            else { call_user_func_array([new FiremanController(), "error403"], $fragments); }
+                // Second check : if the user has the permission to modify a fireman.
+                if (Auth::can(3)) { 
+                    
+                    call_user_func_array([new FiremanController(), "update"], $fragments); 
+                
+                }
+                // If the user doesn't have the permission, we redirect to permission error page.
+                else {
+
+                    call_user_func_array([new FiremanController(), "error403"], $fragments);
+
+                }
+
+            }
+            // If the user is not logged, we redirect to login page.
+            else { 
+
+                $_SESSION['notConnected'] = true;
+                header("Location: ../../"); 
+
+            }
             break;
 
 
 
         case "create":
-            // If the user can create a fireman -> we display the creation page.
-            if (Auth::can(2)) { call_user_func_array([new FiremanController(), "add"], $fragments); }
+            //First check : if the user is logged.
+            if(!empty($_SESSION['auth'])) {
 
-            // If the user can't display the firemen -> we display the permissions error page.
-            else { call_user_func_array([new FiremanController(), "error403"], $fragments); }
+                // Second check : if the user has the permission to create a fireman.
+                if(Auth::can(2)) {
+
+                    call_user_func_array([new FiremanController(), "add"], $fragments);
+
+                }
+                // If the user doesn't have the permission, we redirect to permission error page.
+                else { 
+                    
+                    call_user_func_array([new FiremanController(), "error403"], $fragments); 
+                
+                }
+
+            }
+            // If the user is not logged, we redirect to login page.
+            else { 
+
+                $_SESSION['notConnected'] = true;
+                header("Location: ../../"); 
+
+            }
             break;
 
 
@@ -269,50 +337,146 @@ function caserneRoutes_get($fragments) {
 
 
         case "display":
-            // If the user can display the barracks -> we display the page.
-            if (Auth::can(5)) { call_user_func_array([new BarrackController(),"show"], $fragments); }
+            //First check : if the user is logged.
+            if(!empty($_SESSION['auth'])) {
 
-            // If the user can't display the barrakcs -> we display the permissions error page.
-            else { call_user_func_array([new BarrackController(), "error403"], $fragments); }
+                // Second check : if the user has the permission to see barracks.
+                if(Auth::can(5)) {
+
+                    call_user_func_array([new BarrackController(),"show"], $fragments);
+
+                }
+                // If the user doesn't have the permission, we redirect to permission error page.
+                else { 
+                    
+                    call_user_func_array([new BarrackController(), "error403"], $fragments);
+                
+                }
+
+            }
+            // If the user is not logged, we redirect to login page.
+            else { 
+
+                $_SESSION['notConnected'] = true;
+                header("Location: ../../"); 
+
+            }
             break;
 
 
 
         case "expose":
-            // If the user can see the details about a barrack -> we display the details page.
-            if (Auth::can(5)) { call_user_func_array([new BarrackController(),"visualize"], $fragments); }
+            //First check : if the user is logged.
+            if(!empty($_SESSION['auth'])) {
 
-            // If the user can't see the details about a barrack -> we display the permissions error page.
-            else { call_user_func_array([new BarrackController(), "error403"], $fragments); }
+                // Second check : if the user has the permission to see details about barracks.
+                if(Auth::can(5)) {
+
+                    call_user_func_array([new BarrackController(),"visualize"], $fragments);
+
+                }
+                // If the user doesn't have the permission, we redirect to permission error page.
+                else { 
+                    
+                    call_user_func_array([new BarrackController(), "error403"], $fragments);
+                
+                }
+
+            }
+            // If the user is not logged, we redirect to login page.
+            else { 
+
+                $_SESSION['notConnected'] = true;
+                header("Location: ../../"); 
+
+            }
             break;
 
 
 
         case "create" :
-            // If the user can create a barrack -> we display the creation page.
-            if (Auth::can(6)) { call_user_func_array([new BarrackController(),"add"], $fragments); }
-            
-            // If the user can't create a barrack -> we display the permissions error page.
-            else { call_user_func_array([new BarrackController(), "error403"], $fragments); }
+            //First check : if the user is logged.
+            if(!empty($_SESSION['auth'])) {
+
+                // Second check : if the user has the permission to create a barrack.
+                if(Auth::can(6)) {
+
+                    call_user_func_array([new BarrackController(),"add"], $fragments);
+
+                }
+                // If the user doesn't have the permission, we redirect to permission error page.
+                else { 
+                    
+                    call_user_func_array([new BarrackController(), "error403"], $fragments);
+                
+                }
+
+            }
+            // If the user is not logged, we redirect to login page.
+            else { 
+
+                $_SESSION['notConnected'] = true;
+                header("Location: ../../"); 
+
+            }
             break;
 
 
 
         case "modify" :
-            // If the user can modify a barrack -> we display the modification page.
-            if (Auth::can(7)) { call_user_func_array([new BarrackController(),"update"], $fragments); }
-            
-            // If the user can't modify a barrack -> we display the permissions error page.
-            else { call_user_func_array([new BarrackController(), "error403"], $fragments); }
+            //First check : if the user is logged.
+            if(!empty($_SESSION['auth'])) {
+
+                // Second check : if the user has the permission to modify a barrack.
+                if(Auth::can(7)) {
+
+                    call_user_func_array([new BarrackController(),"update"], $fragments);
+
+                }
+                // If the user doesn't have the permission, we redirect to permission error page.
+                else { 
+                    
+                    call_user_func_array([new BarrackController(), "error403"], $fragments);
+                
+                }
+
+            }
+            // If the user is not logged, we redirect to login page.
+            else { 
+
+                $_SESSION['notConnected'] = true;
+                header("Location: ../../"); 
+
+            }
             break;
 
 
+
         case "erase" :
-            // If the user can delete a barrack -> we allow the deletion of the barrack.
-            if (Auth::can(8)) { call_user_func_array([new BarrackController(),"delete"], $fragments); }
-            
-            // If the user can't delete a barrack -> we display the permissions error page.
-            else { call_user_func_array([new BarrackController(), "error403"], $fragments); }
+            //First check : if the user is logged.
+            if(!empty($_SESSION['auth'])) {
+
+                // Second check : if the user has the permission to delete a barrack.
+                if(Auth::can(8)) {
+
+                    call_user_func_array([new BarrackController(),"delete"], $fragments);
+
+                }
+                // If the user doesn't have the permission, we redirect to permission error page.
+                else { 
+                    
+                    call_user_func_array([new BarrackController(), "error403"], $fragments);
+                
+                }
+
+            }
+            // If the user is not logged, we redirect to login page.
+            else { 
+
+                $_SESSION['notConnected'] = true;
+                header("Location: ../../"); 
+
+            }
             break;
 
 
@@ -376,11 +540,30 @@ function usersRoutes_get($fragments) {
 
 
         case "display":
-            // If the user can display the users -> we display the page.
-            if (Auth::can(9)) { call_user_func_array([new UserController(), "show"], $fragments); }
+            //First check : if the user is logged.
+            if(!empty($_SESSION['auth'])) {
 
-            // If the user can't display the users -> we display the permissions error page.
-            else { call_user_func_array([new UserController(), "error403"], $fragments); }
+                // Second check : if the user has the permission to see the users.
+                if(Auth::can(9)) {
+
+                    call_user_func_array([new UserController(), "show"], $fragments);
+
+                }
+                // If the user doesn't have the permission, we redirect to permission error page.
+                else { 
+                    
+                    call_user_func_array([new UserController(), "error403"], $fragments);
+                
+                }
+
+            }
+            // If the user is not logged, we redirect to login page.
+            else { 
+
+                $_SESSION['notConnected'] = true;
+                header("Location: ../../"); 
+
+            }
             break;
 
 
@@ -450,14 +633,62 @@ function roleRoutes_get($fragments)
     switch ($action) {
 
         case "display":
+            //First check : if the user is logged.
+            if(!empty($_SESSION['auth'])) {
 
-            call_user_func_array([new RoleController(),"show"], $fragments);
+                // Second check : if the user has the permission to see the roles and permissions.
+                if(Auth::can(12)) {
+
+                    call_user_func_array([new RoleController(),"show"], $fragments);
+
+                }
+                // If the user doesn't have the permission, we redirect to permission error page.
+                else { 
+                    
+                    call_user_func_array([new RoleController(),"error403"], $fragments);
+                
+                }
+
+            }
+            // If the user is not logged, we redirect to login page.
+            else { 
+
+                $_SESSION['notConnected'] = true;
+                header("Location: ../../"); 
+
+            }
             break;
+
+
 
         case "expose":
+            //First check : if the user is logged.
+            if(!empty($_SESSION['auth'])) {
 
-            call_user_func_array([new RoleController(),"visualize"], $fragments);
+                // Second check : if the user has the permission to see details about the roles and permissions.
+                if(Auth::can(12)) {
+
+                    call_user_func_array([new RoleController(),"visualize"], $fragments);
+
+                }
+                // If the user doesn't have the permission, we redirect to permission error page.
+                else { 
+                    
+                    call_user_func_array([new RoleController(),"error403"], $fragments);
+                
+                }
+
+            }
+            // If the user is not logged, we redirect to login page.
+            else { 
+
+                $_SESSION['notConnected'] = true;
+                header("Location: ../../"); 
+
+            }
             break;
+
+
 
         case "create" :
 
@@ -476,7 +707,7 @@ function roleRoutes_get($fragments)
 
         default :
 
-            call_user_func_array([new BarrackController(), "error"], $fragments);
+            call_user_func_array([new BarrackController(), "error404"], $fragments);
             break;
 
     }

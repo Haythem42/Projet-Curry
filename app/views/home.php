@@ -81,7 +81,7 @@ use app\models\Auth;
                         </li>
                         <?php endif ?>
                         <?php if(Auth::has("Admin") == true): ?>
-                        <li class="nav-item align-items-center">
+                        <li class="nav-item">
                             <a class="nav-link" href="../role/display">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
                                     <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
@@ -92,9 +92,16 @@ use app\models\Auth;
                         </li>
                         <?php endif ?>
                         <?php if(Auth::is_logged() == true): ?>
-                        <li class="nav-item align-items-center">
+                        <?php $user = Auth::user($_SESSION['auth'][0]); ?>
+                        <div class="d-flex avatarContainer">
+                            <div class="avatar"></div>
+                            <div class="circle-connected"></div>
+                            <div class="p text-connected">Online</div>
+                        </div>
+                        <?php endif ?>
+                        <!-- <li class="nav-item align-items-center">
                             <p class="nav-link">
-                            LOGGED AS : <?php echo($_SESSION['auth'][1]." ".$_SESSION['auth'][2]);?>
+                            LOGGED AS : <?php ;?>
                             </p>
                         </li>
                         <li class="nav-item align-items-center">
@@ -105,8 +112,8 @@ use app\models\Auth;
                                 </svg>
                                 DISCONNECT
                             </a>
-                        </li>
-                        <?php endif ?>
+                        </li> -->
+                        <!-- echo($_SESSION['auth'][1]." ".$_SESSION['auth'][2]) -->
                     </ul>
                 </div>
             </nav><br>
@@ -128,7 +135,7 @@ use app\models\Auth;
 
 
         <div class="container blue h-35px b-radius margin-t-5px">
-            <h1 class="l-height-35px l-spacing f-size-30px text-center">ABOUT THE CURRY PROJECT</h1>
+            <h1 class="l-height-35px l-spacing f-size-30px text-center">
         </div>
 
 

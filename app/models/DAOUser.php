@@ -277,6 +277,50 @@
 
         }
 
+
+
+        /**
+         * Functin which returns an array with information about the user.
+         * 
+         * @param int $id
+         * 
+         * @return User $user.
+         */
+        public function getBYId($id) : User {
+
+            $sql = "SELECT  utilisateurs.id,
+                            utilisateurs.mail,
+                            utilisateurs.firstName,
+                            utilisateurs.lastName,
+                            role.name
+                    FROM utilisateurs
+                    INNER JOIN role ON utilisateurs.roleId =role.id
+                    AND utilisateurs.id = ?";
+
+            $preparedStatement = $this->connexion->prepare($sql);
+
+            $preparedStatement->bindValue(1, $id);
+
+            $preparedStatement->execute();
+
+            while ($data = $preparedStatement->fetch(\PDO::FETCH_OBJ)) {
+
+                $user = new User(   
+                                        $data->id,
+                                        $data->mail,
+                                        "",
+                                        $data->firstName,
+                                        $data->lastName,
+                                        0,
+                                        $data->name,
+                                        0
+                                    );
+
+            }
+
+            return $user;
+
+        }
     }
 
 ?>

@@ -31,6 +31,9 @@ use app\models\Auth;
 
     <?php
 
+        // If a user is already connected we redirect to the landing page.
+        if(!empty($_SESSION['auth'])) { header("Location: /home/display"); }
+
         // First case : when the user has validated his login and password.
         if(!empty($_POST)){
 
@@ -78,11 +81,17 @@ use app\models\Auth;
                         </div>
                         <div class="container d-flex justify-content-center" style="min-height: 80px;">
                         <?php if(isset($_SESSION['erreur'])): ?>
-                            <div class="alert alert-danger">
-                                Identifiant ou mot de passe incorrect.
+                            <div class="alert alert-danger flash">
+                                Login or password incorrect.
                             </div>
                         <?php endif ?>
                         <?php unset($_SESSION['erreur']); ?>
+                        <?php if(isset($_SESSION['notConnected'])): ?>
+                            <div class="alert alert-danger flash">
+                                Nice try... But you need to be logged before accessing the project !
+                            </div>
+                        <?php endif ?>
+                        <?php unset($_SESSION['notConnected']); ?>
                         </div>
                         <div class="container d-flex justify-content-center">
                             <form action="" method="POST">

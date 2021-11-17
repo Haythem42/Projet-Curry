@@ -153,6 +153,8 @@
 
                 $_SESSION['checkCreation'] = $tableCheck;
                 $_SESSION['addUserValue'] = $_POST;
+                $_SESSION['filterMessage'] = "Oopsi... The data were not validated by the filter !";
+                $_SESSION['color'] = "red";
                 header('Location: ../fireman/create');
 
             }
