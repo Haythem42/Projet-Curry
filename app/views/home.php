@@ -99,30 +99,35 @@ use app\models\Auth;
                             <div class="p text-connected">Online</div>
                         </div>
                         <?php endif ?>
-                        <!-- <li class="nav-item align-items-center">
-                            <p class="nav-link">
-                            LOGGED AS : <?php ;?>
-                            </p>
-                        </li>
-                        <li class="nav-item align-items-center">
-                            <a href="../connexion/disconnect" class="nav-link">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-left" viewBox="0 0 16 16">
-                                    <path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0v2z"/>
-                                    <path fill-rule="evenodd" d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z"/>
-                                </svg>
-                                DISCONNECT
-                            </a>
-                        </li> -->
-                        <!-- echo($_SESSION['auth'][1]." ".$_SESSION['auth'][2]) -->
                     </ul>
                 </div>
             </nav><br>
-            <div class="headerImg"></div>
+            <div class="headerImg">
+            <div class="userInfo">
+                <div class="d-flex blue">
+                    <div class="avatar-big"></div>
+                    <p class="user-text">
+                        <?php echo(strtoupper($user->getRoleName())); ?> | <?php echo($user->getFirstName()); ?> <?php echo($user->getLastName()); ?><br>
+                        <?php echo($user->getMail()); ?><br>
+                        User#<?php echo($user->getId()); ?><br>
+                    </p>
+                </div>
+                <div class="logout blue">
+                    <p class="user-text">
+                        <a href="../../">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-door-open-fill" viewBox="0 0 16 16">
+                                <path d="M1.5 15a.5.5 0 0 0 0 1h13a.5.5 0 0 0 0-1H13V2.5A1.5 1.5 0 0 0 11.5 1H11V.5a.5.5 0 0 0-.57-.495l-7 1A.5.5 0 0 0 3 1.5V15H1.5zM11 2h.5a.5.5 0 0 1 .5.5V15h-1V2zm-2.5 8c-.276 0-.5-.448-.5-1s.224-1 .5-1 .5.448.5 1-.224 1-.5 1z"/>
+                            </svg>
+                            Logout
+                        </a>
+                    </p>
+                </div>
+            </div>
 
 
         </header>
 
-
+        
 
 
 
@@ -135,7 +140,7 @@ use app\models\Auth;
 
 
         <div class="container blue h-35px b-radius margin-t-5px">
-            <h1 class="l-height-35px l-spacing f-size-30px text-center">
+            <h1 class="l-height-35px l-spacing f-size-30px text-center">Welcome on Curry Project</h1>
         </div>
 
 

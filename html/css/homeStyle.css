@@ -583,3 +583,44 @@
         margin-top : 10px;
         margin-left : 5px;
     }
+
+    .userInfo{
+        color : white;
+        width : 400px;
+        height : 200px;
+    }
+
+    .userInfo{
+        position : absolute;
+        right : 0px;
+    }
+
+    .avatar-big {
+        width : 100px;
+        height: 100px;
+        border-radius : 50%;
+        background-image: url(../img/avatartConnected.png);
+        background-repeat: no-repeat;
+        background-size: cover;
+        margin-top : 15px;
+        margin-left : 20px;
+    }
+
+    .user-text {
+        color : white;
+        font-size : 1.3rem;
+        margin-left : 30px;
+        margin-top : 20px;
+
+    }
+
+    a {
+        color : white;
+        text-decoration : none;
+        font-size : 1.3rem;
+    }
+
+    .logout {
+        width : 400px;
+        height : 50px;
+    }

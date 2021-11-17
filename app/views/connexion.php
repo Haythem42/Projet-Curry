@@ -97,7 +97,7 @@ use app\models\Auth;
                             <form action="" method="POST">
 
                                 <div class="form-group">
-                                    <input type="text" class="form-control" id="connexionLogin"  name="connexionLogin" placeholder="Last name...">
+                                    <input type="text" class="form-control" id="connexionLogin"  name="connexionLogin" placeholder="E-mail...">
                                 </div>
 
                                 <div class="form-group">

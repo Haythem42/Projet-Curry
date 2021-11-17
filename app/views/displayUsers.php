@@ -301,7 +301,7 @@ use app\models\Auth;
                         </div><br>
                         <div class="form-group">
                             <label for="roleId">Role id</label>
-                            <input type="number" class="form-control w-75" id="roleId"  name="roleId" max="4" min="1">
+                            <input type="number" class="form-control w-75" id="roleId"  name="roleId" min="1">
                         </div>
                     </div>
                     <div class="modal-footer">
