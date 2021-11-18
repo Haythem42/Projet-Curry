@@ -557,15 +557,20 @@
     .avatarContainer {
         position : absolute;
         right: 60px;
+        width : 200px;
+        height : 50px;
+        border-radius : 20px 20px 20px 20px;
+        color : white;
     }
 
     .avatar {
-        width : 50px;
-        height: 50px;
+        width : 40px;
+        height: 40px;
         border-radius : 50%;
         background-image: url(../img/avatartConnected.png);
         background-repeat: no-repeat;
         background-size: cover;
+        margin-top : 5px;
     }
 
     .circle-connected {
@@ -578,21 +583,23 @@
     }
 
     .text-connected {
-        color : white;
         font-size : 1.2rem;
         margin-top : 10px;
         margin-left : 5px;
     }
 
     .userInfo{
-        color : white;
-        width : 400px;
-        height : 200px;
-    }
-
-    .userInfo{
         position : absolute;
         right : 0px;
+        width : 400px;
+        height : 200px;
+        color : white;
+        visibility : hidden;
+    }
+
+    .avatarContainer:hover{
+
+        border : 1px solid white;
     }
 
     .avatar-big {
@@ -608,9 +615,9 @@
 
     .user-text {
         color : white;
-        font-size : 1.3rem;
+        font-size : 1.2rem;
         margin-left : 30px;
-        margin-top : 20px;
+        margin-top : 15px;
 
     }
 
@@ -620,7 +627,14 @@
         font-size : 1.3rem;
     }
 
-    .logout {
-        width : 400px;
-        height : 50px;
+    a:hover{
+
+        color : white;
+        text-decoration: none;
+
+    }
+
+    .exit {
+        margin-top : 20px;
+        margin-left : 75px;
     }

@@ -75,6 +75,8 @@ class Auth{
 
     public static function logout() {
 
+
+        $_SESSION['disconnected'] = true;
         session_destroy();
         header("Location: ../../../");
 

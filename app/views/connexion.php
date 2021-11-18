@@ -82,7 +82,7 @@ use app\models\Auth;
                         <div class="container d-flex justify-content-center" style="min-height: 80px;">
                         <?php if(isset($_SESSION['erreur'])): ?>
                             <div class="alert alert-danger flash">
-                                Login or password incorrect.
+                                Warning...Your password or login is incorrect !
                             </div>
                         <?php endif ?>
                         <?php unset($_SESSION['erreur']); ?>
@@ -92,6 +92,11 @@ use app\models\Auth;
                             </div>
                         <?php endif ?>
                         <?php unset($_SESSION['notConnected']); ?>
+                        <?php if(isset($_SESSION['disconnected'])): ?>
+                            <div class="alert alert-success flash">
+                                Successfully disconnected !
+                            </div>
+                        <?php endif ?>
                         </div>
                         <div class="container d-flex justify-content-center">
                             <form action="" method="POST">
