@@ -11,56 +11,70 @@ use app\models\Fireman;
 
 /**
  * Description of BarrackController class
- * @author haythem
+ * 
+ * @author Haythem
  */
 class BarrackController extends BaseController {
 
     private DAOBarrack $daoBarrack;
 
+    /**
+     * Constructor of BarrackController class
+     */
     public function __construct() {
+        
         //initialisation du DAO ...
         $this->daoBarrack = new DAOBarrack(SingletonDBMaria::getInstance()->getConnection());
     }
 
 
-
+    /**
+     * Function which displays the list of all barracks
+     * 
+     * @param string $fragments
+     */
     public function show($fragments = null){ //READ du CRUD, Méthode GET du protocole HTTP
 
 
-        if (isset($fragments)) {
+        if ( isset($fragments) ) {
 
             $listBarrack = $this->daoBarrack->findAllBarracks((intval($fragments)*10)-10,10);
+
             $pageBarrack = Renderer::render('listBarrack.php', compact('listBarrack'));
             echo $pageBarrack;
 
         } else {
 
             $listBarrack = $this->daoBarrack->findAll();
+
             $pageBarrack = Renderer::render('listBarrack.php', compact('listBarrack'));
             echo $pageBarrack;
 
         }
     }
 
+    /**
+     * Function which displays more information about a barrack (one barrack)
+     * 
+     * @param int $fragments
+     */
     public function visualize($fragments) {
 
         $barrack = $this->daoBarrack->find($fragments);
+
         $firemen = $this->daoBarrack->findFireMenFromBarrack($barrack);
+
         $countFireman = $this->daoBarrack->count($firemen);
+        
         $pageBarrack = Renderer::render('barrackDisplay.php', compact('barrack', 'countFireman'));
         echo $pageBarrack;
 
     } 
 
 
-    public function poster() {
-
-        // $displayBarrack = new Barrack($_POST['numCaserne'], $_POST['adresseCaserne'], $_POST['CP'], $_POST['ville'], $_POST['codeTypeC'],);
-        // $displayFireman = new Fireman($_POST(''))
-
-    }
-
-
+    /**
+     * Function which display the create page "barrackCreate.php"
+     */
     public function add() : void {
 
         $pageCreateBarrack = Renderer::render('barrackCreate.php');
@@ -69,8 +83,12 @@ class BarrackController extends BaseController {
     }
 
 
+    /**
+     * Function which insert into the database the new barrack after datas have been filtered
+     */
     public function insert() : void { //CREATE du CRUD, Méthode PUT du protocole HTTP
 
+        // We filter all input datas and check if all is good
         $filter = new Filter($_POST);
 
         $filter->acceptVisitor('numCaserne', new BarrackNumberVisitor());
@@ -83,6 +101,7 @@ class BarrackController extends BaseController {
 
         $counter = 0;
 
+        //Check if everything is correct
         foreach( $verify as $key => $value ) {
 
             if ( $verify[$key] == true ) {
@@ -93,9 +112,10 @@ class BarrackController extends BaseController {
 
         }
 
-        if (count($verify) === $counter) {
+        if ( count($verify) === $counter ) {
 
             $createdBarrack = new Barrack (
+
                 htmlspecialchars($_POST['numCaserne']),
                 htmlspecialchars($_POST['adresseCaserne']),
                 htmlspecialchars($_POST['CP']),
@@ -112,10 +132,11 @@ class BarrackController extends BaseController {
 
 
             //First case : if the request worked correctly ==> we redirect to listBarrack.php with a success flash message
-            if ($success != 0) {
+            if ( $success != 0 ) {
 
                 $_SESSION['message'] = "The barrack has been correctly created in the database !";
                 $_SESSION['color'] = "green";
+
                 header('Location: ../barrack/display');
 
             }
@@ -126,6 +147,7 @@ class BarrackController extends BaseController {
 
                 $_SESSION['message'] = "Oopsi... It seems like the barrack hasn't been created correctly in the database !";
                 $_SESSION['color'] = "red";
+
                 header('Location: ../barrack/display');
 
             }
@@ -133,9 +155,9 @@ class BarrackController extends BaseController {
 
         } else {
 
-
             $_SESSION['filterMessage'] = "Oopsi... The data were not validated by the filter !";
             $_SESSION['color'] = "red";
+
             header('Location: ../barrack/create');
 
         }
@@ -143,8 +165,12 @@ class BarrackController extends BaseController {
 
 
 
+    /**
+     * Function which modify data(s) of the database by new information after datas have been filtered
+     */
     public function alter() {
 
+        // We filter all input datas and check if all is good
         $filter = new Filter($_POST);
 
         $filter->acceptVisitor('numBarrack', new BarrackNumberVisitor());
@@ -167,14 +193,18 @@ class BarrackController extends BaseController {
 
         }
 
-        if (count($verify) == $counter ) {
+        if ( count($verify) == $counter ) {
 
 
-            $modifyBarrack = new Barrack(   htmlspecialchars($_POST['numBarrack']),
-                                            htmlspecialchars($_POST['adresseCaserne']),
-                                            htmlspecialchars($_POST['CP']), 
-                                            htmlspecialchars($_POST['ville']), 
-                                            htmlspecialchars($_POST['codeTypeC']));
+            $modifyBarrack = new Barrack (   
+
+                htmlspecialchars($_POST['numBarrack']),
+                htmlspecialchars($_POST['adresseCaserne']),
+                htmlspecialchars($_POST['CP']), 
+                htmlspecialchars($_POST['ville']), 
+                htmlspecialchars($_POST['codeTypeC'])
+            
+            );
         
 
             try {
@@ -188,6 +218,7 @@ class BarrackController extends BaseController {
 
                 $_SESSION['message'] = "The barrack has been correctly updated in the database !";
                 $_SESSION['color'] = "green";
+
                 header('Location: ../display');
 
             }
@@ -197,6 +228,7 @@ class BarrackController extends BaseController {
 
                 $_SESSION['message'] = "Oopsi... It seems like the barrack hasn't been updated correctly in the database !";
                 $_SESSION['color'] = "red";
+
                 header('Location: ../../barrack/display');
 
             }
@@ -208,7 +240,8 @@ class BarrackController extends BaseController {
 
             $_SESSION['messageFilter'] = "Oopsi... The data were not validated by the filter !";
             $_SESSION['color'] = "red";
-            header('Location: ../../barrack/display');
+
+            header('Location: ../../barrack/modify/'.$_POST['numBarrack']);
 
         }
 
@@ -216,11 +249,15 @@ class BarrackController extends BaseController {
     }
 
 
-
+    /**
+     * Function which display the update page "barrackModify.php"
+     * 
+     * @param int $fragments
+     */
     public function update($fragments) : void { //UPDATE du CRUD, Méthode PUT du protocole HTTP
 
-
         $barrack = $this->daoBarrack->find($fragments);
+
         $barrackToUpdate = Renderer::render('barrackModify.php', compact('barrack'));
         echo $barrackToUpdate;
         
@@ -243,11 +280,16 @@ class BarrackController extends BaseController {
      * Function which displays the error403 page.
      */
     public function error403() : void {
+
         $error403Page = Renderer::render('error403.php');
         echo $error403Page;
     }
 
 
+
+    /**
+     * Function which delete a barrack
+     */
     public function delete($fragments) : void { //DELETE du CRUD, Méthode PUT du protocole HTTP
 
         try {
@@ -262,6 +304,7 @@ class BarrackController extends BaseController {
 
             $_SESSION['message'] = "The barrack has been correctly deleted from the database !";
             $_SESSION['color'] = "green";
+
             header('Location: ../display');
 
         }
@@ -271,6 +314,7 @@ class BarrackController extends BaseController {
 
             $_SESSION['message'] = "TOopsi... It seems like the barrack hasn't been deleted correctly from the database !";
             $_SESSION['color'] = "green";
+            
             header('Location: ../display');
 
         }

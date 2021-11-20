@@ -1,22 +1,20 @@
 <?php
 
+namespace app\models;
+
 /**
  * Description of Role
  *
  * @author Haythem
  */
+class DAORole {
 
-namespace app\models;
-
-class DAORole
-{
     private $connexion;
 
     /**
      * Constructor of DAORole
      */
-    public function __construct($connexion)
-    {
+    public function __construct($connexion) {
 
         $this->connexion = $connexion;
         
@@ -29,11 +27,9 @@ class DAORole
      * @param Role $role
      * @return int $linesAdded
     */
-    // Real function : public function save(Role $role): void
     public function save(Role $role): int {
 
-        $SQL = 'INSERT INTO role (name, permissions)
-                VALUES (?, ?)';
+        $SQL = 'INSERT INTO role (name, permissions) VALUES (?, ?)';
         
         $prepareStatement = $this->connexion->prepare($SQL);
 
@@ -54,14 +50,9 @@ class DAORole
      * @param Role $role
      * @return int $linesUpd
     */
-    // Real function : public function update(Role $role): void
-    public function update(Role $role): int
-    {
+    public function update(Role $role): int {
 
-        $SQL = 'UPDATE role 
-                SET name = ?, 
-                    permissions = ?
-                WHERE id = ?'; 
+        $SQL = 'UPDATE role SET name = ?, permissions = ? WHERE id = ?'; 
         
         $prepareStatement = $this->connexion->prepare($SQL);
 
@@ -87,8 +78,7 @@ class DAORole
     // Real function : public function remove(Role $role): void
     public function remove($roleId): int
     {
-        $SQL = 'DELETE FROM role 
-                WHERE id = ?'; 
+        $SQL = 'DELETE FROM role WHERE id = ?'; 
             
         $prepareStatement = $this->connexion->prepare($SQL);
 
@@ -119,22 +109,13 @@ class DAORole
 
         while ($data = $preparedStatement->fetch(\PDO::FETCH_OBJ)) {
 
-            $temp = new Role(
-                                $data->id, 
-                                $data->name, 
-                                $data->permissions
-                            );
+            $temp = new Role($data->id, $data->name, $data->permissions);
             array_push($roles, $temp);
 
         }
 
         return $roles;
 
-
-
-}
-
-
-
+    }
     
 }

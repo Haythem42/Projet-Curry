@@ -1,22 +1,20 @@
 <?php
 
+namespace app\models;
+
 /**
  * Description of barrack
  *
  * @author Haythem
  */
+class DAOBarrack {
 
-namespace app\models;
-
-class DAOBarrack
-{
     private $connexion;
 
     /**
      * Constructor of DAOBarrack
      */
-    public function __construct($connexion)
-    {
+    public function __construct($connexion) {
 
         $this->connexion = $connexion;
         
@@ -29,8 +27,7 @@ class DAOBarrack
      * @return Barrack
     */
     //? veut dire qu'il ne peut rien retourner (NULL)
-    public function find($numBarrack): ?Barrack
-    {
+    public function find($numBarrack): ?Barrack {
         
         $SQL = 'SELECT * FROM casernes WHERE NumCaserne = :numBarrack;';
         
@@ -52,11 +49,9 @@ class DAOBarrack
      * @param Barrack $barrack
      * @return int $linesAdded
     */
-    public function save(Barrack $barrack): int
-    {
+    public function save(Barrack $barrack): int {
 
-        $SQL = 'INSERT INTO casernes 
-                VALUES (?, ?, ?, ?, ?)';
+        $SQL = 'INSERT INTO casernes VALUES (?, ?, ?, ?, ?)';
         
         $prepareStatement = $this->connexion->prepare($SQL);
 
@@ -81,15 +76,9 @@ class DAOBarrack
      * @return int $linesUpd
     */
     // Real function : public function update(Barrack $barrack): void
-    public function update(Barrack $barrack): int
-    {
+    public function update(Barrack $barrack): int {
 
-        $SQL = 'UPDATE casernes 
-                SET Adresse = :adresse, 
-                    CP = :cp, 
-                    Ville = :ville, 
-                    CodeTypeC = :codeTypeC 
-                WHERE NumCaserne = :num'; 
+        $SQL = 'UPDATE casernes SET Adresse = :adresse, CP = :cp, Ville = :ville, CodeTypeC = :codeTypeC WHERE NumCaserne = :num'; 
         
         $prepareStatement = $this->connexion->prepare($SQL);
 
@@ -114,9 +103,8 @@ class DAOBarrack
      * @param Barrack $barrack
      * @return int $lignesRmv
     */
-    // Real function : public function remove(Barrack $barrack): void
-    public function remove($numCaserne): int
-    {
+    public function remove($numCaserne): int {
+
         $SQL = 'DELETE FROM casernes WHERE NumCaserne = :numCaserne'; 
             
         $prepareStatement = $this->connexion->prepare($SQL);
@@ -137,8 +125,7 @@ class DAOBarrack
      * @param int $limit
      * @return array<Barrack>
      */
-    public function findAllBarracks($offset, $limit): array
-    {
+    public function findAllBarracks($limit, $offset): Array {
 
         $SQL = 'SELECT * FROM casernes LIMIT ' . $limit . ' OFFSET ' . $offset . ';';
 
@@ -149,8 +136,7 @@ class DAOBarrack
 
         while($data = $prepareStatement->fetch(\PDO::FETCH_OBJ)){
             
-            // Pour renvoyer en private
-            $temp = new Barrack($data->NumCaserne, $data->Adresse, $data->CP, $data->Ville, $data->CodeTypeC);
+            $temp = new Barrack($data->NumCaserne,$data->Adresse, $data->CP, $data->Ville, $data->CodeTypeC);
             array_push($barracks, $temp);
 
         }
@@ -190,8 +176,7 @@ class DAOBarrack
      * 
      * @return int $countBarrack
      */
-    public function count(): int
-    {
+    public function count(): int {
 
         $SQL = 'SELECT NumCaserne FROM casernes;'; 
             
@@ -215,8 +200,8 @@ class DAOBarrack
      * 
      * @return array $firemen
     */
-    public function findFireMenFromBarrack(Barrack $barrack): array
-    {
+    public function findFireMenFromBarrack(Barrack $barrack): array {
+        
         $SQL = 'SELECT * FROM pompiers WHERE NumCaserne = :numCaserne';
 
         $prepareStatement = $this->connexion->prepare($SQL);

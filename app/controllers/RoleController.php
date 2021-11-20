@@ -10,41 +10,46 @@ use app\models\Role;
 
 /**
  * Description of RoleController class
- * @author haythem
+ * 
+ * @author Haythem
  */
 class RoleController extends BaseController {
 
     private DAORole $daoRole;
 
+    /**
+     * Constructor of RoleController class
+     */
     public function __construct() {
+
         //initialisation du DAO ...
         $this->daoRole = new DAORole(SingletonDBMaria::getInstance()->getConnection());
+
     }
 
 
+    /**
+     * Function which displays the list of all roles
+     * 
+     * @param string $fragments
+     */
     public function show($fragments = null){ //READ du CRUD, Méthode GET du protocole HTTP
-        //Il faut penser à la sécurité
-        //Gestion des erreurs PDO ou autres ...
 
         $roleList = $this->daoRole->findAll();
+
         $pageRole = Renderer::render('roleList.php', compact('roleList'));
         echo $pageRole;
 
-        
     }
 
 
-    public function add() : void {
 
-        $pageCreateRole = Renderer::render('roleCreate.php');
-        echo $pageCreateRole;
-
-    }
-
-
+    /**
+     * Function which insert into the database the new role after datas have been filtered
+     */
     public function insert() : void {
 
-
+        // We filter all input datas and check if all is good
         $filter = new Filter($_POST);
 
         $filter->acceptVisitor('role', new RoleNameVisitor());
@@ -70,25 +75,30 @@ class RoleController extends BaseController {
         $countValidity = 0;
 
         //Check if everything is correct
-        foreach($tableCheck as $key => $value) {
+        foreach ( $tableCheck as $key => $value ) {
 
-            if($tableCheck[$key] == true) { $countValidity = $countValidity + 1; }
+            if ( $tableCheck[$key] == true ) { 
+
+                $countValidity = $countValidity + 1; 
+
+            }
 
         }
 
 
-        if($countValidity == count($tableCheck)) {
+        if ( $countValidity == count($tableCheck) ) {
         
             $binaryString = "";
 
-            foreach($_POST as $key => $value) {
+            // Convert to binary
+            foreach ( $_POST as $key => $value ) {
 
-                if($value == "Y") { 
+                if ( $value == "Y" ) { 
 
                     $binaryString  = $binaryString."1";
 
                 }
-                if($value == "N") {
+                if ( $value == "N" ) {
 
                     $binaryString  = $binaryString."0";
 
@@ -97,10 +107,12 @@ class RoleController extends BaseController {
             }
 
 
-            $role = new Role(
-                                0,
-                                htmlspecialchars($_POST['role']),
-                                htmlspecialchars(bindec(strrev($binaryString)))
+            $role = new Role (
+
+                0,
+                htmlspecialchars($_POST['role']),
+                htmlspecialchars(bindec(strrev($binaryString)))
+
             );
 
             try {
@@ -109,16 +121,19 @@ class RoleController extends BaseController {
 
             } catch (\Exception $error) {}
 
-            if($success != 0) {
+
+            if ( $success != 0 ) {
 
                 $_SESSION['result'] = "The role has been added to the database !";
                 $_SESSION['color'] = "green";
+
                 header('Location: ../role/display');
 
             } else {
 
                 $_SESSION['result'] = "Oopsi... Check if a user already exist !";
                 $_SESSION['color'] = "red";
+
                 header('Location: ../role/display');
 
             }
@@ -128,6 +143,7 @@ class RoleController extends BaseController {
 
             $_SESSION['filterMessage'] = "Oopsi... The data were not validated by the filter !";
             $_SESSION['color'] = "red";
+
             header('Location: ../role/display');
 
         }
@@ -136,8 +152,12 @@ class RoleController extends BaseController {
     }
 
 
+    /**
+     * Function which modify data(s) of the database by new information after datas have been filtered
+     */
     public function alter() {
 
+        // We filter all input datas and check if all is good
         $filter = new Filter($_POST);
 
         $filter->acceptVisitor('idModified', new RoleIdVisitor());
@@ -164,25 +184,30 @@ class RoleController extends BaseController {
         $countValidity = 0;
 
         //Check if everything is correct
-        foreach($tableCheck as $key => $value) {
+        foreach ( $tableCheck as $key => $value ) {
 
-            if($tableCheck[$key] == true) { $countValidity = $countValidity + 1; }
+            if ( $tableCheck[$key] == true ) { 
+                
+                $countValidity = $countValidity + 1; 
+            
+            }
 
         }
 
 
-        if($countValidity == count($tableCheck)) {
+        if ( $countValidity == count($tableCheck) ) {
         
             $binaryString = "";
 
-            foreach($_POST as $key => $value) {
+            // Convert to binary
+            foreach ( $_POST as $key => $value ) {
 
-                if($value == "Y") { 
+                if ( $value == "Y" ) { 
 
                     $binaryString  = $binaryString."1";
 
                 }
-                if($value == "N") {
+                if ( $value == "N" ) {
 
                     $binaryString  = $binaryString."0";
 
@@ -191,10 +216,12 @@ class RoleController extends BaseController {
             }
 
 
-            $role = new Role(
-                                htmlspecialchars($_POST['idModified']),
-                                htmlspecialchars($_POST['roleModified']),
-                                htmlspecialchars(bindec(strrev($binaryString)))
+            $role = new Role (
+
+                htmlspecialchars($_POST['idModified']),
+                htmlspecialchars($_POST['roleModified']),
+                htmlspecialchars(bindec(strrev($binaryString)))
+
             );
 
 
@@ -204,16 +231,18 @@ class RoleController extends BaseController {
 
             } catch (\Exception $error) {}
 
-            if($success != 0) {
+            if ( $success != 0 ) {
 
                 $_SESSION['result'] = "The role has been modified in the database !";
                 $_SESSION['color'] = "green";
+
                 header('Location: ../role/display');
 
             } else {
 
                 $_SESSION['result'] = "Oopsi... Check before if you have modified something about the user !";
                 $_SESSION['color'] = "red";
+
                 header('Location: ../role/display');
 
             }
@@ -223,6 +252,7 @@ class RoleController extends BaseController {
 
             $_SESSION['filterMessage'] = "Oopsi... The data were not validated by the filter !";
             $_SESSION['color'] = "red";
+
             header('Location: ../role/display');
 
         }
@@ -248,11 +278,16 @@ class RoleController extends BaseController {
      * Function which displays the error403 page.
      */
     public function error403() : void {
+
         $error403Page = Renderer::render('error403.php');
         echo $error403Page;
+
     }
 
 
+    /**
+     * Function which delete a role
+     */
     public function erase() : void {
 
         try {
@@ -262,10 +297,11 @@ class RoleController extends BaseController {
         } catch (\Exception $error) {}
 
         //First case : if the request worked correctly ==> we redirect to roleList.php with a success flash message
-        if ($success != 0) {
+        if ( $success != 0 ) {
 
             $_SESSION['result'] = "The role has been deleted correctly from the database !";
             $_SESSION['color'] = "green";
+
             header('Location: ../role/display');
 
         }
@@ -275,10 +311,10 @@ class RoleController extends BaseController {
 
             $_SESSION['result'] = "Oopsi... Check before if users have this role (You can't delete it if users have it) !";
             $_SESSION['color'] = "red";
+
             header('Location: ../role/display');
 
         }
-
 
     }
 }

@@ -11379,7 +11379,7 @@ p {
 @media (min-width: 992px) {
   .about-heading .about-heading-img {
     position: relative;
-    z-index: 0;
+    z-index: -999;
   }
   .about-heading .about-heading-content {
     margin-top: -5rem;

@@ -13,8 +13,8 @@ class TypeNumberVisitor extends AbstractVisitor {
      */
     public function checkDataValidity($type) :bool {
 
-        if ( $this->checkNumber($type) == true && $this->checkLength($type) == true && $this->checkLetter($type) == true ) {return true;}
-        else {return false;}
+        if ( $this->checkNumber($type) == true && $this->checkLength($type) == true && $this->checkLetter($type) == true ) { return true; }
+        else { return false; }
 
     }
 
@@ -28,16 +28,8 @@ class TypeNumberVisitor extends AbstractVisitor {
      */
     public function checkNumber($typeNumber) : bool {
 
-        if( is_numeric($typeNumber) ) {
-            
-            return true;
-        
-        }
-        else {
-            
-            return false;
-        
-        }
+        if( is_numeric($typeNumber) ) { return true; }
+        else { return false; }
 
     }
 
@@ -51,16 +43,8 @@ class TypeNumberVisitor extends AbstractVisitor {
      */
     public function checkLength($typeNumber) : bool {
 
-        if ( strlen($typeNumber) == 1 ) {
-            
-            return true;
-        
-        }
-        else {
-            
-            return false;
-        
-        }
+        if ( strlen($typeNumber) == 1 ) { return true; }
+        else { return false; }
 
     }
 
@@ -74,16 +58,8 @@ class TypeNumberVisitor extends AbstractVisitor {
      */
     public function checkLetter($typeNumber) : bool {
 
-        if (preg_match('/[a-zA-Z ]/', $typeNumber)) {
-            
-            return false;
-        
-        }
-        else {
-            
-            return true;
-        
-        }
+        if ( preg_match('/[a-zA-Z ]/', $typeNumber) ) { return false; }
+        else { return true; }
 
     }
 }

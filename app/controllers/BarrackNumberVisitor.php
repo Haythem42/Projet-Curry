@@ -10,7 +10,6 @@
          * Function which will check the barrack's number passed through html forms.
          * 
          * @param string $barrackNumber
-         * 
          * @return bool
          */
         public function checkDataValidity(string $barrackNumber) : bool {
@@ -26,13 +25,12 @@
          * Function which will check if barrack number is only composed of number
          * 
          * @param string $barrackNumber
-         * 
          * @return bool
          */
         public function checkNumbers($barrackNumber) : bool {
 
-            if(is_numeric($barrackNumber)) {return true;}
-            else {return false;}
+            if ( is_numeric($barrackNumber) ) { return true; }
+            else { return false; }
 
         }
 
@@ -47,8 +45,8 @@
          */
         public function checkNegative($barrackNumber) : bool {
 
-            if(intval($barrackNumber) < 0) {return false;}
-            else {return true;}
+            if ( intval($barrackNumber) < 0 ) { return false; }
+            else { return true; }
 
         }
 

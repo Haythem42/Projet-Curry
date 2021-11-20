@@ -1,13 +1,12 @@
 <?php
 
+    namespace app\models;
+
     /**
     * Class role used for permissions of every user
     * 
-    * @author Quentin
+    * @author Haythem
     */
-
-    namespace app\models;
-
     class Role  {
 
         // Properties of the class
@@ -37,20 +36,29 @@
             /**
              * Function which get the id of the role
              */
-            public function getId() { return $this->id; }
+            public function getId() { 
+                
+                return $this->id; 
+            
+            }
 
             /**
              * Function which get the name of the role
              */
-            public function getName() { return $this->name; }
+            public function getName() { 
+
+                return $this->name; 
+            
+            }
 
             /**
              * Function which get the permissions of the role
              */
-            public function getPermissions() { return $this->permissions; }
-
-
-
+            public function getPermissions() { 
+                
+                return $this->permissions; 
+            
+            }
 
 
         // ==================== Setter for private properties ====================
@@ -79,9 +87,4 @@
 
             }
 
-
-
     }
-
-
-?>

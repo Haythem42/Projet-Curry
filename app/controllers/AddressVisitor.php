@@ -9,7 +9,6 @@ class AddressVisitor extends AbstractVisitor {
      * Function which will check the validity of the address passed through html forms.
      * 
      * @param string $address
-     * 
      * @return bool
     */
     public function checkDataValidity($address) : bool {
@@ -25,7 +24,7 @@ class AddressVisitor extends AbstractVisitor {
      * 
      * @param string $address
      * @return bool
-     */
+    */
     public function checkFirstLetterUppercase($address) : bool {
 
         if ( preg_match('~^\p{Lu}~u', $address) ){return true;}
@@ -40,7 +39,7 @@ class AddressVisitor extends AbstractVisitor {
      * 
      * @param string $address
      * @return bool
-     */
+    */
     public function checkSymbol($address) : bool {
 
         if ( preg_match('/'.preg_quote('^\'£$%^&*()}{@#~?><,@|-=-_+-¬', '/').'/', $address) ){return false;}
@@ -55,15 +54,18 @@ class AddressVisitor extends AbstractVisitor {
      * 
      * @param string $address
      * @return bool
-     */
+    */
     public function checkNumber($address) : bool {
      
         $isThereNumber = false;
         
         for ($i = 0; $i < strlen($address); $i++) {
+
             if ( ctype_digit($address[$i]) ) {
+
                 $isThereNumber = true;
                 break;
+                
             }
         }
  
@@ -79,7 +81,7 @@ class AddressVisitor extends AbstractVisitor {
      * 
      * @param string $address
      * @return bool
-     */
+    */
     public function checkLetter($address) : bool {
 
         if (preg_match('/[a-zA-Z ]/', $address)) {return true;}
