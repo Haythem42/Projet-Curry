@@ -66,6 +66,7 @@
         public function checkLength($matriculeManager) : bool {
 
             if(strlen($matriculeManager) == 6) {return true;}
+            
             else {return false;}
 
         }

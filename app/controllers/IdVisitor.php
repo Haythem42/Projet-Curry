@@ -16,6 +16,7 @@
         public function checkDataValidity(string $id) : bool {
 
            if(is_numeric($id)) {return true;}
+           
            else {return false;}
             
         }        

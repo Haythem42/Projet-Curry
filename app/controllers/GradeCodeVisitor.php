@@ -32,6 +32,7 @@
         public function checkLength($gradeCode) : bool {
 
             if(strlen($gradeCode) == 2) {return true;}
+
             else {return false;}
 
         }
@@ -48,6 +49,7 @@
         public function checkAlphanumeric($gradeCode) {
 
             if(ctype_alnum($gradeCode)) {return true;}
+            
             else {return false;}
 
         }

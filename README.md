@@ -1,23 +1,28 @@
-## How to use
+## How to use :wave:
 
 
 ```bash
 #Clone this repository
+cd toTheDirectoryWhereYouWantToClone
+
 git clone https://gitlab.com/sco-chartreux/slam21-22/team-4/curry.git
 
 #Run the project
+
+cd curry
+
 php -S 127.0.0.1:8080 -t html (You can change the port.)
 ```
 
 
-## Features available
+## Features available :star2:
 
 
 * Fireman part
     - [x] **DISPLAY | RESEARCH**
     - [x] **CREATE | MODIFY | DELETE**<br><br>
 
-* Barrack part
+* Barrack part 
     - [x] **DISPLAY | RESEARCH**
     - [x] **CREATE | MODIFY | DELETE**<br><br>
 
@@ -30,7 +35,7 @@ php -S 127.0.0.1:8080 -t html (You can change the port.)
     - [x] **CREATE | MODIFY | DELETE**<br><br>
 
 
-## Setting up database
+## Setting up database :eyes:
 
 
 The **curry project** is based on a database called **'pompiers'** so you'll need this database too. Follow these steps :
@@ -54,7 +59,7 @@ mysql -u pompier_dbuser -p pompiers < pathToYourFile"pompiersDUMP.sql";
 ```
 
 
-## Login and password
+## Login and password :computer:
 
 
 * **Administrator**
@@ -114,7 +119,7 @@ Password : Hj59@;!jdh
 ```
 
 
-## Permissions
+## Permissions :open_book:
 
 
 * **How the permissions are made ?**

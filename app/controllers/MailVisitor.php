@@ -38,6 +38,7 @@
         public function checkMailBeginning($mail) : bool{
 
             if(preg_match('/^[a-z]/',$mail) == true) {return true;}
+            
             else {return false;}
 
         }
@@ -55,6 +56,7 @@
         public function checkDot($mail) : bool {
 
             if($mail[1] == ".") {return true;}
+
             else { return false;}
 
         }
@@ -70,7 +72,9 @@
         public function checkAtPresence($mail) : bool{
 
             $tableEmail = explode("@", $mail);
+
             if(count($tableEmail) == 2) {return true;}
+
             else {return false;}
 
         }
@@ -86,8 +90,11 @@
         public function checkBetweenDots($mail) {
             
             $tableEmail = explode(".", $mail);
+
             $stringBetweenDots = str_replace("@", "", $tableEmail[1]);
+
             if(ctype_alpha($stringBetweenDots) == true) {return true;}
+
             else {return false;}
 
         }
@@ -103,7 +110,9 @@
         public function checkAfterLastDot($mail) {
 
             $tableEmail = explode(".", $mail);
+
             if(ctype_alpha($tableEmail[2]) == true) {return true;}
+
             else {return false;}
 
         }
