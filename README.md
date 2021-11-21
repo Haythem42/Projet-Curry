@@ -96,14 +96,14 @@ Login : e.watson@orange.fr
 Password : 8@Hjd|69Pl
 ```
 
-* **Manager U**
+* **User manager**
 
 ```bash
 Login : d.lillard@orange.fr
 Password : Tu!5x;Uio9
 ```
 
-* **Manager R-P**
+* **Role | Permission manager**
 
 ```bash
 Login : j.morant@orange.fr
