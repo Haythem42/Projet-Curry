@@ -19,6 +19,7 @@ use app\models\Auth;
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+        
 
         <!-- Google fonts-->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
@@ -40,11 +41,12 @@ use app\models\Auth;
                     <span class="site-heading-lower">Curry Project</span>
                 </h1>
             </header>
+
         <!-- Navigation Bar -->
             <nav class="navbar navbar-expand-lg navbar-dark py-lg-4" id="mainNav">
                 <div class="container">
 
-                    <a class="navbar-brand text-uppercase fw-bold d-lg-none" href="index.html">Curry Project</a>
+                    <a class="navbar-brand text-uppercase fw-bold d-lg-none" href="../home/display">Curry Project</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                     
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -199,10 +201,10 @@ use app\models\Auth;
                                             <td><?= $barrack->getVille(); ?></td>
                                             <!-- <td><?= $barrack->getCodeTypeC(); ?></td> -->
                                             <?php if(Auth::can(7)): ?>
-                                            <td><a class="btn btn-outline-secondary" href="/barrack/modify/<?= $barrack->getNumCaserne() ?>">MODIFY</a></td>
+                                            <td><a class="btn btn-outline-secondary" href="/barrack/modify/<?= $barrack->getNumCaserne() ?>">MODIFY <i class="uil uil-edit"></i></a></td>
                                             <?php endif ?>
                                             <?php if(Auth::can(8)): ?>
-                                            <td><a class="btn btn-outline-danger" href="/barrack/erase/<?= $barrack->getNumCaserne() ?>">DELETE</a></td>
+                                            <td><a class="btn btn-outline-danger" href="/barrack/erase/<?= $barrack->getNumCaserne() ?>">DELETE <i class="uil uil-trash-alt"></i></a></td>
                                             <?php endif ?>
                                             <td><a class="btn btn-outline-dark" href="/barrack/expose/<?= $barrack->getNumCaserne() ?>"> > </a></td>
                                         </tr>
