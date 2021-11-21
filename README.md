@@ -47,8 +47,8 @@ create database pompiers;
 
 * Retrieve the database
 
-Warning :   Two possibilities for the user :
-            -First possibility : You need to create a user called "pompier_dbuser" with the password "123456"
+Warning :   Two possibilities for the user :\
+            -First possibility : You need to create a user called "pompier_dbuser" with the password "123456"\
             -Second one : You create an other user but you need to modify config.ini file with your information
 
 You have to open a terminal located in the directory which contains the file "pompiersDUMP.sql" and then :
