@@ -172,11 +172,11 @@ The employee's permissions are : 0000 0000 0001 0001
 
 The secretary's permissions are : 0000 0000 0111 0111
 
-* **Manager U**
+* **User manager**
 
 The user manager's permissions are : 0000 1111 0000 0000
 
-* **Manager R-P**
+* **Role | Permission manager**
 
 The role | permissions manager's permissions are : 1111 0000 0000 0000
 
