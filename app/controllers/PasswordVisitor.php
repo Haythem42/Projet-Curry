@@ -30,8 +30,11 @@
          * @return bool
          */
         public function checkLength($password) : bool{
+
             if(strlen($password) >= 8) {return true;}
+
             else {return false;}
+
         }
 
 
@@ -44,8 +47,11 @@
          * @return bool
          */
         public function checkNumber($password) : bool{
+
             if(preg_match('/[0-9]/',$password)) {return true;}
+
             else {return false;}
+
         }
 
 
@@ -57,8 +63,11 @@
          * @return bool
          */
         public function checkLowercase($password) : bool {
+
             if(preg_match('/[a-z]/', $password)) {return true;}
+
             else {return false;}
+
         }
 
 
@@ -71,8 +80,11 @@
          * 
          */
         public function checkUppercase($password) : bool{
+
             if(preg_match('/[A-Z]/', $password)) {return true;}
+
             else {return false;}
+
         }
 
 
@@ -85,8 +97,11 @@
          * @return bool
          */
         public function checkSpecialCharacter($password) {
+
             if('/'.preg_quote('/[\'^£$%&*()}{@#~?><>,|=_+-]/', $password)){return true;}
+
             else {return false;}
+            
         }
     }
 

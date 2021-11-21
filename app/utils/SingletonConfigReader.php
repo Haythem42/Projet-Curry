@@ -12,7 +12,7 @@
 
 
         /**
-         * COnstructor of the class which instanciate the settings propertie using the config.ini file
+         * Constructor of the class which instanciates the settings propertie using the config.ini file
          */
         private function __construct () {
 
@@ -23,7 +23,7 @@
 
 
         /**
-         * Function which instanciate the instance propertie
+         * Function which instanciates the instance propertie
          */
         public static function getInstance() {
 

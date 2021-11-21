@@ -15,8 +15,21 @@
         public function home() {
 
             $homePage = Renderer::render('home.php');
+            
             echo $homePage;
             
+        }
+
+
+        /**
+         * Function which displays error404 page
+         */
+        public function error404() : void {
+
+            $error404Page = Renderer::render('error404.php');
+
+            echo $error404Page;
+    
         }
 
     }

@@ -16,6 +16,7 @@
         public function checkDataValidity(string $birthDate) : bool {
 
             if($this->checkAge($birthDate) == true) {return true;}
+            
             else {return false;}
              
         }
@@ -32,6 +33,7 @@
         public function checkAge($birthDate) : bool {
 
             if(date("Y") - date("Y", strtotime($birthDate)) < 16 || date("Y") - date("Y", strtotime($birthDate)) > 65) {return false;}
+
             else {return true;}
 
         }

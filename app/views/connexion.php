@@ -3,6 +3,7 @@ use app\models\Auth;
 ?>
 
 <!DOCTYPE html>
+
     <html lang="en">
     <head>
 
@@ -29,15 +30,19 @@ use app\models\Auth;
 
     <body>
 
+
+
+
+
     <?php
 
-        // If a user is already connected we redirect to the landing page.
+        // If the user is already connected --> we redirect to home.php
         if(!empty($_SESSION['auth'])) { header("Location: /home/display"); }
 
-        // First case : when the user has validated his login and password.
+        // When the user clicks on the button "Sign in"
         if(!empty($_POST)){
 
-
+            // Checking if the login and password are correct.
             try {
 
                 $user = Auth::login($_POST['connexionLogin'], $_POST['connexionPassword']);
@@ -45,9 +50,10 @@ use app\models\Auth;
             }
             catch( \Exception $error){}
 
+            //If login and password are correct --> redirect to home.php
             if ($user) {
 
-                header('Location: ../home/display');
+                header('Location: /home/display');
                 exit();
 
             }
@@ -55,9 +61,16 @@ use app\models\Auth;
         ?>
 
 
+
+
         <div class="container-fluid">
             <div class="row" style="min-height: 100vh;">
+
+                <!-- Left part of the screen -->
                 <div class="col-5">
+
+
+
                     <div class="container">
                         <div class="container d-flex justify-content-center" style="margin-top: 40%;">
                             <p class="welcome-title">
@@ -65,6 +78,8 @@ use app\models\Auth;
                             </p>
                         </div>
                     </div>
+
+
                     <div class="container">
                         <div class="container d-flex justify-content-center">
                             <p class="welcome-message">
@@ -73,33 +88,47 @@ use app\models\Auth;
                         </div>
                     </div>
 
+
+
                 </div>
+
+
+
+                <!-- Right part of the screen -->
                 <div class="col-7">
+
+
+
                     <div class="container">
+
                         <div class="container d-flex justify-content-center" style="margin-top: 15%;">
                             <p class="title">Sign in to Curry project</p>
                         </div>
+
+
                         <div class="container d-flex justify-content-center" style="min-height: 80px;">
+
                         <?php if(isset($_SESSION['erreur'])): ?>
                             <div class="alert alert-danger flash">
                                 Warning...Your password or login is incorrect !
                             </div>
                         <?php endif ?>
                         <?php unset($_SESSION['erreur']); ?>
+
+
                         <?php if(isset($_SESSION['notConnected'])): ?>
                             <div class="alert alert-danger flash">
                                 Nice try... But you need to be logged before accessing the project !
                             </div>
                         <?php endif ?>
                         <?php unset($_SESSION['notConnected']); ?>
-                        <?php if(isset($_SESSION['disconnected'])): ?>
-                            <div class="alert alert-success flash">
-                                Successfully disconnected !
-                            </div>
-                        <?php endif ?>
+
                         </div>
+
+                        <!-- Part where the user can write is login and password -->
                         <div class="container d-flex justify-content-center">
-                            <form action="" method="POST">
+
+                            <form action="/" method="POST">
 
                                 <div class="form-group">
                                     <input type="text" class="form-control" id="connexionLogin"  name="connexionLogin" placeholder="E-mail...">
@@ -117,7 +146,8 @@ use app\models\Auth;
 
                                 <div class="d-flex justify-content-center">
                                     <button type="submit" class="btn btn-primary">SIGN IN</button>
-                                </div>                                
+                                </div>  
+
                             </form> 
                         </div>
                     </div>
@@ -127,21 +157,34 @@ use app\models\Auth;
        
 
 
-    <script>
-        function toggleVisibility() {
+        <script>
 
-            var x = document.getElementById("connexionPassword");
-            if (x.type === "password") {
-                x.type = "text";
-            } else {
-                x.type = "password";
+
+            // Function which toggle and untoggle the visibility of the password input
+            function toggleVisibility() {
+
+                var x = document.getElementById("connexionPassword");
+
+                if (x.type === "password") {
+
+                    x.type = "text";
+
+                } else {
+
+                    x.type = "password";
+
+                }
             }
 
-        }
-    </script>
+
+        </script>
+
+
+
 
 
     </body>
+
 </html>
 
 

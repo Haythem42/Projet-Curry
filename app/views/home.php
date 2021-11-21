@@ -6,6 +6,7 @@ use app\models\Auth;
 
     <html lang="en">
     <head>
+
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,11 +20,18 @@ use app\models\Auth;
 
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+
     </head>
 
 
     <body>
 
+
+
+
+
+
+        <!-- Feature : scroll to the top when clicking on the div -->
         <div class="scrollTop d-flex justify-content-center align-items-center" onclick="scrollToTop()">
             <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-chevron-up" viewBox="0 0 16 16">
                 <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z"/>
@@ -31,7 +39,11 @@ use app\models\Auth;
             <p class="l-height-50px f-size-30px margin-t-15px margin-l-10px">TO TOP</p>
         </div>
 
-    <!-- PART : NAVIGATION BAR -->
+
+
+
+
+        <!-- Navbar -->
         <header>
 
 
@@ -39,17 +51,19 @@ use app\models\Auth;
                 <p class="navbar-brand">CURRY PROJECT</p>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
+
                         <li class="nav-item align-items-center">
-                            <a class="nav-link" href="">
+                            <a class="nav-link" href="/home/display">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house-door-fill" viewBox="0 0 16 16">
                                     <path d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5z"/>
                                 </svg>
                                 HOME
                             </a>
                         </li>
-                        <?php if(Auth::has("Admin") || Auth::has("Manager F") || Auth::has("Employee")): ?>
+
+                        <?php if(Auth::can(1)): ?>
                         <li class="nav-item align-items-center">
-                            <a class="nav-link" href="../fireman/display">
+                            <a class="nav-link" href="/fireman/display">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
                                     <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
                                     <path fill-rule="evenodd" d="M5.216 14A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216z"/>
@@ -59,9 +73,10 @@ use app\models\Auth;
                             </a>
                         </li>
                         <?php endif ?>
-                        <?php if(Auth::has("Admin") || Auth::has("Manager B") || Auth::has("Employee")): ?>
+
+                        <?php if(Auth::can(5)): ?>
                         <li class="nav-item align-items-center">
-                            <a class="nav-link" href="../barrack/display">
+                            <a class="nav-link" href="/barrack/display">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
                                     <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
                                 </svg>
@@ -69,9 +84,10 @@ use app\models\Auth;
                             </a>
                         </li>
                         <?php endif ?>
-                        <?php if(Auth::has("Admin") == true): ?>
+
+                        <?php if(Auth::can(9)): ?>
                         <li class="nav-item align-items-center">
-                            <a class="nav-link" href="../user/display">
+                            <a class="nav-link" href="/user/display">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
                                     <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
                                     <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
@@ -80,9 +96,10 @@ use app\models\Auth;
                             </a>
                         </li>
                         <?php endif ?>
-                        <?php if(Auth::has("Admin") == true): ?>
+
+                        <?php if(Auth::can(13)): ?>
                         <li class="nav-item">
-                            <a class="nav-link" href="../role/display">
+                            <a class="nav-link" href="/role/display">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
                                     <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
                                     <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
@@ -91,6 +108,7 @@ use app\models\Auth;
                             </a>
                         </li>
                         <?php endif ?>
+
                         <?php if(Auth::is_logged() == true): ?>
                         <?php $user = Auth::user($_SESSION['auth'][0]); ?>
                         <div class="d-flex justify-content-center avatarContainer" onclick="showUserInfo();">
@@ -99,10 +117,17 @@ use app\models\Auth;
                             <div class="p text-connected">Online</div>
                         </div>
                         <?php endif ?>
+
                     </ul>
                 </div>
             </nav><br>
+
+
+            <!-- Background image of the header -->
             <div class="headerImg">
+
+
+            <!-- Information about user displaying when clicking on image of the navbar -->
             <div class="userInfo yellow" id="divUserInfo">
                 <div class="d-flex yellow">
                     <div class="avatar-big"></div>
@@ -113,7 +138,7 @@ use app\models\Auth;
                     </p>
                 </div>
                 <div class="exit">
-                    <a href="../../connexion/disconnect" class="exit">
+                    <a href="/connexion/disconnect" class="exit">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-door-open-fill" viewBox="0 0 16 16">
                             <path d="M1.5 15a.5.5 0 0 0 0 1h13a.5.5 0 0 0 0-1H13V2.5A1.5 1.5 0 0 0 11.5 1H11V.5a.5.5 0 0 0-.57-.495l-7 1A.5.5 0 0 0 3 1.5V15H1.5zM11 2h.5a.5.5 0 0 1 .5.5V15h-1V2zm-2.5 8c-.276 0-.5-.448-.5-1s.224-1 .5-1 .5.448.5 1-.224 1-.5 1z"/>
                         </svg>
@@ -122,13 +147,14 @@ use app\models\Auth;
                 </div>
             </div>
 
+
         </header>
 
         
 
 
 
-        <!-- PART : TITLE ABOUT CURRY PROJECT -->
+        <!-- Title under the header -->
         <div class="separator-150px"></div>
 
         <div class="container yellow w-circle h-35px b-radius"></div>
@@ -151,7 +177,7 @@ use app\models\Auth;
             
 
 
-        <!-- PART : INFORMATION ABOUT THE CURRY PROJECT -->
+        <!-- Information about the Curry project -->
         <div class="flex">
             <div class="red w-40 h-35px b-radius margin-r-25px"></div>
             <div class="red w-circle h-35px b-radius"></div>
@@ -190,8 +216,9 @@ use app\models\Auth;
 
 
 
-        <!-- PART : TITLE MAKE YOUR CHOICE -->
+        <!-- Title when choosing between fireman or barrack redirection -->
         
+        <?php if(Auth::can(1) || Auth::can(5)): ?>
         <div class="container red w-circle h-35px b-radius"></div>
         <div class="container blue w-25 h-35px b-radius margin-t-5px"></div>
         <div class="container red w-50 h-35px b-radius margin-t-5px"></div>
@@ -207,15 +234,18 @@ use app\models\Auth;
         <div class="container red w-circle h-35px b-radius margin-t-5px"></div>
 
         <div class="separator-150px"></div>
+        <?php endif ?>
 
 
 
 
 
-        <!-- PART : FIREMEN AND BARRACKS DISPLAY -->
+        <!-- Images and button for redirection -->
         <div class="flex">
 
-            <!-- FIREMAN SECTION -->
+
+            <!-- Fireman section -->
+            <?php if(Auth::can(1)): ?>
             <div class="w-50 h-800px">
 
                 <div class="flex justify-content-center">
@@ -233,7 +263,7 @@ use app\models\Auth;
                 <div class="separator-50px"></div>
 
                 <div class="d-flex align-items-center justify-content-center">
-                    <a href="../fireman/display" class="btn btn-primary w-25 b-radius">
+                    <a href="/fireman/display" class="btn btn-primary w-25 b-radius">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
                             <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/>
                             <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/>
@@ -243,9 +273,12 @@ use app\models\Auth;
                 </div>
 
             </div>
+            <?php endif ?>
 
 
-            <!-- BARRACK SECTION -->
+
+            <!-- Barrack section -->
+            <?php if(Auth::can(5)): ?>
             <div class="w-50 h-800px">
 
                 <div class="flex justify-content-center">
@@ -263,7 +296,7 @@ use app\models\Auth;
                 <div class="separator-50px"></div>
 
                 <div class="d-flex align-items-center justify-content-center">
-                    <a href="../barrack/display" class="btn btn-secondary w-25 b-radius">
+                    <a href="/barrack/display" class="btn btn-secondary w-25 b-radius">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
                             <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/>
                             <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/>
@@ -273,8 +306,15 @@ use app\models\Auth;
                 </div>
 
             </div>
+            <?php endif ?>
+
 
         </div>
+
+
+
+
+
 
         <div class="separator-150px"></div>
 
@@ -282,7 +322,7 @@ use app\models\Auth;
 
 
 
-        <!-- PART : FOOTER -->
+        <!-- Footer -->
         <footer>
 
 
@@ -295,6 +335,8 @@ use app\models\Auth;
 
 
         <script>
+
+            // Waiting for the user to scroll down to show the div "Scroll to top"
             window.addEventListener('scroll', function()  {
 
                 var scroll = document.querySelector('.scrollTop');
@@ -302,12 +344,20 @@ use app\models\Auth;
 
             })
 
+
+
+            // Function which redirect to the top of the page when the user clicks on the div "Scroll to top"
             function scrollToTop() {
+
                 window.scrollTo({
                     top : 0
                 })
+
             }
 
+
+
+            // Function which show the user's info when the user clicks on the image in the navbar
             function showUserInfo() {
 
                 var div = document.querySelector(".userInfo");
@@ -328,6 +378,10 @@ use app\models\Auth;
             }
 
         </script>
+
+
+
+
 
     </body>
 

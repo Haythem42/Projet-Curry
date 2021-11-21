@@ -15,6 +15,7 @@
         public function connexion() {
 
             $connexionPage = Renderer::render('connexion.php');
+            
             echo $connexionPage;
             
         }

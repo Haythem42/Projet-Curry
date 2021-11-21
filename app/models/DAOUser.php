@@ -5,7 +5,7 @@
     /**
      * DAOUser which contains function for manipulation
      *
-     * @author TakeN
+     * @author Quentin
      */
     class DAOUser {
 
@@ -92,9 +92,13 @@
             $preparedStatement = $this->connexion->prepare($sql);
 
             $preparedStatement->bindValue(1,$user->getMail());
+
             $preparedStatement->bindValue(2,password_hash($user->getPassword(), PASSWORD_DEFAULT));
+
             $preparedStatement->bindValue(3,$user->getFirstName());
+
             $preparedStatement->bindValue(4,$user->getLastName());
+
             $preparedStatement->bindValue(5,$user->getRoleId());
 
             $preparedStatement->execute();
@@ -124,6 +128,7 @@
             $preparedStatement = $this->connexion->prepare($sql);
 
             $preparedStatement->bindValue(':userId', $user->getId());
+            
             $preparedStatement->bindValue(':userPassword', password_hash($user->getPassword(), PASSWORD_DEFAULT));
 
             $preparedStatement->execute();

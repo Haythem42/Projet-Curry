@@ -37,7 +37,9 @@
          */
         public function retrieveFireman($matricule) : ?Fireman{
 
-                $requestSQL = "SELECT * FROM pompiers WHERE Matricule =:matricule";
+                $requestSQL = " SELECT * 
+                                FROM pompiers 
+                                WHERE Matricule =:matricule";
 
                 $preparedStatement = $this->connexion->prepare($requestSQL);
 
@@ -47,7 +49,16 @@
 
                 $data = $preparedStatement->fetch(\PDO::FETCH_OBJ);
 
-                $fireman = new Fireman($data->Matricule,$data->Prenom,$data->Nom,$data->ChefAgret,$data->DateNaissance,$data->NumCaserne,$data->CodeGrade,$data->MatriculeResponsable);
+                $fireman = new Fireman(
+                                                $data->Matricule,
+                                                $data->Prenom,
+                                                $data->Nom,
+                                                $data->ChefAgret,
+                                                $data->DateNaissance,
+                                                $data->NumCaserne,
+                                                $data->CodeGrade,
+                                                $data->MatriculeResponsable
+                                        );
 
                 return $fireman;
 
@@ -64,7 +75,8 @@
         */
         public function countFiremen() : int {
 
-                $requestSQL = "SELECT * FROM pompiers";
+                $requestSQL = " SELECT * 
+                                FROM pompiers";
 
                 $preparedStatement = $this->connexion->prepare($requestSQL);
 
@@ -96,19 +108,32 @@
         */
         public function findAllFiremen($offset, $limit) : Array {
 
-                $requestSQL = "SELECT * FROM pompiers LIMIT ? OFFSET ?";
+                $requestSQL = " SELECT * 
+                                FROM pompiers 
+                                LIMIT ? OFFSET ?";
 
                 $preparedStatement = $this->connexion->prepare($requestSQL);
 
                 $preparedStatement->bindValue(1, $limit, \PDO::PARAM_INT);
+
                 $preparedStatement->bindValue(2, $offset, \PDO::PARAM_INT);
+
                 $preparedStatement->execute();
 
                 $firemen = array();
 
                 while ($data = $preparedStatement->fetch(\PDO::FETCH_OBJ)) {
 
-                    $fireman = new Fireman($data->Matricule,$data->Prenom,$data->Nom,$data->ChefAgret,$data->DateNaissance,$data->NumCaserne,$data->CodeGrade,$data->MatriculeResponsable);
+                    $fireman = new Fireman(
+                                                $data->Matricule,
+                                                $data->Prenom,
+                                                $data->Nom,
+                                                $data->ChefAgret,
+                                                $data->DateNaissance,
+                                                $data->NumCaserne,
+                                                $data->CodeGrade,
+                                                $data->MatriculeResponsable
+                                        );
                     array_push($firemen, $fireman);
 
                 }
@@ -126,7 +151,8 @@
          */
         public function findAll() : Array {
 
-                $requestSQL = "SELECT * FROM pompiers";
+                $requestSQL = " SELECT * 
+                                FROM pompiers";
 
                 $preparedStatement = $this->connexion->prepare($requestSQL);
 
@@ -136,7 +162,17 @@
 
                 while ($data = $preparedStatement->fetch(\PDO::FETCH_OBJ)) {
 
-                    $fireman = new Fireman($data->Matricule,$data->Prenom,$data->Nom,$data->ChefAgret,$data->DateNaissance,$data->NumCaserne,$data->CodeGrade,$data->MatriculeResponsable);
+                    $fireman = new Fireman(
+                                                $data->Matricule,
+                                                $data->Prenom,
+                                                $data->Nom,
+                                                $data->ChefAgret,
+                                                $data->DateNaissance,
+                                                $data->NumCaserne,
+                                                $data->CodeGrade,
+                                                $data->MatriculeResponsable
+                                        );
+
                     array_push($firemen, $fireman);
 
                 }
@@ -158,7 +194,9 @@
          */
         public function findByName($fragments) : Array{
 
-                $requestSQL = "SELECT * FROM pompiers WHERE Prenom = ?";
+                $requestSQL = " SELECT * 
+                                FROM pompiers 
+                                WHERE Prenom = ?";
 
                 $preparedStatement = $this->connexion->prepare($requestSQL);
 
@@ -170,7 +208,17 @@
 
                 while ($data = $preparedStatement->fetch(\PDO::FETCH_OBJ)) {
 
-                        $fireman = new Fireman($data->Matricule,$data->Prenom,$data->Nom,$data->ChefAgret,$data->DateNaissance,$data->NumCaserne,$data->CodeGrade,$data->MatriculeResponsable);
+                        $fireman = new Fireman(
+                                                        $data->Matricule,
+                                                        $data->Prenom,
+                                                        $data->Nom,
+                                                        $data->ChefAgret,
+                                                        $data->DateNaissance,
+                                                        $data->NumCaserne,
+                                                        $data->CodeGrade,
+                                                        $data->MatriculeResponsable
+                                                );
+
                         array_push($firemen, $fireman);
 
                 }
@@ -192,17 +240,25 @@
          */
         public function createFireman(Fireman $fireman) : int {
 
-                $requestSQL = "INSERT INTO pompiers VALUES (?,?,?,?,?,?,?,?)";
+                $requestSQL = " INSERT INTO pompiers 
+                                VALUES (?,?,?,?,?,?,?,?)";
 
                 $preparedStatement = $this->connexion->prepare($requestSQL);
 
                 $preparedStatement->bindValue(1,$fireman->getMatricule());
+
                 $preparedStatement->bindValue(2,$fireman->getPrenom());
+
                 $preparedStatement->bindValue(3,$fireman->getNom());
+
                 $preparedStatement->bindValue(4,$fireman->getChefAgret());
+
                 $preparedStatement->bindValue(5,$fireman->getDateNaissance());
+
                 $preparedStatement->bindValue(6,$fireman->getNumCaserne());
+
                 $preparedStatement->bindValue(7,$fireman->getCodeGrade());
+
                 $preparedStatement->bindValue(8,$fireman->getMatriculeResponsable());
 
                 $preparedStatement->execute();
@@ -226,7 +282,8 @@
          */
         public function removeFireman($matricule) : int {
 
-                $requestSQL = "DELETE FROM pompiers WHERE Matricule = ?";
+                $requestSQL = " DELETE FROM pompiers 
+                                WHERE Matricule = ?";
 
                 $preparedStatement = $this->connexion->prepare($requestSQL);
 
@@ -253,17 +310,32 @@
          */
         public function updateFireman(Fireman $fireman) : int {
 
-                $requestSQL = "UPDATE pompiers SET Prenom = :prenom, Nom = :nom, ChefAgret = :chefAgret, DateNaissance = :dateNaissance, NumCaserne = :numCaserne, CodeGrade = :codeGrade, MatriculeResponsable = :matriculeResponsable WHERE Matricule = :matricule";
+                $requestSQL = " UPDATE  pompiers 
+                                SET     Prenom = :prenom, 
+                                        Nom = :nom, 
+                                        ChefAgret = :chefAgret, 
+                                        DateNaissance = :dateNaissance, 
+                                        NumCaserne = :numCaserne, 
+                                        CodeGrade = :codeGrade, 
+                                        MatriculeResponsable = :matriculeResponsable 
+                                WHERE   Matricule = :matricule";
 
                 $preparedStatement = $this->connexion->prepare($requestSQL);
 
                 $preparedStatement->bindValue(':prenom', $fireman->getPrenom());
+
                 $preparedStatement->bindValue(':nom', $fireman->getNom());
+
                 $preparedStatement->bindValue(':chefAgret', $fireman->getChefAgret());
+
                 $preparedStatement->bindValue(':dateNaissance', $fireman->getDateNaissance());
+
                 $preparedStatement->bindValue(':numCaserne', $fireman->getNumCaserne());
+
                 $preparedStatement->bindValue(':codeGrade', $fireman->getCodeGrade());
+
                 $preparedStatement->bindValue(':matriculeResponsable', $fireman->getMatriculeResponsable());
+
                 $preparedStatement->bindValue(':matricule', $fireman->getMatricule());
 
                 $preparedStatement->execute();
@@ -273,36 +345,6 @@
                 return $linesModified;
 
         }
-
-
-
-
-
-        /**
-         * Function which retrieves the barrack associated with one specific fireman.
-         * 
-         * @param Fireman $fireman
-         * 
-         * @return Barrack $barrack
-         */
-        public function retrieveBarracksFromFireman(Fireman $fireman): ?Barrack{
-
-                $requestSQL = "SELECT * FROM casernes WHERE NumCaserne = :numCaserne";
-
-                $preparedStatement = $this->connexion->prepare($requestSQL);
-
-                $preparedStatement->bindValue(':numCaserne', $fireman->getNumCaserne());
-
-                $preparedStatement->execute();
-
-                $data = $preparedStatement->fetch(\PDO::FETCH_OBJ);
-
-                $barrack = new Barrack($data->NumCaserne,$data->Adresse,$data->CP,$data->Ville,$data->CodeTypeC);
-
-                return $barrack;
-
-        }
-
     }
 
 ?>

@@ -32,6 +32,7 @@
         public function checkLength($chefAgret) : bool {
 
             if(strlen($chefAgret) == 1) {return true;}
+            
             else {return false;}
 
         }
@@ -48,6 +49,7 @@
         public function checkValue($chefAgret) : bool {
 
             if(in_array($chefAgret, array('O','N'))) {return true;}
+
             else {return false;}
 
         }

@@ -44,7 +44,9 @@
                 if (is_numeric($fragments)) {
 
                     $firemen = $this->daoPompier->findAllFiremen((intval($fragments)*10)-10,10);
+
                     $pageFireman = Renderer::render('fireman.php', compact('firemen'));
+
                     echo($pageFireman);
 
                 }
@@ -54,7 +56,9 @@
             else {
 
                 $firemen = $this->daoPompier->findAll();
+
                 $pageFireman = Renderer::render('fireman.php', compact('firemen'));
+
                 echo $pageFireman;
 
             }
@@ -63,8 +67,11 @@
 
 
         public function connect() : void {
+
             $pageConnexion = Renderer::render('connexion.php');
+
             echo $pageConnexion;
+
         }
 
 
@@ -76,6 +83,7 @@
         public function add() : void {
 
             $pageFiremanCreate = Renderer::render('firemanCreate.php');
+
             echo $pageFiremanCreate;
 
         }
@@ -92,13 +100,21 @@
             $filter = new Filter($_POST);
 
             $filter->acceptVisitor('matriculeInput', new MatriculeVisitor());
+
             $filter->acceptVisitor('firstNameInput', new FirstNameVisitor());
+
             $filter->acceptVisitor('lastNameInput', new LastNameVisitor());
+
             $filter->acceptVisitor('chefAgretInput', new ChefAgretVisitor());
+
             $filter->acceptVisitor('birthDateInput', new BirthDateVisitor());
+
             $filter->acceptVisitor('numberBarrackInput', new BarrackNumberVisitor());
+
             $filter->acceptVisitor('gradeInput', new GradeCodeVisitor());
+
             $filter->acceptVisitor('matriculeManagerInput', new MatriculeManagerVisitor());
+
 
             $tableCheck = $filter->visit();
 
@@ -136,16 +152,16 @@
 
                     $_SESSION['result'] = "The fireman has been added to the database !";
                     $_SESSION['color'] = "green";
-                    header('Location: ../fireman/display');
+                    header('Location: /fireman/display');
 
                 }
                 
                 //Second case : if the request didn't work correctly ==> we redirect to fireman.php with an error flash message
                 else {
 
-                    $_SESSION['result'] = "Oopsi... It seems like the fireman hasn't been added correctly to the database !";
+                    $_SESSION['result'] = "Oopsi... Something went wrong (a fireman with the matricule already exists) !";
                     $_SESSION['color'] = "red";
-                    header('Location: ../fireman/display');
+                    header('Location: /fireman/display');
 
                 }
 
@@ -155,7 +171,7 @@
                 $_SESSION['addUserValue'] = $_POST;
                 $_SESSION['filterMessage'] = "Oopsi... The data were not validated by the filter !";
                 $_SESSION['color'] = "red";
-                header('Location: ../fireman/create');
+                header('Location: /fireman/create');
 
             }
 
@@ -173,12 +189,19 @@
             $filter = new Filter($_POST);
 
             $filter->acceptVisitor('matriculeInput', new MatriculeVisitor());
+
             $filter->acceptVisitor('firstNameInput', new FirstNameVisitor());
+
             $filter->acceptVisitor('lastNameInput', new LastNameVisitor());
+
             $filter->acceptVisitor('chefAgretInput', new ChefAgretVisitor());
+
             $filter->acceptVisitor('birthDateInput', new BirthDateVisitor());
+
             $filter->acceptVisitor('numberBarrackInput', new BarrackNumberVisitor());
+
             $filter->acceptVisitor('gradeInput', new GradeCodeVisitor());
+
             $filter->acceptVisitor('matriculeManagerInput', new MatriculeManagerVisitor());
 
             $tableCheck = $filter->visit();
@@ -219,16 +242,16 @@
 
                     $_SESSION['result'] = "The fireman has been correctly updated in the database !";
                     $_SESSION['color'] = "green";
-                    header('Location: ../fireman/display');
+                    header('Location: /fireman/display');
 
                 } 
                 
                 //Second case : if the request didn't work correctly ==> we redirect to fireman.php with an error flash message
                 else {
 
-                    $_SESSION['result'] = "Oopsi... It seems like the fireman hasn't been updated correctly in the database !";
+                    $_SESSION['result'] = "Oopsi... Something went wrong (be sure to modify one propertie before clicking on confirm) !";
                     $_SESSION['color'] = "red";
-                    header('Location: ../fireman/display');
+                    header('Location: /fireman/display');
 
                 }
 
@@ -236,7 +259,9 @@
 
                 $_SESSION['checkUpdate'] = $tableCheck;
                 $_SESSION['modifyUserValue'] = $_POST;
-                header('Location: ../fireman/modify/'.$_POST['matriculeInput']);
+                $_SESSION['filterMessage'] = "Oopsi... The data were not validated by the filter !";
+                $_SESSION['color'] = "red";
+                header('Location: /fireman/modify/'.$_POST['matriculeInput']);
 
             }
 
@@ -254,7 +279,9 @@
         public function update($fragments) {
 
             $fireman = $this->daoPompier->retrieveFireman($fragments);
+
             $pageFiremanModify = Renderer::render('firemanModify.php', compact('fragments','fireman'));
+
             echo $pageFiremanModify;
         
         }
@@ -279,16 +306,16 @@
 
                 $_SESSION['result'] = "The fireman has been deleted correctly from the database !";
                 $_SESSION['color'] = "green";
-                header('Location: ../fireman/display');
+                header('Location: /fireman/display');
 
             }
             
             //Second case : if the request didn't worked correctly ==> we redirect to fireman.php with an error flash message
             else {
 
-                $_SESSION['result'] = "Oopsi... It seems like the fireman hasn't been deleted correctly from the database !";
+                $_SESSION['result'] = "Oopsi... Something went wrong (check if there is any relations with other tables in the DB) !";
                 $_SESSION['color'] = "red";
-                header('Location: ../fireman/display');
+                header('Location: /fireman/display');
 
             }
 
@@ -301,6 +328,7 @@
         public function error404() : void {
 
             $error404Page = Renderer::render('error404.php');
+
             echo $error404Page;
     
         }
@@ -312,6 +340,7 @@
          */
         public function error403() : void {
             $error403Page = Renderer::render('error403.php');
+            
             echo $error403Page;
         }
 

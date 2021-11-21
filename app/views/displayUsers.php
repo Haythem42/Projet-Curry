@@ -30,6 +30,7 @@ use app\models\Auth;
     <body style="background-color : #130f40">
 
 
+        <!-- Feature : scroll to the top when clicking on the div -->
         <div class="scrollTop d-flex justify-content-center align-items-center" onclick="scrollToTop()">
             <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-chevron-up" viewBox="0 0 16 16">
                 <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z"/>
@@ -40,24 +41,32 @@ use app\models\Auth;
 
         <header>
 
+
+            <!-- Navbar -->
             <nav class="nav navbar-expand-lg">
                 <div class="collapse navbar-collapse justify-content-center" id="navbarNavDropdown">
                     <ul class="navbar-nav">
+
                         <li class="nav-item">
-                            <a class="nav-link px-5" href="../../home/display">Home</a>
+                            <a class="nav-link px-5" href="/home/display">Home</a>
                         </li>
+
                         <li class="nav-item">
-                            <a class="nav-link px-5" href="../../fireman/display">Firemen</a>
+                            <a class="nav-link px-5" href="/fireman/display">Firemen</a>
                         </li>
+
                         <li class="nav-item">
-                            <a class="nav-link px-5" href="../../barrack/display">Barracks</a>
+                            <a class="nav-link px-5" href="/barrack/display">Barracks</a>
                         </li>
+
                         <li class="nav-item">
-                            <a class="nav-link px-5" href="">Users</a>
+                            <a class="nav-link px-5" href="/user/display">Users</a>
                         </li>
+
                         <li class="nav-item">
-                            <a class="nav-link px-5" href="../../role/display">Roles</a>
+                            <a class="nav-link px-5" href="/role/display">Roles</a>
                         </li>
+
                         <?php if(Auth::is_logged() == true): ?>
                         <?php $user = Auth::user($_SESSION['auth'][0]); ?>
                         <div class="d-flex justify-content-center avatarContainer" onclick="showUserInfo();">
@@ -66,9 +75,13 @@ use app\models\Auth;
                             <div class="p text-connected">Online</div>
                         </div>
                         <?php endif ?>
+
                     </ul>
                 </div>
             </nav>
+
+
+            <!-- Information about user displaying when clicking on image of the navbar -->
             <div class="userInfo" id="divUserInfo">
                 <div class="d-flex">
                     <div class="avatar-big"></div>
@@ -79,7 +92,7 @@ use app\models\Auth;
                     </p>
                 </div>
                 <div class="exit">
-                    <a href="../../connexion/disconnect" class="exit">
+                    <a href="/connexion/disconnect" class="exit">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-door-open-fill" viewBox="0 0 16 16">
                             <path d="M1.5 15a.5.5 0 0 0 0 1h13a.5.5 0 0 0 0-1H13V2.5A1.5 1.5 0 0 0 11.5 1H11V.5a.5.5 0 0 0-.57-.495l-7 1A.5.5 0 0 0 3 1.5V15H1.5zM11 2h.5a.5.5 0 0 1 .5.5V15h-1V2zm-2.5 8c-.276 0-.5-.448-.5-1s.224-1 .5-1 .5.448.5 1-.224 1-.5 1z"/>
                         </svg>
@@ -88,6 +101,8 @@ use app\models\Auth;
                 </div>
             </div>
 
+
+            <!-- Background images of the header -->
             <div class="d-flex justify-content-center mainContainer" style="height:500px;">
                 <div class="img" style="background-image : url(../img/admin.jpg);margin-top : 50px;"></div>
                 <div class="img" style="background-image : url(../img/admin.jpg);margin-top : 100px;margin-right: 90px;margin-left: 90px;"></div>
@@ -96,6 +111,8 @@ use app\models\Auth;
 
         </header>
 
+
+        <!-- Displaying error / succes messages -->
         <?php
         if(isset($_SESSION['result']) && $_SESSION['color'] == 'green'){ ?>
 
@@ -124,6 +141,8 @@ use app\models\Auth;
 
         ?>
 
+
+
         <div class="d-flex mainContainer" style="border-bottom: 2px solid white;margin-top:100px;">
             <div>
                 <p class="title">User Management</p>
@@ -136,6 +155,8 @@ use app\models\Auth;
                 </svg>
             </a>
         </div>
+
+
 
         <div class="container-fluid">
         <?php
@@ -266,15 +287,18 @@ use app\models\Auth;
         <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="deleteModal" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
+
                     <div class="modal-header">
                         <h5 class="modal-title" id="staticBackdropLabel">Deleting a user</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
+
                     <div class="modal-body">
                         Are you sure you want to delete this user ?
-                        <form action="erase" method="POST">
+                        <form action="/user/erase" method="POST">
                         <input type="number" class="form-control" id="idInput" name="idInput" hidden="true"/>
                     </div>
+
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-danger">Confirm</button>
@@ -289,39 +313,49 @@ use app\models\Auth;
         <div class="modal fade" id="creationStaticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="deleteModal" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
+
                     <div class="modal-header">
                         <h5 class="modal-title" id="staticBackdropLabel">Creating a user</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
+
                     <div class="modal-body">
-                        <form action="create" method="POST">
-                        <div class="form-group">
-                            <label for="emailC">Email address</label>
-                            <input type="email" class="form-control w-75" id="emailC"  name="emailC" placeholder="E-mail...">
-                        </div><br>
-                        <div class="form-group">
-                            <label for="passwordC">Password</label>
-                            <input type="password" class="form-control w-75" id="passwordC" name="passwordC" placeholder="Password...">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="passwordBox" onclick="toggleVisibility()">
-                                <label class="form-check-label" for="passwordBox">
-                                    Toggle visibility
-                                </label>
+
+                        <form action="/user/create" method="POST">
+
+                            <div class="form-group">
+                                <label for="emailC">Email address</label>
+                                <input required type="email" class="form-control w-75" id="emailC"  name="emailC" placeholder="E-mail...">
+                            </div><br>
+
+                            <div class="form-group">
+                                <label for="passwordC">Password</label>
+                                <input required type="password" class="form-control w-75" id="passwordC" name="passwordC" placeholder="Password...">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="passwordBox" onclick="toggleVisibility()">
+                                    <label class="form-check-label" for="passwordBox">
+                                        Toggle visibility
+                                    </label>
+                                </div>
+                            </div><br>
+
+                            <div class="form-group">
+                                <label for="firstNameC">First name</label>
+                                <input required type="text" class="form-control w-75" id="firstNameC"  name="firstNameC" placeholder="First name...">
+                            </div><br>
+
+                            <div class="form-group">
+                                <label for="lastNameC">Last name</label>
+                                <input required type="text" class="form-control w-75" id="lastNameC"  name="lastNameC" placeholder="Last name...">
+                            </div><br>
+
+                            <div class="form-group">
+                                <label for="roleId">Role id</label>
+                                <input required type="number" class="form-control w-75" id="roleId"  name="roleId" min="1">
                             </div>
-                        </div><br>
-                        <div class="form-group">
-                            <label for="firstNameC">First name</label>
-                            <input type="text" class="form-control w-75" id="firstNameC"  name="firstNameC" placeholder="First name...">
-                        </div><br>
-                        <div class="form-group">
-                            <label for="lastNameC">Last name</label>
-                            <input type="text" class="form-control w-75" id="lastNameC"  name="lastNameC" placeholder="Last name...">
-                        </div><br>
-                        <div class="form-group">
-                            <label for="roleId">Role id</label>
-                            <input type="number" class="form-control w-75" id="roleId"  name="roleId" min="1">
-                        </div>
+
                     </div>
+
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-success">Confirm</button>
@@ -332,21 +366,23 @@ use app\models\Auth;
         </div>
 
 
+
+
         <!-- Modal when someone wants to modify a new user -->
-
-
         <div class="modal fade" id="modifyModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="deleteModal" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
+
                     <div class="modal-header">
                         <h5 class="modal-title" id="staticBackdropLabel">Modify a user</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
+
                     <div class="modal-body">
-                        <form action="modify" method="POST">
+                        <form action="/user/modify" method="POST">
                         <div class="form-group">
                             <label for="passwordM">Password</label>
-                            <input type="password" class="form-control w-75" id="passwordM" name="passwordM" placeholder="Password...">
+                            <input required type="password" class="form-control w-75" id="passwordM" name="passwordM" placeholder="Password...">
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" value="" id="passwordBox" onclick="toggleVisibility()">
                                 <label class="form-check-label" for="passwordBox">
@@ -383,16 +419,20 @@ use app\models\Auth;
             });
 
 
+
             // Function which give the user's id when someone want's to delete.
             function obtainId(e) {
                 var id = e.id;
                 document.getElementById("idInput").value = id;
             }
 
+
+            // Function which fills id in the input fof the modify modal.
             function fillId(x) {
                 var id = x.id;
                 document.getElementById("idInputModify").value = id
             }
+
 
 
             // Function which toggle visibility for password input when creating a user.
@@ -416,12 +456,16 @@ use app\models\Auth;
             }
 
 
+            // Function which redirect to the top of the page when the user clicks on the div "Scroll to top"
             function scrollToTop() {
                 window.scrollTo({
                     top : 0
                 })
             }
 
+
+
+            // Waiting for the user to scroll down to show the div "Scroll to top"
             window.addEventListener('scroll', function()  {
 
                 var scroll = document.querySelector('.scrollTop');
@@ -429,6 +473,9 @@ use app\models\Auth;
 
             })
 
+
+
+            // Function which matches information of the fireman with the input of the "show info" modal
             function showUserInfo() {
 
                 var div = document.querySelector(".userInfo");
@@ -448,6 +495,7 @@ use app\models\Auth;
 
             }
 
+            
         </script>
 
     </body>

@@ -127,14 +127,14 @@ class RoleController extends BaseController {
                 $_SESSION['result'] = "The role has been added to the database !";
                 $_SESSION['color'] = "green";
 
-                header('Location: ../role/display');
+                header('Location: /role/display');
 
             } else {
 
-                $_SESSION['result'] = "Oopsi... Check if a user already exist !";
+                $_SESSION['result'] = "Oopsi... Something went wrong (check if a user already exist) !";
                 $_SESSION['color'] = "red";
 
-                header('Location: ../role/display');
+                header('Location: /role/display');
 
             }
 
@@ -144,7 +144,7 @@ class RoleController extends BaseController {
             $_SESSION['filterMessage'] = "Oopsi... The data were not validated by the filter !";
             $_SESSION['color'] = "red";
 
-            header('Location: ../role/display');
+            header('Location: /role/display');
 
         }
 
@@ -236,14 +236,14 @@ class RoleController extends BaseController {
                 $_SESSION['result'] = "The role has been modified in the database !";
                 $_SESSION['color'] = "green";
 
-                header('Location: ../role/display');
+                header('Location: /role/display');
 
             } else {
 
-                $_SESSION['result'] = "Oopsi... Check before if you have modified something about the user !";
+                $_SESSION['result'] = "Oopsi... Something went wrong (be sure to modify one propertie before clicking on confirm) !";
                 $_SESSION['color'] = "red";
 
-                header('Location: ../role/display');
+                header('Location: /role/display');
 
             }
 
@@ -253,7 +253,7 @@ class RoleController extends BaseController {
             $_SESSION['filterMessage'] = "Oopsi... The data were not validated by the filter !";
             $_SESSION['color'] = "red";
 
-            header('Location: ../role/display');
+            header('Location: /role/display');
 
         }
 
@@ -302,17 +302,17 @@ class RoleController extends BaseController {
             $_SESSION['result'] = "The role has been deleted correctly from the database !";
             $_SESSION['color'] = "green";
 
-            header('Location: ../role/display');
+            header('Location: /role/display');
 
         }
         
         //Second case : if the request didn't worked correctly ==> we redirect to roleList.php with an error flash message
         else {
 
-            $_SESSION['result'] = "Oopsi... Check before if users have this role (You can't delete it if users have it) !";
+            $_SESSION['result'] = "Oopsi... Something went wrong (check if there is any relations with other tables in the DB) !";
             $_SESSION['color'] = "red";
 
-            header('Location: ../role/display');
+            header('Location: /role/display');
 
         }
 

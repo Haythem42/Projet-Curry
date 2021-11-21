@@ -32,7 +32,9 @@
         public function show($fragments = null) {
 
             $users = $this->daoUser->displayUser();
+
             $pageUser = Renderer::render('displayUsers.php', compact('users'));
+
             echo($pageUser);
 
         }
@@ -43,28 +45,39 @@
          */
         public function delete() : void{
 
-            try {
+            if($_POST['idInput'] == $_SESSION['auth'][0]) {
 
-                $success = $this->daoUser->deleteUser(htmlspecialchars($_POST["idInput"]));
-
-            } 
-            catch (\Exception $error) {}
-
-                // First case : if the request worked correctly ==> we redirect to displayUsers.php with a success flash message
-            if ($success != 0) {
-
-                $_SESSION['result'] = "The user has been deleted correctly from the database !";
-                $_SESSION['color'] = "green";
-                header('Location: ../user/display');
-
-            }
-            
-            //Second case : if the request didn't worked correctly ==> we redirect to fireman.php with an error flash message
-            else {
-
-                $_SESSION['result'] = "Oopsi... It seems like the user hasn't been deleted correctly from the database !";
+                $_SESSION['result'] = "You can't delete your own account !";
                 $_SESSION['color'] = "red";
-                header('Location: ../user/display');
+                header('Location: /user/display');
+
+            } else {
+
+
+                try {
+
+                    $success = $this->daoUser->deleteUser(htmlspecialchars($_POST["idInput"]));
+    
+                } 
+                catch (\Exception $error) {}
+    
+                    // First case : if the request worked correctly ==> we redirect to displayUsers.php with a success flash message
+                if ($success != 0) {
+    
+                    $_SESSION['result'] = "The user has been deleted correctly from the database !";
+                    $_SESSION['color'] = "green";
+                    header('Location: /user/display');
+    
+                }
+                
+                //Second case : if the request didn't worked correctly ==> we redirect to fireman.php with an error flash message
+                else {
+    
+                    $_SESSION['result'] = "Oopsi... Check if this user has other relations in the DB !";
+                    $_SESSION['color'] = "red";
+                    header('Location: /user/display');
+    
+                }
 
             }
         }
@@ -77,6 +90,7 @@
         public function error404() : void {
 
             $error404Page = Renderer::render('error404.php');
+
             echo $error404Page;
     
         }
@@ -90,9 +104,13 @@
             $filter = new Filter($_POST);
 
             $filter->acceptVisitor('emailC', new MailVisitor());
+
             $filter->acceptVisitor('passwordC', new PasswordVisitor());
+
             $filter->acceptVisitor('firstNameC', new FirstNameVisitor());
+
             $filter->acceptVisitor('lastNameC', new LastNameVisitor());
+
             $filter->acceptVisitor('roleId', new RoleIdVisitor());
 
 
@@ -132,16 +150,16 @@
 
                     $_SESSION['result'] = "The user has been added to the database !";
                     $_SESSION['color'] = "green";
-                    header('Location: ../user/display');
+                    header('Location: /user/display');
 
                 }
                 
                 //Second case : if the request didn't work correctly ==> we redirect to fireman.php with an error flash message
                 else {
 
-                    $_SESSION['result'] = "Oopsi... It seems like the user hasn't been added correctly to the database !";
+                    $_SESSION['result'] = "Oopsi... Something went wrong !";
                     $_SESSION['color'] = "red";
-                    header('Location: ../user/display');
+                    header('Location: /user/display');
 
                 }
 
@@ -149,7 +167,7 @@
 
                 $_SESSION['result'] = "Oopsi... The values entered in the form are not validated by the filter.";
                 $_SESSION['color'] = "red";
-                header('Location: ../user/display');
+                header('Location: /user/display');
 
             }
 
@@ -161,8 +179,11 @@
          * Function which displays the error403 page.
          */
         public function error403() : void {
+
             $error403Page = Renderer::render('error403.php');
+
             echo $error403Page;
+
         }
 
 
@@ -175,6 +196,7 @@
             $filter = new Filter($_POST);
 
             $filter->acceptVisitor('passwordM', new PasswordVisitor());
+
             $filter->acceptVisitor('idInputModify', new RoleIdVisitor());
 
             $tableCheck = $filter->visit();
@@ -213,16 +235,16 @@
 
                     $_SESSION['result'] = "The user has been updated !";
                     $_SESSION['color'] = "green";
-                    header('Location: ../user/display');
+                    header('Location: /user/display');
 
                 }
                 
                 //Second case : if the request didn't work correctly ==> we redirect to fireman.php with an error flash message
                 else {
 
-                    $_SESSION['result'] = "Oopsi... It seems like the user hasn't been updated correctly !";
+                    $_SESSION['result'] = "Oopsi... Something went wrong !";
                     $_SESSION['color'] = "red";
-                    header('Location: ../user/display');
+                    header('Location: /user/display');
 
                 }
 
@@ -230,7 +252,7 @@
 
                 $_SESSION['result'] = "Oopsi... The values entered in the form are not validated by the filter.";
                 $_SESSION['color'] = "red";
-                header('Location: ../user/display');
+                header('Location: /user/display');
 
             }
 

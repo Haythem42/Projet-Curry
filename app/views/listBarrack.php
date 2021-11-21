@@ -26,6 +26,8 @@ use app\models\Auth;
         
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="/css/barrackStyle.css" rel="stylesheet" />
+
+        <scipt src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         
     </head>
 
@@ -49,20 +51,23 @@ use app\models\Auth;
                         <ul class="navbar-nav mx-auto">
                            
                             <!-- Display Home section for all users -->
-                                <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="../home/display">Home</a></li>
+                                <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="/home/display">Home</a></li>
                                 
                             <!-- Display navbar section in terms of their role -->
-                                <?php if(Auth::has("Admin") || Auth::has("Manager F") || Auth::has("Employee")): ?>
-                                <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="../fireman/display">Firemen</a></li>
+                                <?php if(Auth::can(1)): ?>
+                                <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="/fireman/display">Firemen</a></li>
                                 <?php endif ?>
                                 
-                                <?php if(Auth::has("Admin") || Auth::has("Manager B") || Auth::has("Employee")): ?>
-                                <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="">Barracks</a></li>
+                                <?php if(Auth::can(5)): ?>
+                                <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="/barrack/display">Barracks</a></li>
                                 <?php endif ?>
                                 
-                                <?php if(Auth::has("Admin")): ?>
-                                <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="../user/display">Users</a></li>
-                                <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="../role/display">Roles</a></li>
+                                <?php if(Auth::can(9)): ?>
+                                <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="/user/display">Users</a></li>
+                                <?php endif ?>
+
+                                <?php if(Auth::can(13)): ?>
+                                <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="/role/display">Roles</a></li>
                                 <?php endif ?>
                                 
                                 <?php if(Auth::is_logged() == true): $user = Auth::user($_SESSION['auth'][0]); ?>
@@ -93,7 +98,7 @@ use app\models\Auth;
 
             <!-- Log out -->
                 <div class="exit">
-                    <a href="../../connexion/disconnect" class="exit">
+                    <a href="/connexion/disconnect" class="exit">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-door-open-fill" viewBox="0 0 16 16">
                             <path d="M1.5 15a.5.5 0 0 0 0 1h13a.5.5 0 0 0 0-1H13V2.5A1.5 1.5 0 0 0 11.5 1H11V.5a.5.5 0 0 0-.57-.495l-7 1A.5.5 0 0 0 3 1.5V15H1.5zM11 2h.5a.5.5 0 0 1 .5.5V15h-1V2zm-2.5 8c-.276 0-.5-.448-.5-1s.224-1 .5-1 .5.448.5 1-.224 1-.5 1z"/>
                         </svg>
@@ -123,7 +128,7 @@ use app\models\Auth;
             </section>
         
 
-            <section class="page-section cta">
+            <section class="page-section cta" id="top">
 
             <!-- Message flash -->
                 <?php if (isset($_SESSION['message']) && $_SESSION['color'] == "green"): ?>
@@ -159,7 +164,7 @@ use app\models\Auth;
                                     <span class="section-heading-lower p-sm-2">
 
                                         <div class="d-grid gap-2 col-5 mx-auto">
-                                        <a class="btn btn-primary" href="create">ADD A NEW BARRACK</a>
+                                        <a class="btn btn-primary" href="/barrack/create">ADD A NEW BARRACK</a>
                                         </div>
 
                                     </span>
@@ -194,12 +199,12 @@ use app\models\Auth;
                                             <td><?= $barrack->getVille(); ?></td>
                                             <!-- <td><?= $barrack->getCodeTypeC(); ?></td> -->
                                             <?php if(Auth::can(7)): ?>
-                                            <td><a class="btn btn-outline-secondary" href="modify/<?= $barrack->getNumCaserne() ?>">MODIFY</a></td>
+                                            <td><a class="btn btn-outline-secondary" href="/barrack/modify/<?= $barrack->getNumCaserne() ?>">MODIFY</a></td>
                                             <?php endif ?>
                                             <?php if(Auth::can(8)): ?>
-                                            <td><a class="btn btn-outline-danger" href="erase/<?= $barrack->getNumCaserne() ?>">DELETE</a></td>
+                                            <td><a class="btn btn-outline-danger" href="/barrack/erase/<?= $barrack->getNumCaserne() ?>">DELETE</a></td>
                                             <?php endif ?>
-                                            <td><a class="btn btn-outline-dark" href="expose/<?= $barrack->getNumCaserne() ?>"> > </a></td>
+                                            <td><a class="btn btn-outline-dark" href="/barrack/expose/<?= $barrack->getNumCaserne() ?>"> > </a></td>
                                         </tr>
                                         
                                         <?php endforeach; ?>
@@ -238,6 +243,12 @@ use app\models\Auth;
             $(document).ready( function () {
                 $('#myTable').DataTable();
             } );
+
+
+
+            $( document ).ready(function() {
+                $(document).scrollTop( $("#top").offset().top );
+            });
 
             // Function which display/hide logged user information 
             function showUserInfo() {

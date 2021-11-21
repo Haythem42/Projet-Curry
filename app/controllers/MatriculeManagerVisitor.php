@@ -32,6 +32,7 @@
         public function checkPrefix(string $matriculeManager) : bool {
 
             if(substr($matriculeManager, 0, 2) == "Ma") {return true;}
+
             else {return false;}
 
         }
@@ -48,6 +49,7 @@
         public function checkNumbers($matriculeManager) : bool {
 
             if(is_numeric(substr($matriculeManager, 2, 8))) {return true;}
+
             else {return false;}
 
         }

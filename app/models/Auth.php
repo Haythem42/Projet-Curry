@@ -1,5 +1,6 @@
 <?php
 
+
 /**
 * Description of casernes
 * 
@@ -7,6 +8,7 @@
 */
 
 namespace app\models;
+
 
 use app\utils\SingletonDBMaria;
 use app\models\DAOUser;
@@ -76,7 +78,7 @@ class Auth{
     public static function logout() {
 
         session_destroy();
-        header("Location: ../../../");
+        header("Location: /");
 
     }
 

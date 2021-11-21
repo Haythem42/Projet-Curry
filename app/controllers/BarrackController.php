@@ -137,7 +137,7 @@ class BarrackController extends BaseController {
                 $_SESSION['message'] = "The barrack has been correctly created in the database !";
                 $_SESSION['color'] = "green";
 
-                header('Location: ../barrack/display');
+                header('Location: /barrack/display');
 
             }
 
@@ -145,10 +145,10 @@ class BarrackController extends BaseController {
             //Second case : if the request didn't work correctly ==> we redirect to listBarrack.php with an error flash message
             else {
 
-                $_SESSION['message'] = "Oopsi... It seems like the barrack hasn't been created correctly in the database !";
+                $_SESSION['message'] = "Oopsi... Something went wrong (a barrack with the same id already exists) !";
                 $_SESSION['color'] = "red";
 
-                header('Location: ../barrack/display');
+                header('Location: /barrack/display');
 
             }
 
@@ -158,7 +158,7 @@ class BarrackController extends BaseController {
             $_SESSION['filterMessage'] = "Oopsi... The data were not validated by the filter !";
             $_SESSION['color'] = "red";
 
-            header('Location: ../barrack/create');
+            header('Location: /barrack/create');
 
         }
     }
@@ -219,17 +219,17 @@ class BarrackController extends BaseController {
                 $_SESSION['message'] = "The barrack has been correctly updated in the database !";
                 $_SESSION['color'] = "green";
 
-                header('Location: ../display');
+                header('Location: /barrack/display');
 
             }
         
             //Second case : if the request didn't work correctly ==> we redirect to listBarrack.php with an error flash message
             else {
 
-                $_SESSION['message'] = "Oopsi... It seems like the barrack hasn't been updated correctly in the database !";
+                $_SESSION['message'] = "Oopsi... Something went wrong (be sure to modify one propertie before clicking on confirm) !";
                 $_SESSION['color'] = "red";
 
-                header('Location: ../../barrack/display');
+                header('Location: /barrack/display');
 
             }
             
@@ -238,10 +238,10 @@ class BarrackController extends BaseController {
         
         else {
 
-            $_SESSION['messageFilter'] = "Oopsi... The data were not validated by the filter !";
+            $_SESSION['filterMessage'] = "Oopsi... The data were not validated by the filter !";
             $_SESSION['color'] = "red";
 
-            header('Location: ../../barrack/modify/'.$_POST['numBarrack']);
+            header('Location: /barrack/modify/'.$_POST['numBarrack']);
 
         }
 
@@ -305,17 +305,17 @@ class BarrackController extends BaseController {
             $_SESSION['message'] = "The barrack has been correctly deleted from the database !";
             $_SESSION['color'] = "green";
 
-            header('Location: ../display');
+            header('Location: /barrack/display');
 
         }
         
         //Second case : if the request didn't work correctly ==> we redirect to listBarrack.php with an error flash message
         else {
 
-            $_SESSION['message'] = "TOopsi... It seems like the barrack hasn't been deleted correctly from the database !";
+            $_SESSION['message'] = "Oopsi... Something went wrong (check if there is any relations with other tables in the DB) !";
             $_SESSION['color'] = "green";
             
-            header('Location: ../display');
+            header('Location: /barrack/display');
 
         }
     }

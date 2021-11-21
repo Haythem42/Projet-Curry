@@ -16,7 +16,7 @@
          * 
          * @return bool $validity
          */
-        abstract public function checkDataValidity(string $data) : bool;
+        abstract public function checkDataValidity(string $data) : bool ;
         
     }
 

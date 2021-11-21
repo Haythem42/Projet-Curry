@@ -51,22 +51,25 @@ use app\models\Auth;
                             
                         
                             <!-- Display Home section for all users -->
-                                <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="../../home/display">Home</a></li>
+                                <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="/home/display">Home</a></li>
                             
                             <!-- Display navbar section in terms of their role -->
-                                <?php if(Auth::has("Admin") || Auth::has("Manager F") || Auth::has("Employee")): ?>
-                                <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="../../fireman/display">Firemen</a></li>
+                                <?php if(Auth::can(1)): ?>
+                                <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="/fireman/display">Firemen</a></li>
                                 <?php endif ?>
                                 
                                 
-                                <?php if(Auth::has("Admin") || Auth::has("Manager B") || Auth::has("Employee")): ?>
-                                <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="../display">Barracks</a></li>
+                                <?php if(Auth::can(5)): ?>
+                                <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="/barrack/display">Barracks</a></li>
                                 <?php endif ?>
                                 
                                 
-                                <?php if(Auth::has("Admin")): ?>
-                                <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="../../user/display">Users</a></li>
-                                <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="../../role/display">Roles</a></li>
+                                <?php if(Auth::can(9)): ?>
+                                <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="/user/display">Users</a></li>
+                                <?php endif ?>
+
+                                <?php if(Auth::can(13)): ?>
+                                <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="/role/display">Roles</a></li>
                                 <?php endif ?>
                                 
                                 
@@ -98,7 +101,7 @@ use app\models\Auth;
 
             <!-- Log out -->
                 <div class="exit">
-                    <a href="../../connexion/disconnect" class="exit">
+                    <a href="/connexion/disconnect" class="exit">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-door-open-fill" viewBox="0 0 16 16">
                             <path d="M1.5 15a.5.5 0 0 0 0 1h13a.5.5 0 0 0 0-1H13V2.5A1.5 1.5 0 0 0 11.5 1H11V.5a.5.5 0 0 0-.57-.495l-7 1A.5.5 0 0 0 3 1.5V15H1.5zM11 2h.5a.5.5 0 0 1 .5.5V15h-1V2zm-2.5 8c-.276 0-.5-.448-.5-1s.224-1 .5-1 .5.448.5 1-.224 1-.5 1z"/>
                         </svg>
@@ -136,7 +139,7 @@ use app\models\Auth;
                                     </h2>
                                     
                                     <!-- Modify form -->
-                                        <form action="modify" method="POST" class="col-md-10 m-auto mt-3">
+                                        <form action="/barrack/modify" method="POST" class="col-md-10 m-auto mt-3">
                                         
                                         <div class="brd">
 
@@ -179,7 +182,7 @@ use app\models\Auth;
 
                                         <!-- Button -->
                                             <div class="py-4">
-                                                <a class="btn btn-outline-secondary" href="../display">Back</a></td>
+                                                <a class="btn btn-outline-secondary" href="/barrack/display">Back</a></td>
                                                 <button type="submit" class="btn btn-primary">Save modification</button>
                                             </div>
 

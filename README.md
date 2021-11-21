@@ -35,23 +35,24 @@ php -S 127.0.0.1:8080 -t html (You can change the port.)
 
 The **curry project** is based on a database called **'pompiers'** so you'll need this database too. Follow these steps :
 
-* Recover the general structure of the database
+* Create an empty database
 ```bash
-mysql -u root -p pompiers < dumpFiremen.sql
+create database pompiers;
 ```
 
-* Recover role & user tables
+
+* Retrieve the database
+
+Warning :   Two possibilities for the user :
+            -First possibility : You need to create a user called "pompier_dbuser" with the password "123456"
+            -Second one : You create an other user but you need to modify config.ini file with your information
+
+You have to open a terminal located in the directory which contains the file "pompiersDUMP.sql" and then :
+
 ```bash
-mysql -u root -p pompiers < dumpRoles.sql
-mysql -u root -p pompiers < dumpUsers.sql
+mysql -u pompier_dbuser -p pompiers < pathToYourFile"pompiersDUMP.sql";
 ```
 
-* Recover data about firemen, barracks and disponibilities
-```bash
-mysql -u root -p pompiers < Path to the file dumpDataFiremen.sql
-mysql -u root -p pompiers < Path to the file dumpDataFiremenDisponibilities.sql
-mysql -u root -p pompiers < Path to the file dumpDataBarracks.sql
-```
 
 ## Login and password
 
@@ -80,8 +81,36 @@ Password : 2-3LG4yp~z
 * **Employee**
 
 ```bash
-Login : p.dupont@orange.fr
+Login : l.james@orange.fr
 Password : L8;9xS!y2v
+```
+
+* **Secretary**
+
+```bash
+Login : e.watson@orange.fr
+Password : 8@Hjd|69Pl
+```
+
+* **Manager U**
+
+```bash
+Login : d.lillard@orange.fr
+Password : Tu!5x;Uio9
+```
+
+* **Manager R-P**
+
+```bash
+Login : j.morant@orange.fr
+Password : G@59;!x!Es
+```
+
+* **Director**
+
+```bash
+Login : f.couder@orange.fr
+Password : Hj59@;!jdh
 ```
 
 
@@ -135,15 +164,21 @@ The barrack manager's permissions are : 0000 0000 1111 0000
 
 The employee's permissions are : 0000 0000 0001 0001
 
+* **Secretary**
 
-## Error page
+The secretary's permissions are : 0000 0000 0111 0111
 
+* **Manager U**
 
-This project has 2 error pages :
+The user manager's permissions are : 0000 1111 0000 0000
 
--The first one is a 404 error page when the URL does nott exist. If u want to test it you can try to reach for exemple /fireman/blabla.
+* **Manager R-P**
 
--The second one is a 403 error page when the user does not have the right permissions to perform an action. If u want to test it you can try to reach /fireman/create using the employee account.
+The role | permissions manager's permissions are : 1111 0000 0000 0000
+
+* **Director**
+
+The director's permissions are : 0001 0001 0001 0001
 
 
 ## License
