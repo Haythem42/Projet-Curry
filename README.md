@@ -8,7 +8,6 @@ cd toTheDirectoryWhereYouWantToClone
 git clone https://gitlab.com/sco-chartreux/slam21-22/team-4/curry.git
 
 #Run the project
-
 cd curry
 
 php -S 127.0.0.1:8080 -t html (You can change the port.)
@@ -119,7 +118,7 @@ Password : Hj59@;!jdh
 ```
 
 
-## Permissions :open_book:
+## Permissions :book:
 
 
 * **How the permissions are made ?**
